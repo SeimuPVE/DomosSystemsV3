@@ -1,4 +1,4 @@
-package threads;
+package automaters;
 
 import modules.EnvironmentSensors;
 

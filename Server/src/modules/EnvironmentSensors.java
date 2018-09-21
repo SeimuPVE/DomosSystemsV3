@@ -9,8 +9,17 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static msc.Strings.log_environment_error;
+import static msc.Strings.log_environment_timeout;
+import static msc.Strings.log_environment_updated;
+
 
 public class EnvironmentSensors extends ModulePattern {
+    private static final Logger LOGGER = Logger.getLogger(EnvironmentSensors.class.getName());
+
     private static Socket socket = null;
     private static BufferedReader reader = null;
     private static PrintStream writer = null;
@@ -47,11 +56,12 @@ public class EnvironmentSensors extends ModulePattern {
                 luminosity = 100 * Double.parseDouble(reader.readLine()) / 1024.0;
 
                 writer.print('E');
+                LOGGER.log(Level.FINE, log_environment_updated);
                 System.out.println("Environment sensor updated.");
             }
         }
         catch (SocketTimeoutException e) {
-            System.out.println("Timeout exception with environment sensors !");
+            LOGGER.log(Level.WARNING, log_environment_timeout);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -81,8 +91,10 @@ public class EnvironmentSensors extends ModulePattern {
             return getLuminosity();
         else if(command.equals("GET_TEMPERATURE"))
             return getTemperature();
-        else
+        else {
+            LOGGER.log(Level.WARNING, log_environment_error);
             return "Error.";
+        }
     }
 
     public String getTemperature() {

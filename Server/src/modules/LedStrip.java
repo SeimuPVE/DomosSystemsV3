@@ -4,9 +4,16 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static msc.Strings.*;
+
 
 // TODO : set string into constants.
 public class LedStrip extends ModulePattern {
+    private static final Logger LOGGER = Logger.getLogger(LedStrip.class.getName());
+
     private Socket socket = null;
     private PrintStream writer = null;
 
@@ -44,7 +51,7 @@ public class LedStrip extends ModulePattern {
             }
         }
         catch (SocketTimeoutException e) {
-            System.out.println("Timeout exception with led strip !");
+            LOGGER.log(Level.WARNING, log_led_strip_timeout);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -77,36 +84,36 @@ public class LedStrip extends ModulePattern {
     public void turnOn() {
         byte[] code_on = new byte[] {(byte)0x71, (byte)0x23, (byte)0x0f, (byte)0xa3};
         sendByteCode(code_on);
-        System.out.println("Lights on !");
+        LOGGER.log(Level.FINE, log_led_strip_on);
     }
 
     public void turnOff() {
         byte[] code_off = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_off);
-        System.out.println("Lights off !");
+        LOGGER.log(Level.FINE, log_led_strip_off);
     }
 
     public void turnGreen() {
         byte[] code_green = new byte[] {(byte)0x31, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:ff:00:00:00:0f:3e
         sendByteCode(code_green);
-        System.out.println("Lights green !");
+        LOGGER.log(Level.FINE, log_led_strip_green);
     }
 
     public void turnCyan() {
         byte[] code_cyan = new byte[] {(byte)0x31, (byte)0x00, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:00:ff:ff:00:00:0f:3e
         sendByteCode(code_cyan);
-        System.out.println("Led strip is cyan !");
+        LOGGER.log(Level.FINE, log_led_strip_cyan);
     }
 
     public void turnMagenta() {
         byte[] code_magenta = new byte[] {(byte)0x31, (byte)0xff, (byte)0x00, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:00:ff:00:00:0f:3e
         sendByteCode(code_magenta);
-        System.out.println("Led strip is magenta !");
+        LOGGER.log(Level.FINE, log_led_strip_magenta);
     }
 
     public void turnWhite() {
         byte[] code_white = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_white);
-        System.out.println("Led strip is white !");
+        LOGGER.log(Level.FINE, log_led_strip_white);
     }
 }

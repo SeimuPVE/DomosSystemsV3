@@ -2,16 +2,23 @@ import modules.EnvironmentSensors;
 import modules.LedStrip;
 import modules.Lights;
 import modules.ModulePattern;
-import threads.Client;
-import threads.SensorsAutomater;
+import msc.Client;
+import automaters.SensorsAutomater;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static msc.Strings.log_server_up;
+
 
 public class Server {
+    private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
+
     private static final int port = 5433; // TODO : put it in a configuration file.
 
     private static ArrayList<ModulePattern> moduleList = new ArrayList<>();
@@ -34,7 +41,7 @@ public class Server {
             // Launch threads to automate actions.
             new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
 
-            System.out.println("Server up !");
+            LOGGER.log(Level.FINE, log_server_up);
 
             // Loop to manage clients.
             while (true) {

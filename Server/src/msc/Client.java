@@ -1,4 +1,4 @@
-package threads;
+package msc;
 
 import modules.ModulePattern;
 
@@ -8,8 +8,15 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static msc.Strings.*;
+
 
 public class Client implements Runnable {
+    private static final Logger LOGGER = Logger.getLogger(Client.class.getName());
+
     private static int nb_clients = 0;
     private Socket socket;
     private PrintStream writer = null;
@@ -24,8 +31,9 @@ public class Client implements Runnable {
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         nb_clients++;
-        System.out.println("A new client is connected.");
-        System.out.println("Total : " + nb_clients);
+
+        LOGGER.log(Level.FINE, log_new_client);
+        LOGGER.log(Level.FINE, log_total_client, nb_clients);
     }
 
     @Override
@@ -33,7 +41,8 @@ public class Client implements Runnable {
         try {
             String cmd = reader.readLine();
 
-            System.out.println("Command : " + cmd);
+            LOGGER.log(Level.FINE, log_command, cmd);
+
             for(ModulePattern module : modules)
                 writer.print(module.exec(cmd));
 
@@ -48,8 +57,8 @@ public class Client implements Runnable {
             socket.close();
 
             nb_clients--;
-            System.out.println("A client disconnected !");
-            System.out.println("Total : " + nb_clients);
+            LOGGER.log(Level.FINE, log_delete_client, nb_clients);
+            LOGGER.log(Level.FINE, log_total_client, nb_clients);
         }
     }
 }

@@ -1,7 +1,10 @@
 package modules;
 
+import static msc.Strings.log_module_err;
+
+
 public class ModulePattern {
     public String exec(String cmd) {
-        return "Please, use a daughter class...";
+        return log_module_err;
     }
 }
