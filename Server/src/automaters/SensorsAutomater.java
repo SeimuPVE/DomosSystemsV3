@@ -1,14 +1,19 @@
 package automaters;
 
 import modules.EnvironmentSensors;
+import msc.ConfigReader;
 
 import static java.lang.Thread.sleep;
 
-// TODO : add a thread to manage EnvironmentSensors.
+
 public class SensorsAutomater implements Runnable {
     private EnvironmentSensors environmentSensors;
 
+    private int timeout;
+
     public SensorsAutomater(EnvironmentSensors environmentSensors) {
+        timeout = Integer.parseInt(ConfigReader.readValue("sensors_automater_timeout"));
+
         this.environmentSensors = environmentSensors;
     }
 

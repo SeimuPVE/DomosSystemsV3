@@ -4,6 +4,7 @@ import modules.Lights;
 import modules.ModulePattern;
 import msc.Client;
 import automaters.SensorsAutomater;
+import msc.ConfigReader;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -19,7 +20,7 @@ import static msc.Strings.log_server_up;
 public class Server {
     private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
-    private static final int port = 5433; // TODO : put it in a configuration file.
+    private static int port;
 
     private static ArrayList<ModulePattern> moduleList = new ArrayList<>();
     private static Socket socket = null;
@@ -32,6 +33,8 @@ public class Server {
             moduleList.add(new LedStrip());
 
             // Initialize server.
+            port = Integer.parseInt(ConfigReader.readValue("server_port"));
+
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println(InetAddress.getLocalHost());
 

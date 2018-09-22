@@ -27,4 +27,8 @@ public class Strings {
     public static final String log_environment_updated = "Environment sensor updated.";
     public static final String log_environment_timeout = "Timeout exception with environment sensors !";
     public static final String log_environment_error = "Error.";
+
+    // ConfigReader.
+    public static final String log_config_reader_not_key = "Key not found in config file, the concerned key is : ";
+    public static final String comment_char = "//";
 }

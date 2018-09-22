@@ -1,5 +1,7 @@
 package modules;
 
+import msc.ConfigReader;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,16 +26,19 @@ public class EnvironmentSensors extends ModulePattern {
     private static BufferedReader reader = null;
     private static PrintStream writer = null;
 
-    // TODO : put it in a configuration file.
-    private static final String ip = "192.168.0.119";
-    private static final int port = 8266;
-    private static final int timeout = 5000;
+    private String ip;
+    private int port;
+    private int timeout;
 
     private double temperature;
     private double humidity;
     private double luminosity;
 
     public EnvironmentSensors() {
+        ip = ConfigReader.readValue("environment_sensor_ip");
+        port = Integer.parseInt(ConfigReader.readValue("environment_sensor_port"));
+        timeout = Integer.parseInt(ConfigReader.readValue("environment_sensor_timeout"));
+
         updateSensors();
     }
 
@@ -57,7 +62,6 @@ public class EnvironmentSensors extends ModulePattern {
 
                 writer.print('E');
                 LOGGER.log(Level.FINE, log_environment_updated);
-                System.out.println("Environment sensor updated.");
             }
         }
         catch (SocketTimeoutException e) {
@@ -84,7 +88,6 @@ public class EnvironmentSensors extends ModulePattern {
     }
 
     public String exec(String command) {
-        // TODO : put those String in an external file.
         if(command.equals("GET_HUMIDITY"))
             return getHumidity();
         else if(command.equals("GET_LUMINOSITY"))
@@ -93,7 +96,7 @@ public class EnvironmentSensors extends ModulePattern {
             return getTemperature();
         else {
             LOGGER.log(Level.WARNING, log_environment_error);
-            return "Error.";
+            return log_environment_error;
         }
     }
 

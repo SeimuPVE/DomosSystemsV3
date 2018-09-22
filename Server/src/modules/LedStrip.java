@@ -1,5 +1,7 @@
 package modules;
 
+import msc.ConfigReader;
+
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -10,18 +12,23 @@ import java.util.logging.Logger;
 import static msc.Strings.*;
 
 
-// TODO : set string into constants.
 public class LedStrip extends ModulePattern {
     private static final Logger LOGGER = Logger.getLogger(LedStrip.class.getName());
 
     private Socket socket = null;
     private PrintStream writer = null;
 
-    private final String ip = "192.168.0.111"; // TODO : add it on a configuration file.
-    private final int port = 5577;
-    private final int timeout = 5000;
+    private String ip;
+    private int port;
+    private int timeout;
 
     private boolean isOn = false;
+
+    public LedStrip() {
+        ip = ConfigReader.readValue("led_strip_ip");
+        port = Integer.parseInt(ConfigReader.readValue("led_strip_port"));
+        timeout = Integer.parseInt(ConfigReader.readValue("led_strip_timeout"));
+    }
 
     public String exec(String command) {
         if(command.equals("LED_STRIP_REVERSE"))

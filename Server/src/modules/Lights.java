@@ -1,5 +1,7 @@
 package modules;
 
+import msc.ConfigReader;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +19,15 @@ public class Lights extends ModulePattern {
         commandList.add("L_BED");
         commandList.add("TV");
 
-        codesOn.add("20817");
-        codesOn.add("17745");
-        codesOn.add("21585");
-        codesOn.add("21777");
+        codesOn.add(ConfigReader.readValue("code_on_1"));
+        codesOn.add(ConfigReader.readValue("code_on_2"));
+        codesOn.add(ConfigReader.readValue("code_on_3"));
+        codesOn.add(ConfigReader.readValue("code_on_4"));
 
-        codesOff.add("20820");
-        codesOff.add("17748");
-        codesOff.add("21588");
-        codesOff.add("21780");
+        codesOff.add(ConfigReader.readValue("code_off_1"));
+        codesOff.add(ConfigReader.readValue("code_off_2"));
+        codesOff.add(ConfigReader.readValue("code_off_3"));
+        codesOff.add(ConfigReader.readValue("code_off_4"));
 
         for(int i = 0; i < 4; i++)
             switchStates.add(false);
