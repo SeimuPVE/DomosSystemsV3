@@ -20,10 +20,10 @@ import static msc.Strings.log_server_up;
 public class Server {
     private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
+    private static Socket socket = null;
     private static int port;
 
     private static ArrayList<ModulePattern> moduleList = new ArrayList<>();
-    private static Socket socket = null;
 
     public static void main(String[] argv) {
         try {

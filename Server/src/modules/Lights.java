@@ -45,7 +45,6 @@ public class Lights extends ModulePattern {
                 switchReverse(i);
         }
 
-        // TODO : correct switchReverse with DESKTOP_REVERSE command.
         if(command.equals("DESKTOP_REVERSE")) {
             switchReverse(0); // exec("L_BACK_REVERSE");
             switchReverse(1); // exec("L_FRONT_REVERSE");

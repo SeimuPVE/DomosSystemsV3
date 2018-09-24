@@ -21,7 +21,7 @@ public class SensorsAutomater implements Runnable {
     public void run() {
         while(true) {
             try {
-                environmentSensors.updateSensors(); // TODO : correct the updater error (doesn't update).
+                environmentSensors.updateSensors();
                 sleep(4 * 60 * 1000);
             }
             catch (InterruptedException e) {
