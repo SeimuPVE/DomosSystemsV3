@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static modules.CODES.L_BACK_OFF;
+import static modules.CODES.L_FRONT_OFF;
 import static msc.Strings.log_server_up;
 
 
@@ -38,8 +40,8 @@ public class Server {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println(InetAddress.getLocalHost());
 
-            moduleList.get(0).exec("L_BACK_OFF");
-            moduleList.get(0).exec("L_FRONT_OFF");
+            moduleList.get(0).exec(L_BACK_OFF);
+            moduleList.get(0).exec(L_FRONT_OFF);
 
             // Launch threads to automate actions.
             new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();

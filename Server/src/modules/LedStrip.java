@@ -9,6 +9,7 @@ import java.net.SocketTimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static modules.CODES.*;
 import static msc.Strings.*;
 
 
@@ -31,17 +32,17 @@ public class LedStrip extends ModulePattern {
     }
 
     public String exec(String command) {
-        if(command.equals("LED_STRIP_REVERSE"))
+        if(command.equals(LED_STRIP_REVERSE))
             reverseLights();
-        else if(command.equals("LED_STRIP_ON"))
+        else if(command.equals(LED_STRIP_ON))
             turnOn();
-        else if(command.equals("LED_STRIP_OFF"))
+        else if(command.equals(LED_STRIP_OFF))
             turnOff();
-        else if(command.equals("LED_STRIP_GREEN"))
+        else if(command.equals(LED_STRIP_GREEN))
             turnGreen();
-        else if(command.equals("LED_STRIP_CYAN"))
+        else if(command.equals(LED_STRIP_CYAN))
             turnCyan();
-        else if(command.equals("LED_STRIP_MAGENTA"))
+        else if(command.equals(LED_STRIP_MAGENTA))
             turnMagenta();
 
         return "";

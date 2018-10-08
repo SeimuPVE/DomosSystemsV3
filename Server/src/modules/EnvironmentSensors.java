@@ -14,6 +14,7 @@ import java.text.NumberFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static modules.CODES.*;
 import static msc.Strings.log_environment_error;
 import static msc.Strings.log_environment_timeout;
 import static msc.Strings.log_environment_updated;
@@ -51,16 +52,16 @@ public class EnvironmentSensors extends ModulePattern {
                 writer = new PrintStream(socket.getOutputStream());
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                writer.print('T');
+                writer.print(SENSOR_TEMPERATURE);
                 temperature = Double.parseDouble(reader.readLine());
 
-                writer.print('H');
+                writer.print(SENSOR_HUMIDITY);
                 humidity = Double.parseDouble(reader.readLine());
 
-                writer.print('L');
+                writer.print(SENSOR_LUMINOSITY);
                 luminosity = 100 * Double.parseDouble(reader.readLine()) / 1024.0;
 
-                writer.print('E');
+                writer.print(SENSOR_EXIT);
                 LOGGER.log(Level.FINE, log_environment_updated);
             }
         }
@@ -88,11 +89,11 @@ public class EnvironmentSensors extends ModulePattern {
     }
 
     public String exec(String command) {
-        if(command.equals("GET_HUMIDITY"))
+        if(command.equals(GET_HUMIDITY))
             return getHumidity();
-        else if(command.equals("GET_LUMINOSITY"))
+        else if(command.equals(GET_LUMINOSITY))
             return getLuminosity();
-        else if(command.equals("GET_TEMPERATURE"))
+        else if(command.equals(GET_TEMPERATURE))
             return getTemperature();
         else {
             LOGGER.log(Level.WARNING, log_environment_error);

@@ -6,18 +6,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static modules.CODES.*;
+
+
 public class Lights extends ModulePattern {
     private static List<String> commandList = new ArrayList<String>();
     private static List<String> codesOn = new ArrayList<String>();
     private static List<String> codesOff = new ArrayList<String>();
     private static List<Boolean> switchStates = new ArrayList<Boolean>();
 
-    // TODO : code it in a better way (with a configuration file for example).
     public Lights() throws Exception {
-        commandList.add("L_BACK");
-        commandList.add("L_FRONT");
-        commandList.add("L_BED");
-        commandList.add("TV");
+        commandList.add(L_BACK_ON);
+        commandList.add(L_BACK_OFF);
+        commandList.add(L_BACK_REVERSE);
+        commandList.add(L_FRONT_ON);
+        commandList.add(L_FRONT_OFF);
+        commandList.add(L_FRONT_REVERSE);
+        commandList.add(L_BED_ON);
+        commandList.add(L_BED_OFF);
+        commandList.add(L_BED_REVERSE);
+        commandList.add(TV_ON);
+        commandList.add(TV_OFF);
+        commandList.add(TV_REVERSE);
+        commandList.add(DESKTOP_REVERSE);
 
         codesOn.add(ConfigReader.readValue("code_on_1"));
         codesOn.add(ConfigReader.readValue("code_on_2"));
@@ -37,17 +48,17 @@ public class Lights extends ModulePattern {
         int i;
 
         for(i = 0; i < commandList.size(); i++) {
-            if(command.equals(commandList.get(i) + "_ON"))
+            if(command.equals(commandList.get(i)) && command.contains(ON))
                 switchOn(i);
-            else if(command.equals(commandList.get(i) + "_OFF"))
+            else if(command.equals(commandList.get(i)) && command.contains(OFF))
                 switchOff(i);
-            else if(command.equals(commandList.get(i) + "_REVERSE"))
+            else if(command.equals(commandList.get(i)) && command.contains(REVERSE))
                 switchReverse(i);
         }
 
-        if(command.equals("DESKTOP_REVERSE")) {
-            switchReverse(0); // exec("L_BACK_REVERSE");
-            switchReverse(1); // exec("L_FRONT_REVERSE");
+        if(command.equals(DESKTOP_REVERSE)) {
+            switchReverse(0);
+            switchReverse(1);
         }
 
         return "";
@@ -55,7 +66,7 @@ public class Lights extends ModulePattern {
 
     private void switchOn(int index) {
         try {
-            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOn.get(index) + "\" > /dev/ttyUSB0"}).waitFor();
+            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOn.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
             switchStates.set(index, true);
         }
         catch (InterruptedException | IOException e) {
@@ -65,7 +76,7 @@ public class Lights extends ModulePattern {
 
     private void switchOff(int index) {
         try {
-            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOff.get(index) + "\" > /dev/ttyUSB0"}).waitFor();
+            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOff.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
             switchStates.set(index, false);
         }
         catch (InterruptedException | IOException e) {
