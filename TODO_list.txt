@@ -1,0 +1,16 @@
+Done this week :
+	N/A.
+
+Server :
+	- Update documentation.
+	- Add module codes.
+	- Add a way to add users on a "database" (use a simple file).
+	- Add a way to use authentification with the Android application.
+	- Add a new client for desktop users.
+	- Add a way to create scenarios.
+	- Add a dashboard.
+	- Handle all exceptions.
+	- Find modules to add.
+
+AndroidApp :
+	TODO.
