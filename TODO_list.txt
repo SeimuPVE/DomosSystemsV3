@@ -5,6 +5,7 @@ Done this week :
 Server :
 	- Add a way to add users on a "database" (use a simple file).
 	- Add a way to use authentification with the Android application.
+	- Send errors to the client.
 	- Add a new client for desktop users.
 	- Add a way to create scenarios.
 	- Add a dashboard.
@@ -12,4 +13,5 @@ Server :
 	- Find modules to add.
 
 AndroidApp :
+	- Add an alarm clock connected to the system (for scenarios).
 	TODO.
