@@ -1,9 +1,8 @@
 Done this week :
-	N/A.
+	- Update documentation.
+	- Extract module codes.
 
 Server :
-	- Update documentation.
-	- Add module codes.
 	- Add a way to add users on a "database" (use a simple file).
 	- Add a way to use authentification with the Android application.
 	- Add a new client for desktop users.
