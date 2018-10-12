@@ -14,4 +14,11 @@ Server :
 
 AndroidApp :
 	- Add an alarm clock connected to the system (for scenarios).
-	TODO.
+	- Add login Activity
+	- Generate login file (ip@ , port , email , encrypted password)
+	- Manage the scrollbar list of the left side (deal with all buttons)
+		* Settings
+		* Add widget
+		* Personalise a widget
+		* Logout
+		* Account
