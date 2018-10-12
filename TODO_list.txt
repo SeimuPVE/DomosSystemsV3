@@ -1,8 +1,12 @@
 Done this week :
 	- Update documentation.
 	- Extract module codes.
+	- Correct errors with lights and environment sensors. Also correcting errors with server socket.
 
 Server :
+	- Correct errors with lights.
+	- Code lights in a better way, to be more flexible with other configurations.
+	- Send logs to the client.
 	- Add a way to add users on a "database" (use a simple file).
 	- Add a way to use authentification with the Android application.
 	- Send errors to the client.
@@ -14,11 +18,11 @@ Server :
 
 AndroidApp :
 	- Add an alarm clock connected to the system (for scenarios).
-	- Add login Activity
-	- Generate login file (ip@ , port , email , encrypted password)
-	- Manage the scrollbar list of the left side (deal with all buttons)
-		* Settings
-		* Add widget
-		* Personalise a widget
-		* Logout
-		* Account
+	- Add login Activity.
+	- Generate login file (ip@ , port , email , encrypted password).
+	- Manage the scrollbar list of the left side (deal with all buttons).
+		* Settings.
+		* Add widget.
+		* Personalise a widget.
+		* Logout.
+		* Account.
