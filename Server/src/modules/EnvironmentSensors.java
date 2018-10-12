@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
+import java.net.NoRouteToHostException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
@@ -15,9 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static modules.CODES.*;
-import static msc.Strings.log_environment_error;
-import static msc.Strings.log_environment_timeout;
-import static msc.Strings.log_environment_updated;
+import static msc.Strings.*;
 
 
 public class EnvironmentSensors extends ModulePattern {
@@ -66,7 +65,12 @@ public class EnvironmentSensors extends ModulePattern {
             }
         }
         catch (SocketTimeoutException e) {
+            // TODO : catch it, alert user than the environment sensor module doesn't work, wait and try again...
             LOGGER.log(Level.WARNING, log_environment_timeout);
+        }
+        catch (NoRouteToHostException e) {
+            // TODO : catch it, alert user than the environment sensor module doesn't work, wait and try again...
+            LOGGER.log(Level.WARNING, log_environment_no_route_to_host);
         }
         catch (IOException e) {
             e.printStackTrace();

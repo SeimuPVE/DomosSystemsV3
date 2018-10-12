@@ -1,7 +1,4 @@
-import modules.EnvironmentSensors;
-import modules.LedStrip;
-import modules.Lights;
-import modules.ModulePattern;
+import modules.*;
 import msc.Client;
 import automaters.SensorsAutomater;
 import msc.ConfigReader;
@@ -16,6 +13,7 @@ import java.util.logging.Logger;
 
 import static modules.CODES.L_BACK_OFF;
 import static modules.CODES.L_FRONT_OFF;
+import static msc.Strings.log_server_closed;
 import static msc.Strings.log_server_up;
 
 
@@ -40,8 +38,22 @@ public class Server {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println(InetAddress.getLocalHost());
 
-            moduleList.get(0).exec(L_BACK_OFF);
-            moduleList.get(0).exec(L_FRONT_OFF);
+//            moduleList.get(0).exec(CODES.L_BACK_ON);
+//            moduleList.get(0).exec(CODES.L_FRONT_ON);
+//            moduleList.get(0).exec(CODES.L_BED_ON);
+//            moduleList.get(0).exec(CODES.TV_ON);
+//            moduleList.get(0).exec(CODES.L_BACK_OFF);
+//            moduleList.get(0).exec(CODES.L_FRONT_OFF); // Error.
+//            moduleList.get(0).exec(CODES.L_BED_OFF);
+//            moduleList.get(0).exec(CODES.TV_OFF);
+//            moduleList.get(0).exec(CODES.L_BACK_REVERSE);
+//            moduleList.get(0).exec(CODES.L_FRONT_REVERSE); // Error.
+//            moduleList.get(0).exec(CODES.L_BED_REVERSE);
+//            moduleList.get(0).exec(CODES.TV_REVERSE);
+//            moduleList.get(0).exec(CODES.DESKTOP_REVERSE); // Error.
+
+//            moduleList.get(0).exec(L_BACK_OFF);
+//            moduleList.get(0).exec(L_FRONT_OFF);
 
             // Launch threads to automate actions.
             new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
@@ -59,7 +71,10 @@ public class Server {
         }
         finally {
             try {
-                socket.close();
+                if(socket != null)
+                    socket.close();
+
+                LOGGER.log(Level.FINE, log_server_closed);
             }
             catch (IOException e) {
                 e.printStackTrace();

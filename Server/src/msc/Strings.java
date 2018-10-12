@@ -4,6 +4,7 @@ package msc;
 public class Strings {
     // Server.
     public static final String log_server_up = "Server up !";
+    public static final String log_server_closed = "Server closed !";
 
     // Client.
     public static final String log_new_client = "A new client is connected.";
@@ -26,6 +27,7 @@ public class Strings {
     // EnvironmentSensors.
     public static final String log_environment_updated = "Environment sensor updated.";
     public static final String log_environment_timeout = "Timeout exception with environment sensors !";
+    public static final String log_environment_no_route_to_host = "The environment sensor is not connected.";
     public static final String log_environment_error = "Error.";
 
     // ConfigReader.

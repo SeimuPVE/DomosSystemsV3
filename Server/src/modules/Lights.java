@@ -17,16 +17,16 @@ public class Lights extends ModulePattern {
 
     public Lights() throws Exception {
         commandList.add(L_BACK_ON);
-        commandList.add(L_BACK_OFF);
-        commandList.add(L_BACK_REVERSE);
         commandList.add(L_FRONT_ON);
-        commandList.add(L_FRONT_OFF);
-        commandList.add(L_FRONT_REVERSE);
         commandList.add(L_BED_ON);
-        commandList.add(L_BED_OFF);
-        commandList.add(L_BED_REVERSE);
         commandList.add(TV_ON);
+        commandList.add(L_BACK_OFF);
+        commandList.add(L_FRONT_OFF);
+        commandList.add(L_BED_OFF);
         commandList.add(TV_OFF);
+        commandList.add(L_BACK_REVERSE);
+        commandList.add(L_FRONT_REVERSE);
+        commandList.add(L_BED_REVERSE);
         commandList.add(TV_REVERSE);
         commandList.add(DESKTOP_REVERSE);
 
@@ -47,18 +47,18 @@ public class Lights extends ModulePattern {
     public String exec(String command) {
         int i;
 
+        if(command.equals(DESKTOP_REVERSE)) {
+            switchReverse(0);
+            switchReverse(1);
+        }
+
         for(i = 0; i < commandList.size(); i++) {
             if(command.equals(commandList.get(i)) && command.contains(ON))
                 switchOn(i);
             else if(command.equals(commandList.get(i)) && command.contains(OFF))
-                switchOff(i);
+                switchOff(i - commandList.indexOf(L_BACK_OFF));
             else if(command.equals(commandList.get(i)) && command.contains(REVERSE))
-                switchReverse(i);
-        }
-
-        if(command.equals(DESKTOP_REVERSE)) {
-            switchReverse(0);
-            switchReverse(1);
+                switchReverse(i - commandList.indexOf(L_BACK_REVERSE));
         }
 
         return "";
