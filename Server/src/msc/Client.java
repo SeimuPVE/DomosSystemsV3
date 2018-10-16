@@ -48,7 +48,7 @@ public class Client implements Runnable {
 
             disconnect();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
     }
 

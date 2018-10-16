@@ -62,7 +62,7 @@ public class LedStrip extends ModulePattern {
             LOGGER.log(Level.WARNING, log_led_strip_timeout);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
         finally {
             try {
@@ -73,7 +73,7 @@ public class LedStrip extends ModulePattern {
                     socket.close();
             }
             catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // TODO : catch errors.
             }
         }
     }
@@ -82,10 +82,12 @@ public class LedStrip extends ModulePattern {
         if(isOn) {
             turnOff();
             isOn = false;
+            // TODO : warn the client.
         }
         else {
             turnOn();
             isOn = true;
+            // TODO : warn the client.
         }
     }
 
@@ -93,35 +95,41 @@ public class LedStrip extends ModulePattern {
         byte[] code_on = new byte[] {(byte)0x71, (byte)0x23, (byte)0x0f, (byte)0xa3};
         sendByteCode(code_on);
         LOGGER.log(Level.FINE, log_led_strip_on);
+        // TODO : warn the client.
     }
 
     public void turnOff() {
         byte[] code_off = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_off);
         LOGGER.log(Level.FINE, log_led_strip_off);
+        // TODO : warn the client.
     }
 
     public void turnGreen() {
         byte[] code_green = new byte[] {(byte)0x31, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:ff:00:00:00:0f:3e
         sendByteCode(code_green);
         LOGGER.log(Level.FINE, log_led_strip_green);
+        // TODO : warn the client.
     }
 
     public void turnCyan() {
         byte[] code_cyan = new byte[] {(byte)0x31, (byte)0x00, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:00:ff:ff:00:00:0f:3e
         sendByteCode(code_cyan);
         LOGGER.log(Level.FINE, log_led_strip_cyan);
+        // TODO : warn the client.
     }
 
     public void turnMagenta() {
         byte[] code_magenta = new byte[] {(byte)0x31, (byte)0xff, (byte)0x00, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:00:ff:00:00:0f:3e
         sendByteCode(code_magenta);
         LOGGER.log(Level.FINE, log_led_strip_magenta);
+        // TODO : warn the client.
     }
 
     public void turnWhite() {
         byte[] code_white = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_white);
         LOGGER.log(Level.FINE, log_led_strip_white);
+        // TODO : warn the client.
     }
 }

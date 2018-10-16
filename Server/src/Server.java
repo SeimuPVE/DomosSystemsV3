@@ -67,7 +67,7 @@ public class Server {
             }
         }
         catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
         finally {
             try {
@@ -77,7 +77,7 @@ public class Server {
                 LOGGER.log(Level.FINE, log_server_closed);
             }
             catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // TODO : catch errors.
             }
         }
     }

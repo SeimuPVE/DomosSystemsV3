@@ -68,9 +68,10 @@ public class Lights extends ModulePattern {
         try {
             Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOn.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
             switchStates.set(index, true);
+            // TODO : send message to warn that the light turned ON.
         }
         catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
     }
 
@@ -78,9 +79,10 @@ public class Lights extends ModulePattern {
         try {
             Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOff.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
             switchStates.set(index, false);
+            // TODO : send message to warn that the light turned OFF.
         }
         catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
     }
 

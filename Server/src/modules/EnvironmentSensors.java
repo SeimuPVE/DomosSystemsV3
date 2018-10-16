@@ -73,7 +73,7 @@ public class EnvironmentSensors extends ModulePattern {
             LOGGER.log(Level.WARNING, log_environment_no_route_to_host);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
         finally {
             try {
@@ -87,7 +87,7 @@ public class EnvironmentSensors extends ModulePattern {
                     socket.close();
             }
             catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // TODO : catch errors.
             }
         }
     }

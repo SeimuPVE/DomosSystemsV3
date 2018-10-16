@@ -25,7 +25,7 @@ public class SensorsAutomater implements Runnable {
                 sleep(4 * 60 * 1000);
             }
             catch (InterruptedException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // TODO : catch errors.
             }
         }
     }

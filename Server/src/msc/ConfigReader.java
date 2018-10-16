@@ -39,10 +39,10 @@ public class ConfigReader {
             return value;
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
         catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO : catch errors.
         }
 
         return "";
