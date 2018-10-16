@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static modules.CODES.L_BACK_OFF;
-import static modules.CODES.L_FRONT_OFF;
 import static msc.Strings.log_server_closed;
 import static msc.Strings.log_server_up;
 
@@ -38,22 +36,8 @@ public class Server {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println(InetAddress.getLocalHost());
 
-//            moduleList.get(0).exec(CODES.L_BACK_ON);
-//            moduleList.get(0).exec(CODES.L_FRONT_ON);
-//            moduleList.get(0).exec(CODES.L_BED_ON);
-//            moduleList.get(0).exec(CODES.TV_ON);
-//            moduleList.get(0).exec(CODES.L_BACK_OFF);
-//            moduleList.get(0).exec(CODES.L_FRONT_OFF); // Error.
-//            moduleList.get(0).exec(CODES.L_BED_OFF);
-//            moduleList.get(0).exec(CODES.TV_OFF);
-//            moduleList.get(0).exec(CODES.L_BACK_REVERSE);
-//            moduleList.get(0).exec(CODES.L_FRONT_REVERSE); // Error.
-//            moduleList.get(0).exec(CODES.L_BED_REVERSE);
-//            moduleList.get(0).exec(CODES.TV_REVERSE);
-//            moduleList.get(0).exec(CODES.DESKTOP_REVERSE); // Error.
-
-//            moduleList.get(0).exec(L_BACK_OFF);
-//            moduleList.get(0).exec(L_FRONT_OFF);
+            moduleList.get(0).exec(CODES.L_BACK_OFF);
+            moduleList.get(0).exec(CODES.L_FRONT_OFF);
 
             // Launch threads to automate actions.
             new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
@@ -63,7 +47,7 @@ public class Server {
             // Loop to manage clients.
             while (true) {
                 socket = serverSocket.accept();
-                new Thread(new Client(socket, moduleList)).start();
+                new Thread(new Client(socket, moduleList)).start(); // TODO : check here for logs.
             }
         }
         catch (Exception e) {

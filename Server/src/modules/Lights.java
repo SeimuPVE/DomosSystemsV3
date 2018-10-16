@@ -6,29 +6,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static modules.CODES.*;
-
 
 public class Lights extends ModulePattern {
-    private static List<String> commandList = new ArrayList<String>();
+    private static List<String> commandsOn = new ArrayList<String>();
+    private static List<String> commandsOff = new ArrayList<String>();
+    private static List<String> commandsReverse = new ArrayList<String>();
     private static List<String> codesOn = new ArrayList<String>();
     private static List<String> codesOff = new ArrayList<String>();
     private static List<Boolean> switchStates = new ArrayList<Boolean>();
 
     public Lights() throws Exception {
-        commandList.add(L_BACK_ON);
-        commandList.add(L_FRONT_ON);
-        commandList.add(L_BED_ON);
-        commandList.add(TV_ON);
-        commandList.add(L_BACK_OFF);
-        commandList.add(L_FRONT_OFF);
-        commandList.add(L_BED_OFF);
-        commandList.add(TV_OFF);
-        commandList.add(L_BACK_REVERSE);
-        commandList.add(L_FRONT_REVERSE);
-        commandList.add(L_BED_REVERSE);
-        commandList.add(TV_REVERSE);
-        commandList.add(DESKTOP_REVERSE);
+        commandsOn.add(CODES.L_BACK_ON);
+        commandsOn.add(CODES.L_FRONT_ON);
+        commandsOn.add(CODES.L_BED_ON);
+        commandsOn.add(CODES.TV_ON);
+        commandsOff.add(CODES.L_BACK_OFF);
+        commandsOff.add(CODES.L_FRONT_OFF);
+        commandsOff.add(CODES.L_BED_OFF);
+        commandsOff.add(CODES.TV_OFF);
+        commandsReverse.add(CODES.L_BACK_REVERSE);
+        commandsReverse.add(CODES.L_FRONT_REVERSE);
+        commandsReverse.add(CODES.L_BED_REVERSE);
+        commandsReverse.add(CODES.TV_REVERSE);
+        commandsReverse.add(CODES.DESKTOP_REVERSE); // TODO : Change it in client to be more flexible.
 
         codesOn.add(ConfigReader.readValue("code_on_1"));
         codesOn.add(ConfigReader.readValue("code_on_2"));
@@ -44,22 +44,19 @@ public class Lights extends ModulePattern {
             switchStates.add(false);
     }
 
-    public String exec(String command) {
+    public String exec(String command) { // TODO : manage it in a better way.
         int i;
 
-        if(command.equals(DESKTOP_REVERSE)) {
+        if(command.equals(CODES.DESKTOP_REVERSE)) {
             switchReverse(0);
             switchReverse(1);
         }
-
-        for(i = 0; i < commandList.size(); i++) {
-            if(command.equals(commandList.get(i)) && command.contains(ON))
-                switchOn(i);
-            else if(command.equals(commandList.get(i)) && command.contains(OFF))
-                switchOff(i - commandList.indexOf(L_BACK_OFF));
-            else if(command.equals(commandList.get(i)) && command.contains(REVERSE))
-                switchReverse(i - commandList.indexOf(L_BACK_REVERSE));
-        }
+        else if(commandsOn.contains(command))
+            switchOn(commandsOn.indexOf(command));
+        else if(commandsOff.contains(command))
+            switchOff(commandsOff.indexOf(command));
+        else if(commandsReverse.contains(command))
+            switchOn(commandsReverse.indexOf(command));
 
         return "";
     }
