@@ -1,6 +1,7 @@
 Done this week :
 
 Server :
+	- Fix all problems with lights.
 	- Send logs to the client.
 	- Send errors to the client.
 	- Code lights in a better way, to be more flexible with other configurations.
