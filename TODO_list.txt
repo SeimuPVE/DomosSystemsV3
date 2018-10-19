@@ -1,27 +1,15 @@
-Done this week :
-	Server :
-		- Fix all problems with lights.
-	
-	Android :
-		- Add login Activity.
-		- Generate login file (ip@ , port , email , encrypted password).
-		- Make the scrollbar list of the left side interactive (deal with all buttons).
-			* Settings.
-			* Add widget.
-			* Logout.
-			* Account.
-
 TODO :
 	Server :
+		- Update documentation, pass it into Markdown.
 		- Send logs to the client.
 		- Send errors to the client.
-		- Code lights in a better way, to be more flexible with other configurations.
+		- Handle all exceptions.
+		- Code lights module in a better way, to be more flexible with other configurations.
 		- Add a way to add users on a "database" (use a simple file).
 		- Add a way to use authentification with the Android application.
 		- Add a new client for desktop users.
-		- Add a way to create scenarios.
 		- Add a dashboard.
-		- Handle all exceptions.
+		- Add a way to create scenarios.
 		- Find modules to add.
 		- Make a signature in order to be sure that no modification has be done on our code.
 		- Add the possibility to pass by an official proxy server with authentification to use the system outside the LAN.
@@ -36,3 +24,15 @@ TODO :
 			* Account.
 		- Synchronize information with server's file
 
+Done this week :
+	Server :
+		- Fix all problems with lights.
+	
+	Android :
+		- Add login Activity.
+		- Generate login file (ip@ , port , email , encrypted password).
+		- Make the scrollbar list of the left side interactive (deal with all buttons).
+			* Settings.
+			* Add widget.
+			* Logout.
+			* Account.
