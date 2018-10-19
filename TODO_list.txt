@@ -20,6 +20,7 @@ Server :
 	- Add a dashboard.
 	- Handle all exceptions.
 	- Find modules to add.
+	- Make a signature in order to be sure that no modification has be done on our code.
 
 AndroidApp :
 	- Add an alarm clock connected to the system (for scenarios).
