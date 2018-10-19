@@ -1,6 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
+import msc.Strings;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,9 +37,9 @@ public class EnvironmentSensors extends ModulePattern {
     private double luminosity;
 
     public EnvironmentSensors() {
-        ip = ConfigReader.readValue("environment_sensor_ip");
-        port = Integer.parseInt(ConfigReader.readValue("environment_sensor_port"));
-        timeout = Integer.parseInt(ConfigReader.readValue("environment_sensor_timeout"));
+        ip = ConfigReader.readValue(Strings.environment_sensor_ip);
+        port = Integer.parseInt(ConfigReader.readValue(Strings.environment_sensor_port));
+        timeout = Integer.parseInt(ConfigReader.readValue(Strings.environment_sensor_timeout));
 
         updateSensors();
     }
@@ -65,15 +67,30 @@ public class EnvironmentSensors extends ModulePattern {
             }
         }
         catch (SocketTimeoutException e) {
-            // TODO : catch it, alert user than the environment sensor module doesn't work, wait and try again...
-            LOGGER.log(Level.WARNING, log_environment_timeout);
+            // Log it and alert user.
+            LOGGER.log(Level.WARNING, Strings.log_environment_timeout);
+            logError(Strings.log_environment_timeout);
+
+            // Wait and try again.
+            try {
+                TimeUnit.SECONDS.sleep(30);
+                updateSensors();
+            }
+            catch (InterruptedException e1) {
+                LOGGER.log(Level.SEVERE, e1.getMessage());
+                logError(e1.getMessage());
+            }
         }
         catch (NoRouteToHostException e) {
-            // TODO : catch it, alert user than the environment sensor module doesn't work, wait and try again...
-            LOGGER.log(Level.WARNING, log_environment_no_route_to_host);
+            // Log it and alert user.
+            LOGGER.log(Level.WARNING, Strings.log_environment_no_route_to_host);
+            logError(Strings.log_environment_no_route_to_host);
+
+            // Wait and try again.
         }
         catch (IOException e) {
-            e.printStackTrace(); // TODO : catch errors.
+            LOGGER.log(Level.SEVERE, e.getMessage());
+            logError(e.getMessage());
         }
         finally {
             try {
@@ -87,7 +104,8 @@ public class EnvironmentSensors extends ModulePattern {
                     socket.close();
             }
             catch (IOException e) {
-                e.printStackTrace(); // TODO : catch errors.
+                LOGGER.log(Level.SEVERE, e.getMessage());
+                logError(e.getMessage());
             }
         }
     }

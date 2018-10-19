@@ -2,17 +2,22 @@ package automaters;
 
 import modules.EnvironmentSensors;
 import msc.ConfigReader;
+import msc.Strings;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.lang.Thread.sleep;
 
 
 public class SensorsAutomater implements Runnable {
+    private static final Logger LOGGER = Logger.getLogger(SensorsAutomater.class.getName());
     private EnvironmentSensors environmentSensors;
 
     private int timeout;
 
     public SensorsAutomater(EnvironmentSensors environmentSensors) {
-        timeout = Integer.parseInt(ConfigReader.readValue("sensors_automater_timeout"));
+        timeout = Integer.parseInt(ConfigReader.readValue(Strings.sensors_automater_timeout));
 
         this.environmentSensors = environmentSensors;
     }
@@ -25,7 +30,7 @@ public class SensorsAutomater implements Runnable {
                 sleep(4 * 60 * 1000);
             }
             catch (InterruptedException e) {
-                e.printStackTrace(); // TODO : catch errors.
+                LOGGER.log(Level.SEVERE, e.getMessage());
             }
         }
     }

@@ -25,13 +25,18 @@ public class Client implements Runnable {
     private ArrayList<ModulePattern> modules;
 
     public Client(Socket socket, ArrayList<ModulePattern> modules) throws IOException {
-        this.modules = modules;
+        // Create connection.
         this.socket = socket;
         writer = new PrintStream(socket.getOutputStream());
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        nb_clients++;
+        // Import modules.
+        this.modules = modules;
+        for(ModulePattern module: modules)
+            module.setClient(this);
 
+        // Increase number of clients and log it.
+        nb_clients++;
         LOGGER.log(Level.FINE, log_new_client);
         LOGGER.log(Level.FINE, log_total_client, nb_clients);
     }
@@ -39,13 +44,15 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try {
+            // Get the command and execute it.
             String cmd = reader.readLine();
-
-            LOGGER.log(Level.FINE, log_command, cmd);
 
             for(ModulePattern module : modules)
                 writer.print(module.exec(cmd));
 
+            LOGGER.log(Level.FINE, log_command, cmd);
+
+            // Disconnect the client because we don't need to stay connected.
             disconnect();
         } catch (Exception e) {
             e.printStackTrace(); // TODO : catch errors.
@@ -60,5 +67,13 @@ public class Client implements Runnable {
             LOGGER.log(Level.FINE, log_delete_client, nb_clients);
             LOGGER.log(Level.FINE, log_total_client, nb_clients);
         }
+    }
+
+    public PrintStream getWriter() {
+        return writer;
+    }
+
+    public BufferedReader getReader() {
+        return reader;
     }
 }

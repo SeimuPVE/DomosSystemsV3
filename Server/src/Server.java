@@ -45,9 +45,9 @@ public class Server {
             LOGGER.log(Level.FINE, log_server_up);
 
             // Loop to manage clients.
-            while (true) {
+            while(true) {
                 socket = serverSocket.accept();
-                new Thread(new Client(socket, moduleList)).start(); // TODO : check here for logs.
+                new Thread(new Client(socket, moduleList)).start();
             }
         }
         catch (Exception e) {

@@ -1,12 +1,14 @@
 package modules;
 
 import msc.ConfigReader;
+import msc.Strings;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
+// TODO : extract strings and change it to be more flexible.
 public class Lights extends ModulePattern {
     private static List<String> commandsOn = new ArrayList<String>();
     private static List<String> commandsOff = new ArrayList<String>();
@@ -28,7 +30,7 @@ public class Lights extends ModulePattern {
         commandsReverse.add(CODES.L_FRONT_REVERSE);
         commandsReverse.add(CODES.L_BED_REVERSE);
         commandsReverse.add(CODES.TV_REVERSE);
-        commandsReverse.add(CODES.DESKTOP_REVERSE); // TODO : Change it in client to be more flexible.
+        commandsReverse.add(CODES.DESKTOP_REVERSE);
 
         codesOn.add(ConfigReader.readValue("code_on_1"));
         codesOn.add(ConfigReader.readValue("code_on_2"));
@@ -44,7 +46,7 @@ public class Lights extends ModulePattern {
             switchStates.add(false);
     }
 
-    public String exec(String command) { // TODO : manage it in a better way.
+    public String exec(String command) {
         int i;
 
         if(command.equals(CODES.DESKTOP_REVERSE)) {
@@ -63,23 +65,33 @@ public class Lights extends ModulePattern {
 
     private void switchOn(int index) {
         try {
+            // Execute command.
             Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOn.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
+
+            // Switch state of the light.
             switchStates.set(index, true);
-            // TODO : send message to warn that the light turned ON.
+
+            // Log it to the client.
+            logSucces(Strings.log_light_turned_on);
         }
         catch (InterruptedException | IOException e) {
-            e.printStackTrace(); // TODO : catch errors.
+            logError(e.getMessage());
         }
     }
 
     private void switchOff(int index) {
         try {
+            // Execute command.
             Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOff.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
+
+            // Switch state of the light.
             switchStates.set(index, false);
-            // TODO : send message to warn that the light turned OFF.
+
+            // Log it to the client.
+            logSucces(Strings.log_light_turned_off);
         }
         catch (InterruptedException | IOException e) {
-            e.printStackTrace(); // TODO : catch errors.
+            logError(e.getMessage());
         }
     }
 
