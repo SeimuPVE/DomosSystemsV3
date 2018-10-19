@@ -24,6 +24,7 @@ TODO :
 		- Handle all exceptions.
 		- Find modules to add.
 		- Make a signature in order to be sure that no modification has be done on our code.
+		- Add the possibility to pass by an official proxy server with authentification to use the system outside the LAN.
 
 	AndroidApp :
 		- Add an alarm clock connected to the system (for scenarios).
