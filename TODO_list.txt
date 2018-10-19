@@ -1,17 +1,15 @@
 TODO :
 	Server :
-		- Update documentation, pass it into Markdown.
-		- Send logs to the client.
-		- Send errors to the client.
 		- Handle all exceptions.
 		- Code lights module in a better way, to be more flexible with other configurations.
+		- Update documentation, pass it into Markdown.
 		- Add a way to add users on a "database" (use a simple file).
 		- Add a way to use authentification with the Android application.
+		- Make a signature in order to be sure that no modification has be done on our code.
 		- Add a new client for desktop users.
 		- Add a dashboard.
 		- Add a way to create scenarios.
 		- Find modules to add.
-		- Make a signature in order to be sure that no modification has be done on our code.
 		- Add the possibility to pass by an official proxy server with authentification to use the system outside the LAN.
 
 	AndroidApp :
@@ -27,6 +25,8 @@ TODO :
 Done this week :
 	Server :
 		- Fix all problems with lights.
+		- Send logs to the client.
+		- Send errors to the client.
 	
 	Android :
 		- Add login Activity.
