@@ -1,34 +1,37 @@
 Done this week :
-	- Fix all problems with lights.
+	Server :
+		- Fix all problems with lights.
 	
-	- Add login Activity.
-	- Generate login file (ip@ , port , email , encrypted password).
-	- Make the scrollbar list of the left side interactive (deal with all buttons).
-		* Settings.
-		* Add widget.
-		* Logout.
-		* Account.
+	Android :
+		- Add login Activity.
+		- Generate login file (ip@ , port , email , encrypted password).
+		- Make the scrollbar list of the left side interactive (deal with all buttons).
+			* Settings.
+			* Add widget.
+			* Logout.
+			* Account.
 
-Server :
-	- Send logs to the client.
-	- Send errors to the client.
-	- Code lights in a better way, to be more flexible with other configurations.
-	- Add a way to add users on a "database" (use a simple file).
-	- Add a way to use authentification with the Android application.
-	- Add a new client for desktop users.
-	- Add a way to create scenarios.
-	- Add a dashboard.
-	- Handle all exceptions.
-	- Find modules to add.
-	- Make a signature in order to be sure that no modification has be done on our code.
+TODO :
+	Server :
+		- Send logs to the client.
+		- Send errors to the client.
+		- Code lights in a better way, to be more flexible with other configurations.
+		- Add a way to add users on a "database" (use a simple file).
+		- Add a way to use authentification with the Android application.
+		- Add a new client for desktop users.
+		- Add a way to create scenarios.
+		- Add a dashboard.
+		- Handle all exceptions.
+		- Find modules to add.
+		- Make a signature in order to be sure that no modification has be done on our code.
 
-AndroidApp :
-	- Add an alarm clock connected to the system (for scenarios).
-	- Manage the scrollbar list of the left side (deal with all buttons).
-		* Settings.
-		* Add widget.
-		* Personalise a widget.
-		* Logout.
-		* Account.
-	- Synchronize information with server's file
-	
+	AndroidApp :
+		- Add an alarm clock connected to the system (for scenarios).
+		- Manage the scrollbar list of the left side (deal with all buttons).
+			* Settings.
+			* Add widget.
+			* Personalise a widget.
+			* Logout.
+			* Account.
+		- Synchronize information with server's file
+
