@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-            android:text="home fragment"
+
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/layout_for_buttons"
+            android:stretchColumns="*"
+            android:layout_marginTop="1dp">
+
+    </TableLayout>
+
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="222dp"
-            tools:layout_editor_absoluteX="163dp" android:id="@+id/textView2" android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" android:layout_marginTop="204dp"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:srcCompat="@android:drawable/ic_menu_gallery" android:layout_marginRight="19dp"
+            android:layout_marginBottom="26dp" android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="19dp"/>
 </RelativeLayout>
