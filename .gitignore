@@ -2,3 +2,5 @@
 output
 out
 META-INF
+build
+.gradle
