@@ -1,2 +1,3 @@
-Server/.idea/*
-Server/output/*
+.idea
+output
+out
