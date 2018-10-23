@@ -1,2 +1,4 @@
-Server/.idea/*
-Server/output/*
+.idea
+output
+out
+META-INF
