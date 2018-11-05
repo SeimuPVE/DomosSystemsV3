@@ -24,19 +24,25 @@ public class Menu {
                 userManager.userDeleter();
 
             // Ask choice.
-            System.out.println(STRINGS.line_jumper);
+            System.out.println();
             choice = askChoice(scanner, userManager);
         }
     }
 
     public static int askChoice(Scanner scanner, UserManager userManager) {
         // Ask choice.
+        int result;
+
         userManager.printUsers();
 
         System.out.println(STRINGS.menu_main_line_1);
         System.out.println(STRINGS.menu_main_line_2);
 
         System.out.print(STRINGS.menu_choice_asker);
-        return scanner.nextInt();
+        result = scanner.nextInt();
+
+        System.out.println();
+
+        return result;
     }
 }

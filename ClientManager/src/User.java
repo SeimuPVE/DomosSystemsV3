@@ -1,4 +1,7 @@
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 public class User implements Serializable {
@@ -18,8 +21,34 @@ public class User implements Serializable {
     }
 
     public static String hashPassword(String password) {
-        System.out.println(password + "_HASH_TODO");
-        return password + "_HASH_TODO"; // TODO : hash the password.
+        String hashed_password = null;
+        String salt = "SALT"; // TODO : take it from a config file.
+
+        int i;
+        byte[] hash;
+        String hex;
+        StringBuffer hexString = new StringBuffer();
+
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+//            hashed_password = String.valueOf(digest.digest((password + salt).getBytes(StandardCharsets.UTF_8)));
+            hash = digest.digest((password + salt).getBytes("UTF-8"));
+
+            for(i = 0; i < hash.length; i++) {
+                hex = Integer.toHexString(0xff & hash[i]);
+
+                if(hex.length() == 1)
+                    hexString.append('0');
+                hexString.append(hex);
+            }
+
+            hashed_password = hexString.toString();
+        }
+        catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return hashed_password;
     }
 
     public void setLogin(String login) {

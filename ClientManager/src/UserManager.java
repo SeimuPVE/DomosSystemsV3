@@ -62,10 +62,15 @@ public class UserManager {
         System.out.println(STRINGS.ask_username_to_add);
         username = scanner.nextLine();
 
-        password = askPassword();
+        if(!users.userAlreadyExists(username)) {
 
-        users.add(username, password);
-        save();
+            password = askPassword();
+
+            users.add(username, password);
+            save();
+        }
+        else
+            System.out.println(STRINGS.error_user_already_exists);
     }
 
     public void passwordChanger() {

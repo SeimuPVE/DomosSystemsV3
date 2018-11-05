@@ -21,6 +21,14 @@ public class UserList implements Serializable {
         return false;
     }
 
+    public boolean userAlreadyExists(String login) {
+        if(users != null)
+            for(User user : users)
+                if(user.getLogin().equals(login))
+                    return true;
+        return false;
+    }
+
     public User get(String username) {
         for(User user : users)
             if(user.getLogin().equals(username))
@@ -65,5 +73,7 @@ public class UserList implements Serializable {
         if(users != null)
             for(User user : users)
                 System.out.println("- " + user.getLogin());
+
+        System.out.println();
     }
 }

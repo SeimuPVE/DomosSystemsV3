@@ -8,7 +8,6 @@ public class STRINGS {
     public static String menu_present_users = "List of current users :";
     public static String menu_choice_asker = "Choice : ";
     public static String menu_wrong_choice = "Please use a valid choice.";
-    public static String line_jumper = "\n\n";
     public static String ask_password = "Enter a new password :";
     public static String ask_password_confirmer = "Confirm your password :";
     public static String password_error_confirmation = "Passwords are not equals, please start again.";
@@ -21,5 +20,6 @@ public class STRINGS {
     public static String user_error = "The selected user doesn't exist.";
     public static String enter_admin_password = "Please, enter the administrator password :";
     public static String dont_delete_admin = "Your kidding me ? You really want to delete the administrator ? Ciao newbie...";
-    public static String debug_password = "DEBUG MODE : password not hide in debug mode.";
+    public static String debug_password = "DEBUG MODE : password not hidden in debug mode.";
+    public static String error_user_already_exists = "Error : the user already exists.";
 }
