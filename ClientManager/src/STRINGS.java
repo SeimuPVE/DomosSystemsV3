@@ -21,4 +21,5 @@ public class STRINGS {
     public static String user_error = "The selected user doesn't exist.";
     public static String enter_admin_password = "Please, enter the administrator password :";
     public static String dont_delete_admin = "Your kidding me ? You really want to delete the administrator ? Ciao newbie...";
+    public static String debug_password = "DEBUG MODE : password not hide in debug mode.";
 }

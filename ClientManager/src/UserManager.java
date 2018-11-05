@@ -31,7 +31,15 @@ public class UserManager {
 
             // Ask for the password.
             System.out.println(STRINGS.ask_password);
-            password = scanner.nextLine(); // TODO : hide the password.
+            Console console = System.console();
+
+            if(console == null) {
+                // Can't hide hide the password because of the debug mode.
+                System.out.println(STRINGS.debug_password);
+                password = scanner.nextLine();
+            }
+            else
+                password = new String(console.readPassword());
 
             // Check the password.
             System.out.println(STRINGS.ask_password_confirmer);
