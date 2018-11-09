@@ -1,4 +1,4 @@
-package modules;
+package rsc;
 
 public class CODES {
     // General codes.

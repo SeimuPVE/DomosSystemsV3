@@ -1,5 +1,8 @@
 package clientManager;
 
+import msc.ConfigReader;
+import rsc.STRINGS;
+
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -24,7 +27,7 @@ public class User implements Serializable {
 
     public static String hashPassword(String password) {
         String hashed_password = null;
-        String salt = "SALT"; // TODO : take it from a config file.
+        String salt = ConfigReader.readValue("salt");
 
         int i;
         byte[] hash;

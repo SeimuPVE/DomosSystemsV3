@@ -48,4 +48,26 @@ public class STRINGS {
     public static final String environment_sensor_port = "environment_sensor_port";
     public static final String environment_sensor_timeout = "environment_sensor_timeout";
     public static final String sensors_automater_timeout = "sensors_automater_timeout";
+
+    // ClientManager.
+    public static final String admin_name = "admin";
+    public static final String menu_main_line_1 = "Please enter a choice :";
+    public static final String menu_main_line_2 = "0=EXIT, 1=ADD, 2=CHANGE_PASSWORD, 3=DELETE";
+    public static final String menu_present_users = "List of current users :";
+    public static final String menu_choice_asker = "Choice : ";
+    public static final String menu_wrong_choice = "Please use a valid choice.";
+    public static final String ask_password = "Enter a new password :";
+    public static final String ask_password_confirmer = "Confirm your password :";
+    public static final String password_error_confirmation = "Passwords are not equals, please start again.";
+    public static final String ask_username_to_add = "Please enter the name of the user to add :";
+    public static final String ask_username = "Username :";
+    public static final String save_extension = ".bak";
+    public static final String enter_current_password = "Please enter the current password :";
+    public static final String wrong_password = "Wrong password, try again.";
+    public static final String fail_password = "Wrong password.";
+    public static final String user_error = "The selected user doesn't exist.";
+    public static final String enter_admin_password = "Please, enter the administrator password :";
+    public static final String dont_delete_admin = "Your kidding me ? You really want to delete the administrator ? Ciao newbie...";
+    public static final String debug_password = "DEBUG MODE : password not hidden in debug mode.";
+    public static final String error_user_already_exists = "Error : the user already exists.";
 }

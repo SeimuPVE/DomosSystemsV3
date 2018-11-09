@@ -14,7 +14,7 @@ import static rsc.STRINGS.log_config_reader_not_key;
 public class ConfigReader {
     private static final Logger LOGGER = Logger.getLogger(ConfigReader.class.getName());
 
-    private static String configFilePath = "config.cfg";
+    private static final String configFilePath = "config.cfg";
 
     public static String readValue(String key) {
         try {

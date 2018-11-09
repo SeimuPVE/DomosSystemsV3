@@ -12,8 +12,8 @@ import static java.lang.Thread.sleep;
 
 public class SensorsAutomater implements Runnable {
     private static final Logger LOGGER = Logger.getLogger(SensorsAutomater.class.getName());
-    private EnvironmentSensors environmentSensors;
 
+    private EnvironmentSensors environmentSensors;
     private int timeout;
 
     public SensorsAutomater(EnvironmentSensors environmentSensors) {

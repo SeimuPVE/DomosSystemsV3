@@ -2,10 +2,11 @@ package msc;
 
 import automaters.SensorsAutomater;
 import clientManager.ClientManager;
-import clientManager.STRINGS;
 import clientManager.UserList;
 import clientManager.UserSaverLoader;
 import modules.*;
+import rsc.CODES;
+import rsc.STRINGS;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,13 +17,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static rsc.STRINGS.*;
-
 
 public class Server {
     private final Logger LOGGER = Logger.getLogger(Server.class.getName());
-    private String filepath = STRINGS.userfile; // TODO : move it into config file.
-
+    private String filepath = ConfigReader.readValue("users_filepath");
     private Socket socket = null;
     private int port;
 
@@ -51,7 +49,7 @@ public class Server {
             // Launch threads to automate actions.
             new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
 
-            LOGGER.log(Level.FINE, log_server_up);
+            LOGGER.log(Level.FINE, STRINGS.log_server_up);
 
             // Loop to manage clients.
             while(true) {
@@ -67,7 +65,7 @@ public class Server {
                 if(socket != null)
                     socket.close();
 
-                LOGGER.log(Level.FINE, log_server_closed);
+                LOGGER.log(Level.FINE, STRINGS.log_server_closed);
             }
             catch (IOException e) {
                 e.printStackTrace(); // TODO : catch errors.
@@ -86,7 +84,7 @@ public class Server {
 
         // If there is not any admin, add it and load again.
         if(!users.adminExists()) {
-            System.out.println(first_launch); // TODO : from string, be more clear.
+            System.out.println(STRINGS.first_launch);
             ClientManager.run(null);
         }
 

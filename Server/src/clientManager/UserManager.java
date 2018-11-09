@@ -1,5 +1,7 @@
 package clientManager;
 
+import rsc.STRINGS;
+
 import java.io.*;
 import java.util.Scanner;
 

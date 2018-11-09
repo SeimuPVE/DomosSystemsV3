@@ -1,9 +1,13 @@
 package clientManager;
 
+import msc.ConfigReader;
+import rsc.STRINGS;
+
 import java.io.*;
 
+
 public class UserSaverLoader {
-    private static String filepath = STRINGS.userfile; // TODO : move it into config file.
+    private static String filepath = ConfigReader.readValue("users_filepath");
 
     public static String getFilepath() {
         return filepath;

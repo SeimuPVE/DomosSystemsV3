@@ -1,6 +1,8 @@
 package clientManager;
 
+import rsc.STRINGS;
 import java.util.Scanner;
+
 
 public class Menu {
     public static void runMenu() {
