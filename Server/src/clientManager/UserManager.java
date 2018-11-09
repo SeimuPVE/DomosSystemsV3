@@ -1,3 +1,5 @@
+package clientManager;
+
 import java.io.*;
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
-import msc.Strings;
+import rsc.STRINGS;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static modules.CODES.*;
-import static msc.Strings.*;
+import static rsc.STRINGS.*;
 
 
 public class LedStrip extends ModulePattern {
@@ -27,9 +27,9 @@ public class LedStrip extends ModulePattern {
     private boolean isOn = false;
 
     public LedStrip() {
-        ip = ConfigReader.readValue(Strings.led_strip_ip);
-        port = Integer.parseInt(ConfigReader.readValue(Strings.led_strip_port));
-        timeout = Integer.parseInt(ConfigReader.readValue(Strings.led_strip_timeout));
+        ip = ConfigReader.readValue(STRINGS.led_strip_ip);
+        port = Integer.parseInt(ConfigReader.readValue(STRINGS.led_strip_port));
+        timeout = Integer.parseInt(ConfigReader.readValue(STRINGS.led_strip_timeout));
     }
 
     public String exec(String command) {
@@ -96,42 +96,42 @@ public class LedStrip extends ModulePattern {
     public void turnOn() {
         byte[] code_on = new byte[] {(byte)0x71, (byte)0x23, (byte)0x0f, (byte)0xa3};
         sendByteCode(code_on);
-        LOGGER.log(Level.FINE, Strings.log_led_strip_on);
-        logSucces(Strings.log_led_strip_on);
+        LOGGER.log(Level.FINE, STRINGS.log_led_strip_on);
+        logSucces(STRINGS.log_led_strip_on);
     }
 
     public void turnOff() {
         byte[] code_off = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_off);
-        LOGGER.log(Level.FINE, Strings.log_led_strip_off);
-        logSucces(Strings.log_led_strip_off);
+        LOGGER.log(Level.FINE, STRINGS.log_led_strip_off);
+        logSucces(STRINGS.log_led_strip_off);
     }
 
     public void turnGreen() {
         byte[] code_green = new byte[] {(byte)0x31, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:ff:00:00:00:0f:3e
         sendByteCode(code_green);
-        LOGGER.log(Level.FINE, Strings.log_led_strip_green);
-        logSucces(Strings.log_led_strip_green);
+        LOGGER.log(Level.FINE, STRINGS.log_led_strip_green);
+        logSucces(STRINGS.log_led_strip_green);
     }
 
     public void turnCyan() {
         byte[] code_cyan = new byte[] {(byte)0x31, (byte)0x00, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:00:ff:ff:00:00:0f:3e
         sendByteCode(code_cyan);
-        LOGGER.log(Level.FINE, Strings.log_led_strip_cyan);
-        logSucces(Strings.log_led_strip_cyan);
+        LOGGER.log(Level.FINE, STRINGS.log_led_strip_cyan);
+        logSucces(STRINGS.log_led_strip_cyan);
     }
 
     public void turnMagenta() {
         byte[] code_magenta = new byte[] {(byte)0x31, (byte)0xff, (byte)0x00, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:00:ff:00:00:0f:3e
         sendByteCode(code_magenta);
-        LOGGER.log(Level.FINE, Strings.log_led_strip_magenta);
-        logSucces(Strings.log_led_strip_magenta);
+        LOGGER.log(Level.FINE, STRINGS.log_led_strip_magenta);
+        logSucces(STRINGS.log_led_strip_magenta);
     }
 
     public void turnWhite() {
         byte[] code_white = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_white);
-        LOGGER.log(Level.FINE, Strings.log_led_strip_white);
-        logSucces(Strings.log_led_strip_white);
+        LOGGER.log(Level.FINE, STRINGS.log_led_strip_white);
+        logSucces(STRINGS.log_led_strip_white);
     }
 }

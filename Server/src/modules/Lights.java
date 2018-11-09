@@ -1,7 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
-import msc.Strings;
+import rsc.STRINGS;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,14 +10,14 @@ import java.util.List;
 
 // TODO : extract strings and change it to be more flexible.
 public class Lights extends ModulePattern {
-    private static List<String> commandsOn = new ArrayList<String>();
-    private static List<String> commandsOff = new ArrayList<String>();
-    private static List<String> commandsReverse = new ArrayList<String>();
-    private static List<String> codesOn = new ArrayList<String>();
-    private static List<String> codesOff = new ArrayList<String>();
-    private static List<Boolean> switchStates = new ArrayList<Boolean>();
+    private static List<String> commandsOn = new ArrayList<>();
+    private static List<String> commandsOff = new ArrayList<>();
+    private static List<String> commandsReverse = new ArrayList<>();
+    private static List<String> codesOn = new ArrayList<>();
+    private static List<String> codesOff = new ArrayList<>();
+    private static List<Boolean> switchStates = new ArrayList<>();
 
-    public Lights() throws Exception {
+    public Lights() {
         commandsOn.add(CODES.L_BACK_ON);
         commandsOn.add(CODES.L_FRONT_ON);
         commandsOn.add(CODES.L_BED_ON);
@@ -72,7 +72,7 @@ public class Lights extends ModulePattern {
             switchStates.set(index, true);
 
             // Log it to the client.
-            logSucces(Strings.log_light_turned_on);
+            logSucces(STRINGS.log_light_turned_on);
         }
         catch (InterruptedException | IOException e) {
             logError(e.getMessage());
@@ -88,7 +88,7 @@ public class Lights extends ModulePattern {
             switchStates.set(index, false);
 
             // Log it to the client.
-            logSucces(Strings.log_light_turned_off);
+            logSucces(STRINGS.log_light_turned_off);
         }
         catch (InterruptedException | IOException e) {
             logError(e.getMessage());

@@ -1,7 +1,7 @@
-import modules.*;
-import msc.Client;
+package msc;
+
 import automaters.SensorsAutomater;
-import msc.ConfigReader;
+import modules.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static msc.Strings.log_server_closed;
-import static msc.Strings.log_server_up;
-
+import static rsc.STRINGS.log_server_closed;
+import static rsc.STRINGS.log_server_up;
 
 public class Server {
     private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
@@ -23,7 +22,7 @@ public class Server {
 
     private static ArrayList<ModulePattern> moduleList = new ArrayList<>();
 
-    public static void main(String[] argv) {
+    public static void run(String[] argv) {
         try {
             // Add modules.
             moduleList.add(new Lights());

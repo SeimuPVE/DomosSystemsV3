@@ -1,7 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
-import msc.Strings;
+import rsc.STRINGS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static modules.CODES.*;
-import static msc.Strings.*;
+import static rsc.STRINGS.*;
 
 
 public class EnvironmentSensors extends ModulePattern {
@@ -37,9 +37,9 @@ public class EnvironmentSensors extends ModulePattern {
     private double luminosity;
 
     public EnvironmentSensors() {
-        ip = ConfigReader.readValue(Strings.environment_sensor_ip);
-        port = Integer.parseInt(ConfigReader.readValue(Strings.environment_sensor_port));
-        timeout = Integer.parseInt(ConfigReader.readValue(Strings.environment_sensor_timeout));
+        ip = ConfigReader.readValue(STRINGS.environment_sensor_ip);
+        port = Integer.parseInt(ConfigReader.readValue(STRINGS.environment_sensor_port));
+        timeout = Integer.parseInt(ConfigReader.readValue(STRINGS.environment_sensor_timeout));
 
         updateSensors();
     }
@@ -68,8 +68,8 @@ public class EnvironmentSensors extends ModulePattern {
         }
         catch (SocketTimeoutException e) {
             // Log it and alert user.
-            LOGGER.log(Level.WARNING, Strings.log_environment_timeout);
-            logError(Strings.log_environment_timeout);
+            LOGGER.log(Level.WARNING, STRINGS.log_environment_timeout);
+            logError(STRINGS.log_environment_timeout);
 
             // Wait and try again.
             try {
@@ -83,8 +83,8 @@ public class EnvironmentSensors extends ModulePattern {
         }
         catch (NoRouteToHostException e) {
             // Log it and alert user.
-            LOGGER.log(Level.WARNING, Strings.log_environment_no_route_to_host);
-            logError(Strings.log_environment_no_route_to_host);
+            LOGGER.log(Level.WARNING, STRINGS.log_environment_no_route_to_host);
+            logError(STRINGS.log_environment_no_route_to_host);
 
             // Wait and try again.
         }

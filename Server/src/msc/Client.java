@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static msc.Strings.*;
+import static rsc.STRINGS.*;
 
 
 public class Client implements Runnable {

@@ -1,3 +1,5 @@
+package clientManager;
+
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

@@ -1,3 +1,5 @@
+package clientManager;
+
 public class STRINGS {
     public static String userfile = "userfile.txt";
     public static char separator = ':';

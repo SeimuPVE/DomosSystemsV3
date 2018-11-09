@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static msc.Strings.comment_char;
-import static msc.Strings.log_config_reader_not_key;
+import static rsc.STRINGS.comment_char;
+import static rsc.STRINGS.log_config_reader_not_key;
 
 
 public class ConfigReader {

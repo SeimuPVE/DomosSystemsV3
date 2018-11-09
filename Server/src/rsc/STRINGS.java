@@ -1,7 +1,7 @@
-package msc;
+package rsc;
 
 
-public class Strings {
+public class STRINGS {
     // Server.
     public static final String log_server_up = "Server up !";
     public static final String log_server_closed = "Server closed !";
