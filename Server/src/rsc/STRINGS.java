@@ -5,6 +5,7 @@ public class STRINGS {
     // Server.
     public static final String log_server_up = "Server up !";
     public static final String log_server_closed = "Server closed !";
+    public static final String first_launch = "It is the first time that you launch the server.\nYou need to create a new user first, then just exit this program by choosing EXIT (choice 0) and the server will be launched.\n";
 
     // Client.
     public static final String log_new_client = "A new client is connected.";

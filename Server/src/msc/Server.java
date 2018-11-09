@@ -1,8 +1,13 @@
 package msc;
 
 import automaters.SensorsAutomater;
+import clientManager.ClientManager;
+import clientManager.STRINGS;
+import clientManager.UserList;
+import clientManager.UserSaverLoader;
 import modules.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -11,19 +16,24 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static rsc.STRINGS.log_server_closed;
-import static rsc.STRINGS.log_server_up;
+import static rsc.STRINGS.*;
+
 
 public class Server {
-    private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
+    private final Logger LOGGER = Logger.getLogger(Server.class.getName());
+    private String filepath = STRINGS.userfile; // TODO : move it into config file.
 
-    private static Socket socket = null;
-    private static int port;
+    private Socket socket = null;
+    private int port;
 
-    private static ArrayList<ModulePattern> moduleList = new ArrayList<>();
+    private ArrayList<ModulePattern> moduleList = new ArrayList<>();
+    private UserList users;
 
-    public static void run(String[] argv) {
+    public void run(String[] argv) {
         try {
+            // Prepare user list.
+            prepareUserList(filepath);
+
             // Add modules.
             moduleList.add(new Lights());
             moduleList.add(new EnvironmentSensors());
@@ -63,5 +73,22 @@ public class Server {
                 e.printStackTrace(); // TODO : catch errors.
             }
         }
+    }
+
+    private void prepareUserList(String filepath) {
+        File file = new File(filepath);
+
+        // Load users.
+        if(file.exists() && !file.isDirectory())
+            users = UserSaverLoader.load();
+        else
+            users = new UserList();
+
+        // If there is not any admin, add it and load again.
+        if(!users.adminExists()) {
+            System.out.println(first_launch); // TODO : from string, be more clear.
+            ClientManager.run(null);
+        }
+
     }
 }

@@ -5,17 +5,15 @@ import java.util.Scanner;
 
 
 public class UserManager {
-    UserList users;
-    Scanner scanner = new Scanner(System.in);
-
-    private static String filepath = STRINGS.userfile;
+    private UserList users;
+    private Scanner scanner = new Scanner(System.in);
 
     public UserManager() {
-        File file = new File(filepath);
+        File file = new File(UserSaverLoader.getFilepath());
 
         // Load users.
         if(file.exists() && !file.isDirectory())
-            load();
+            users = UserSaverLoader.load();
         else
             users = new UserList();
 
@@ -54,7 +52,7 @@ public class UserManager {
     public void adminAdder() {
         // Create the admin and write it on the users file.
         users.add(STRINGS.admin_name, askPassword());
-        save();
+        UserSaverLoader.save(users);
     }
 
     public void userAdder() {
@@ -69,7 +67,7 @@ public class UserManager {
             password = askPassword();
 
             users.add(username, password);
-            save();
+            UserSaverLoader.save(users);
         }
         else
             System.out.println(STRINGS.error_user_already_exists);
@@ -105,7 +103,7 @@ public class UserManager {
             else {
                 // Change the password.
                 user.hashAndSetPassword(askPassword());
-                save();
+                UserSaverLoader.save(users);
             }
         }
         else
@@ -144,10 +142,10 @@ public class UserManager {
                 else {
                     // Delete the user.
                     users.delete(username);
-                    save();
+                    UserSaverLoader.save(users);
                 }
 
-                save();
+                UserSaverLoader.save(users);
             }
         }
         else
@@ -156,82 +154,5 @@ public class UserManager {
 
     public void printUsers() {
         users.printUsers();
-    }
-
-    public void load() {
-        FileInputStream fileIn = null;
-        ObjectInputStream in = null;
-
-        try {
-            fileIn = new FileInputStream(filepath);
-            in = new ObjectInputStream(fileIn);
-
-            users = (UserList) in.readObject();
-        }
-        catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        finally {
-            if(in != null) {
-                try {
-                    in.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if(fileIn != null) {
-                try {
-                    fileIn.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public void save() {
-        File previous_save = new File(filepath + STRINGS.save_extension);
-        File new_save = new File(filepath);
-        FileOutputStream fileOut = null;
-        ObjectOutputStream out = null;
-
-        // Delete last save.
-        if(previous_save.exists() && !previous_save.isDirectory())
-            previous_save.delete();
-
-        // Save the current file.
-        if(new_save.exists() && !new_save.isDirectory())
-            new_save.renameTo(previous_save);
-
-        try {
-            fileOut = new FileOutputStream(filepath);
-            out = new ObjectOutputStream(fileOut);
-            out.writeObject(users);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            if(out != null) {
-                try {
-                    out.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if(fileOut != null) {
-                try {
-                    fileOut.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 }
