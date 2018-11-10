@@ -11,6 +11,7 @@ import java.util.List;
 
 
 public class Lights extends ModulePattern {
+    private int numberofLights = Integer.parseInt(ConfigReader.readValue(CONF_CODES.number_of_lights));
     private List<String> commandsOn = new ArrayList<>();
     private List<String> commandsOff = new ArrayList<>();
     private List<String> commandsReverse = new ArrayList<>();
@@ -19,42 +20,30 @@ public class Lights extends ModulePattern {
     private List<Boolean> switchStates = new ArrayList<>();
 
     public Lights() {
-        commandsOn.add(CODES.L_BACK_ON);
-        commandsOn.add(CODES.L_FRONT_ON);
-        commandsOn.add(CODES.L_BED_ON);
-        commandsOn.add(CODES.TV_ON);
-        commandsOff.add(CODES.L_BACK_OFF);
-        commandsOff.add(CODES.L_FRONT_OFF);
-        commandsOff.add(CODES.L_BED_OFF);
-        commandsOff.add(CODES.TV_OFF);
-        commandsReverse.add(CODES.L_BACK_REVERSE);
-        commandsReverse.add(CODES.L_FRONT_REVERSE);
-        commandsReverse.add(CODES.L_BED_REVERSE);
-        commandsReverse.add(CODES.TV_REVERSE);
-        commandsReverse.add(CODES.DESKTOP_REVERSE);
+        int i;
 
-        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_1));
-        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_2));
-        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_3));
-        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_4));
+        for(i = 0; i < numberofLights; i++) {
+            codesOn.add(ConfigReader.readValue(CONF_CODES.code_on + String.valueOf(i)));
+            codesOff.add(ConfigReader.readValue(CONF_CODES.code_off + String.valueOf(i)));
 
-        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_1));
-        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_2));
-        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_3));
-        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_4));
+            commandsOn.add(CODES.LIGHT_ON + "_" + String.valueOf(i));
+            commandsOff.add(CODES.LIGHT_OFF + "_" + String.valueOf(i));
+            commandsReverse.add(CODES.LIGHT_REVERSE + "_" + String.valueOf(i));
 
-        for(int i = 0; i < 4; i++)
             switchStates.add(false);
+        }
     }
 
     public String exec(String command) {
         int i;
 
-        if(command.equals(CODES.DESKTOP_REVERSE)) {
-            switchReverse(0);
-            switchReverse(1);
-        }
-        else if(commandsOn.contains(command))
+        // Delete it, the client will send two reverse messages instead of one for two lights.
+//        if(command.equals(CODES.DESKTOP_REVERSE)) {
+//            switchReverse(0);
+//            switchReverse(1);
+//        }
+
+        if(commandsOn.contains(command))
             switchOn(commandsOn.indexOf(command));
         else if(commandsOff.contains(command))
             switchOff(commandsOff.indexOf(command));

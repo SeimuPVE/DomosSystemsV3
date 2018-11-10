@@ -8,14 +8,9 @@ public class CONF_CODES {
     public static final String salt = "salt";
 
     // Lights.
-    public static final String code_on_1 = "code_on_1";
-    public static final String code_on_2 = "code_on_2";
-    public static final String code_on_3 = "code_on_3";
-    public static final String code_on_4 = "code_on_4";
-    public static final String code_off_1 = "code_off_1";
-    public static final String code_off_2 = "code_off_2";
-    public static final String code_off_3 = "code_off_3";
-    public static final String code_off_4 = "code_off_4";
+    public static final String number_of_lights = "number_of_lights";
+    public static final String code_on = "code_on";
+    public static final String code_off = "code_off";
 
     // Led strip.
     public static final String led_strip_ip = "led_strip_ip";

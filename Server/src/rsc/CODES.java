@@ -24,17 +24,7 @@ public class CODES {
     public static final String LED_STRIP_MAGENTA = "LED_STRIP_MAGENTA";
 
     // Lights codes.
-    public static final String L_BACK_ON = "L_BACK_ON";
-    public static final String L_BACK_OFF = "L_BACK_OFF";
-    public static final String L_BACK_REVERSE = "L_BACK_REVERSE";
-    public static final String L_FRONT_ON = "L_FRONT_ON";
-    public static final String L_FRONT_OFF = "L_FRONT_OFF";
-    public static final String L_FRONT_REVERSE = "L_FRONT_REVERSE";
-    public static final String L_BED_ON = "L_BED_ON";
-    public static final String L_BED_OFF = "L_BED_OFF";
-    public static final String L_BED_REVERSE = "L_BED_REVERSE";
-    public static final String TV_ON = "TV_ON";
-    public static final String TV_OFF = "TV_OFF";
-    public static final String TV_REVERSE = "TV_REVERSE";
-    public static final String DESKTOP_REVERSE = "DESKTOP_REVERSE";
+    public static final String LIGHT_ON = "LIGHT_ON";
+    public static final String LIGHT_OFF = "LIGHT_OFF";
+    public static final String LIGHT_REVERSE = "LIGHT_REVERSE";
 }
