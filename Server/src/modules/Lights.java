@@ -23,8 +23,8 @@ public class Lights extends ModulePattern {
         int i;
 
         for(i = 0; i < numberofLights; i++) {
-            codesOn.add(ConfigReader.readValue(CONF_CODES.code_on + String.valueOf(i)));
-            codesOff.add(ConfigReader.readValue(CONF_CODES.code_off + String.valueOf(i)));
+            codesOn.add(ConfigReader.readValue(CONF_CODES.code_on + "_" + String.valueOf(i)));
+            codesOff.add(ConfigReader.readValue(CONF_CODES.code_off + "_" +  String.valueOf(i)));
 
             commandsOn.add(CODES.LIGHT_ON + "_" + String.valueOf(i));
             commandsOff.add(CODES.LIGHT_OFF + "_" + String.valueOf(i));

@@ -44,8 +44,9 @@ public class Server {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println(InetAddress.getLocalHost());
 
-            moduleList.get(0).exec(CODES.L_BACK_OFF);
-            moduleList.get(0).exec(CODES.L_FRONT_OFF);
+            // TODO : move initialisations on a config file.
+            moduleList.get(0).exec(CODES.LIGHT_OFF + "_0");
+            moduleList.get(0).exec(CODES.LIGHT_OFF + "_1");
 
             // Launch threads to automate actions.
             new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
