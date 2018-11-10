@@ -1,6 +1,7 @@
 package com.ayoubidel.domosapp.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else if (data.get(position).getType().equals(ModuleType.ENV_SENSOR.toString())) {
             holder.moduleImage.setImageResource(R.drawable.ic_action_add);
         }
+        holder.moduleCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: Call web service
+            }
+        });
     }
 
     @Override
@@ -49,17 +56,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return data.size();
     }
 
+    public void refreshList(List<Module> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView moduleLabel;
         TextView moduleDescription;
         ImageView moduleImage;
+        CardView moduleCard;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             moduleLabel = (TextView) itemView.findViewById(R.id.module_name_id);
             moduleDescription = (TextView) itemView.findViewById(R.id.module_description_id);
             moduleImage = (ImageView) itemView.findViewById(R.id.module_image_id);
+            moduleCard = (CardView) itemView.findViewById(R.id.module_cardview_id);
         }
     }
 }
