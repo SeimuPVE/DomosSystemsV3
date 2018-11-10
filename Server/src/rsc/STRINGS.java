@@ -41,14 +41,6 @@ public class STRINGS {
     public static final String log_config_reader_not_key = "Key not found in config file, the concerned key is : ";
     public static final String comment_char = "//";
 
-    public static final String led_strip_ip = "led_strip_ip";
-    public static final String led_strip_port = "led_strip_port";
-    public static final String led_strip_timeout = "led_strip_timeout";
-    public static final String environment_sensor_ip = "environment_sensor_ip";
-    public static final String environment_sensor_port = "environment_sensor_port";
-    public static final String environment_sensor_timeout = "environment_sensor_timeout";
-    public static final String sensors_automater_timeout = "sensors_automater_timeout";
-
     // ClientManager.
     public static final String admin_name = "admin";
     public static final String menu_main_line_1 = "Please enter a choice :";

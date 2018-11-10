@@ -1,13 +1,14 @@
 package clientManager;
 
 import msc.ConfigReader;
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.*;
 
 
 public class UserSaverLoader {
-    private static String filepath = ConfigReader.readValue("users_filepath");
+    private static String filepath = ConfigReader.readValue(CONF_CODES.users_filepath);
 
     public static String getFilepath() {
         return filepath;

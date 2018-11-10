@@ -1,6 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.*;
@@ -27,9 +28,9 @@ public class LedStrip extends ModulePattern {
     private boolean isOn = false;
 
     public LedStrip() {
-        ip = ConfigReader.readValue(STRINGS.led_strip_ip);
-        port = Integer.parseInt(ConfigReader.readValue(STRINGS.led_strip_port));
-        timeout = Integer.parseInt(ConfigReader.readValue(STRINGS.led_strip_timeout));
+        ip = ConfigReader.readValue(CONF_CODES.led_strip_ip);
+        port = Integer.parseInt(ConfigReader.readValue(CONF_CODES.led_strip_port));
+        timeout = Integer.parseInt(ConfigReader.readValue(CONF_CODES.led_strip_timeout));
     }
 
     public String exec(String command) {

@@ -1,6 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.BufferedReader;
@@ -24,9 +25,9 @@ import static rsc.STRINGS.*;
 public class EnvironmentSensors extends ModulePattern {
     private static final Logger LOGGER = Logger.getLogger(EnvironmentSensors.class.getName());
 
-    private static Socket socket = null;
-    private static BufferedReader reader = null;
-    private static PrintStream writer = null;
+    private Socket socket = null;
+    private BufferedReader reader = null;
+    private PrintStream writer = null;
 
     private String ip;
     private int port;
@@ -37,9 +38,9 @@ public class EnvironmentSensors extends ModulePattern {
     private double luminosity;
 
     public EnvironmentSensors() {
-        ip = ConfigReader.readValue(STRINGS.environment_sensor_ip);
-        port = Integer.parseInt(ConfigReader.readValue(STRINGS.environment_sensor_port));
-        timeout = Integer.parseInt(ConfigReader.readValue(STRINGS.environment_sensor_timeout));
+        ip = ConfigReader.readValue(CONF_CODES.environment_sensor_ip);
+        port = Integer.parseInt(ConfigReader.readValue(CONF_CODES.environment_sensor_port));
+        timeout = Integer.parseInt(ConfigReader.readValue(CONF_CODES.environment_sensor_timeout));
 
         updateSensors();
     }

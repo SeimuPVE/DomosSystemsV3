@@ -1,6 +1,7 @@
 package clientManager;
 
 import msc.ConfigReader;
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.Serializable;
@@ -27,7 +28,7 @@ public class User implements Serializable {
 
     public static String hashPassword(String password) {
         String hashed_password = null;
-        String salt = ConfigReader.readValue("salt");
+        String salt = ConfigReader.readValue(CONF_CODES.salt);
 
         int i;
         byte[] hash;

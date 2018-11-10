@@ -6,6 +6,7 @@ import clientManager.UserList;
 import clientManager.UserSaverLoader;
 import modules.*;
 import rsc.CODES;
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.File;
@@ -19,8 +20,8 @@ import java.util.logging.Logger;
 
 
 public class Server {
-    private final Logger LOGGER = Logger.getLogger(Server.class.getName());
-    private String filepath = ConfigReader.readValue("users_filepath");
+    private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
+    private String filepath = ConfigReader.readValue(CONF_CODES.users_filepath);
     private Socket socket = null;
     private int port;
 
@@ -38,7 +39,7 @@ public class Server {
             moduleList.add(new LedStrip());
 
             // Initialize server.
-            port = Integer.parseInt(ConfigReader.readValue("server_port"));
+            port = Integer.parseInt(ConfigReader.readValue(CONF_CODES.server_port));
 
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println(InetAddress.getLocalHost());

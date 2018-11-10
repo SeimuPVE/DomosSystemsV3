@@ -2,6 +2,7 @@ package modules;
 
 import msc.ConfigReader;
 import rsc.CODES;
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.IOException;
@@ -9,14 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// TODO : extract strings and change it to be more flexible.
 public class Lights extends ModulePattern {
-    private static List<String> commandsOn = new ArrayList<>();
-    private static List<String> commandsOff = new ArrayList<>();
-    private static List<String> commandsReverse = new ArrayList<>();
-    private static List<String> codesOn = new ArrayList<>();
-    private static List<String> codesOff = new ArrayList<>();
-    private static List<Boolean> switchStates = new ArrayList<>();
+    private List<String> commandsOn = new ArrayList<>();
+    private List<String> commandsOff = new ArrayList<>();
+    private List<String> commandsReverse = new ArrayList<>();
+    private List<String> codesOn = new ArrayList<>();
+    private List<String> codesOff = new ArrayList<>();
+    private List<Boolean> switchStates = new ArrayList<>();
 
     public Lights() {
         commandsOn.add(CODES.L_BACK_ON);
@@ -33,15 +33,15 @@ public class Lights extends ModulePattern {
         commandsReverse.add(CODES.TV_REVERSE);
         commandsReverse.add(CODES.DESKTOP_REVERSE);
 
-        codesOn.add(ConfigReader.readValue("code_on_1"));
-        codesOn.add(ConfigReader.readValue("code_on_2"));
-        codesOn.add(ConfigReader.readValue("code_on_3"));
-        codesOn.add(ConfigReader.readValue("code_on_4"));
+        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_1));
+        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_2));
+        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_3));
+        codesOn.add(ConfigReader.readValue(CONF_CODES.code_on_4));
 
-        codesOff.add(ConfigReader.readValue("code_off_1"));
-        codesOff.add(ConfigReader.readValue("code_off_2"));
-        codesOff.add(ConfigReader.readValue("code_off_3"));
-        codesOff.add(ConfigReader.readValue("code_off_4"));
+        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_1));
+        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_2));
+        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_3));
+        codesOff.add(ConfigReader.readValue(CONF_CODES.code_off_4));
 
         for(int i = 0; i < 4; i++)
             switchStates.add(false);
