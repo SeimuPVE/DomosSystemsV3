@@ -37,11 +37,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.moduleLabel.setText(data.get(position).getLabel());
         holder.moduleDescription.setText(data.get(position).getDescription());
         if (data.get(position).getType().equals(ModuleType.LIGHT.toString())) {
-            holder.moduleImage.setImageResource(R.drawable.ic_action_add);
+            holder.moduleImage.setImageResource(R.drawable.ic_action_light);
         } else if (data.get(position).getType().equals(ModuleType.LED_STRIP.toString())) {
-            holder.moduleImage.setImageResource(R.drawable.ic_action_add);
+            holder.moduleImage.setImageResource(R.drawable.ic_action_strip);
         } else if (data.get(position).getType().equals(ModuleType.ENV_SENSOR.toString())) {
-            holder.moduleImage.setImageResource(R.drawable.ic_action_add);
+            holder.moduleImage.setImageResource(R.drawable.ic_action_sensor);
         }
         holder.moduleCard.setOnClickListener(new View.OnClickListener() {
             @Override

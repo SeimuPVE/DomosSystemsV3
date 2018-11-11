@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.ayoubidel.domosapp.R;
 import com.ayoubidel.domosapp.activities.MainActivity;
+import com.ayoubidel.domosapp.adapters.ModuleDatabaseAdapter;
 import com.ayoubidel.domosapp.adapters.RecyclerViewAdapter;
 import com.ayoubidel.domosapp.models.Module;
 import com.ayoubidel.domosapp.models.ModuleType;
@@ -32,13 +33,13 @@ public class HomeFragment extends Fragment {
     private List<Module> modules;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter adapter;
+    private ModuleDatabaseAdapter moduleDatabaseAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.home_fragment, container, false);
-
-        FabSpeedDial fabSpeedDial=myView.findViewById(R.id.fab_menu_id);
+        FabSpeedDial fabSpeedDial = myView.findViewById(R.id.fab_menu_id);
         fabSpeedDial.setMenuListener(new FabSpeedDial.MenuListener() {
             @Override
             public boolean onPrepareMenu(NavigationMenu navigationMenu) {
@@ -47,7 +48,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
-                switch(menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.action_light:
                         openAddModuleDialog(ModuleType.LIGHT);
                         break;
@@ -67,11 +68,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        modules = new ArrayList<>();
-        modules.add(new Module(ModuleType.LIGHT.toString(), "", "", "Light Bulb 1", "Bola dyal dar"));
-        modules.add(new Module(ModuleType.LIGHT.toString(), "", "", "Light Bulb 2", "Bola dyal dar"));
-        modules.add(new Module(ModuleType.LIGHT.toString(), "", "", "Light Bulb 3", "Bola dyal dar"));
-        modules.add(new Module(ModuleType.LIGHT.toString(), "", "", "Light Bulb 4", "Bola dyal dar"));
+        moduleDatabaseAdapter = new ModuleDatabaseAdapter(getContext());
+        modules = moduleDatabaseAdapter.getAllModules();
 
         recyclerView = myView.findViewById(R.id.recyclerview_id);
         adapter = new RecyclerViewAdapter(myView.getContext(), modules);
@@ -85,7 +83,8 @@ public class HomeFragment extends Fragment {
         addModuleDialog.setListener(new AddModuleDialog.AddModuleDialogListener() {
             @Override
             public void addModule(String ip, String port, String label, String description) {
-                modules.add(new Module(type.toString(), ip, port, label, description));
+                moduleDatabaseAdapter.insertEntry(type.toString(), ip, port, label, description);
+                modules = moduleDatabaseAdapter.getAllModules();
                 adapter.refreshList(modules);
             }
         });
