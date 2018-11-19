@@ -30,28 +30,20 @@ public class Server {
 
     public void run(String[] argv) {
         try {
-            // Prepare user list.
-            prepareUserList(filepath);
-
-            // Add modules.
-            moduleList.add(new Lights());
-            moduleList.add(new EnvironmentSensors());
-            moduleList.add(new LedStrip());
-
             // Initialize server.
             port = Integer.parseInt(ConfigReader.readValue(CONF_CODES.server_port));
 
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println(InetAddress.getLocalHost());
 
-            // TODO : move initialisations on a config file.
-            moduleList.get(0).exec(CODES.LIGHT_OFF + "_0");
-            moduleList.get(0).exec(CODES.LIGHT_OFF + "_1");
-
-            // Launch threads to automate actions.
-            new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
-
+            // Prepare logs.
             LOGGER.log(Level.FINE, STRINGS.log_server_up);
+
+            // Load users.
+            loadUsers(filepath);
+
+            // Load modules.
+            loadModules();
 
             // Loop to manage clients.
             while(true) {
@@ -75,7 +67,7 @@ public class Server {
         }
     }
 
-    private void prepareUserList(String filepath) {
+    private void loadUsers(String filepath) {
         File file = new File(filepath);
 
         // Load users.
@@ -90,5 +82,28 @@ public class Server {
             ClientManager.run(null);
         }
 
+    }
+
+    private void loadModules() {
+        if(ConfigReader.readValue("lights").equals("on")) {
+            moduleList.add(new Lights());
+
+            // TODO : move initialisations on a config file.
+            moduleList.get(0).exec(CODES.LIGHT_OFF + "_0");
+            moduleList.get(0).exec(CODES.LIGHT_OFF + "_1");
+
+            System.out.println("Lights loaded.");
+        }
+        if(ConfigReader.readValue("environment_sensors").equals("on")) {
+            moduleList.add(new EnvironmentSensors());
+
+            new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
+
+            System.out.println("Environment sensors loaded.");
+        }
+        if(ConfigReader.readValue("led_strip").equals("on"))
+            moduleList.add(new LedStrip());
+
+            System.out.println("Led strip loaded.");
     }
 }
