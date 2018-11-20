@@ -62,4 +62,9 @@ public class STRINGS {
     public static final String dont_delete_admin = "Your kidding me ? You really want to delete the administrator ? Ciao newbie...";
     public static final String debug_password = "DEBUG MODE : password not hidden in debug mode.";
     public static final String error_user_already_exists = "Error : the user already exists.";
+
+    // Module loader.
+    public static final String loader_lights = "Lights loaded.";
+    public static final String loader_environment_sensor = "Environment sensors loaded.";
+    public static final String loader_led_strip = "Led strip loaded.";
 }
