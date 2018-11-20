@@ -1,13 +1,11 @@
 package msc;
 
-import clientManager.ClientManager;
 import clientManager.UserList;
-import clientManager.UserSaverLoader;
+import clientManager.UserLoader;
 import modules.*;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -38,7 +36,7 @@ public class Server {
             LOGGER.log(Level.FINE, STRINGS.log_server_up);
 
             // Load users.
-            loadUsers(filepath);
+            users = UserLoader.loadUsers(filepath);
 
             // Load modules.
             moduleList = ModuleLoader.loadModules();
@@ -66,19 +64,5 @@ public class Server {
     }
 
     private void loadUsers(String filepath) {
-        File file = new File(filepath);
-
-        // Load users.
-        if(file.exists() && !file.isDirectory())
-            users = UserSaverLoader.load();
-        else
-            users = new UserList();
-
-        // If there is not any admin, add it and load again.
-        if(!users.adminExists()) {
-            System.out.println(STRINGS.first_launch);
-            ClientManager.run(null);
-        }
-
     }
 }
