@@ -67,7 +67,7 @@ public class EnvironmentSensors extends ModulePattern {
         catch (SocketTimeoutException e) {
             // Log it and alert user.
             Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_timeout);
-            logError(STRINGS.log_environment_timeout);
+            clientLogError(STRINGS.log_environment_timeout);
 
             // Wait and try again.
             try {
@@ -76,19 +76,19 @@ public class EnvironmentSensors extends ModulePattern {
             }
             catch (InterruptedException e1) {
                 Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e1.getMessage());
-                logError(e1.getMessage()); // TODO : check it.
+                clientLogError(e1.getMessage());
             }
         }
         catch (NoRouteToHostException e) {
             // Log it and alert user.
             Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_no_route_to_host);
-            logError(STRINGS.log_environment_no_route_to_host); // TODO : check it.
+            clientLogError(STRINGS.log_environment_no_route_to_host);
 
             // Wait and try again.
         }
         catch (IOException e) {
             Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
-            logError(e.getMessage());
+            clientLogError(e.getMessage());
         }
         finally {
             try {
@@ -103,7 +103,7 @@ public class EnvironmentSensors extends ModulePattern {
             }
             catch (IOException e) {
                 Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
-                logError(e.getMessage());
+                clientLogError(e.getMessage());
             }
         }
     }

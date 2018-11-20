@@ -12,11 +12,11 @@ public class ModulePattern {
         return STRINGS.log_module_err;
     }
 
-    public void logSuccess(String log) {
+    protected void clientLogSuccess(String log) {
         client.getWriter().print(STRINGS.log_success + log);
     }
 
-    public void logError(String log) {
+    protected void clientLogError(String log) {
         client.getWriter().print(STRINGS.log_error + log);
     }
 

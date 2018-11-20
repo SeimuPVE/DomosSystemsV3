@@ -62,10 +62,10 @@ public class Lights extends ModulePattern {
             switchStates.set(index, true);
 
             // Log it to the client.
-            logSuccess(STRINGS.log_light_turned_on);
+            clientLogSuccess(STRINGS.log_light_turned_on);
         }
         catch (InterruptedException | IOException e) {
-            logError(e.getMessage());
+            clientLogError(e.getMessage());
         }
     }
 
@@ -78,10 +78,10 @@ public class Lights extends ModulePattern {
             switchStates.set(index, false);
 
             // Log it to the client.
-            logSuccess(STRINGS.log_light_turned_off);
+            clientLogSuccess(STRINGS.log_light_turned_off);
         }
         catch (InterruptedException | IOException e) {
-            logError(e.getMessage());
+            clientLogError(e.getMessage());
         }
     }
 
