@@ -43,6 +43,8 @@ public class Server {
 
             // Loop to manage clients.
             while(true) {
+                System.out.println("Server OK !"); // TODO : delete it and add unit tests.
+
                 socket = serverSocket.accept();
                 new Thread(new Client(socket, moduleList)).start();
             }
