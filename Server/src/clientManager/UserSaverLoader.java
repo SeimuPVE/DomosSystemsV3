@@ -1,6 +1,7 @@
 package clientManager;
 
 import msc.ConfigReader;
+import msc.Logger;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -26,7 +27,7 @@ public class UserSaverLoader {
             users = (UserList) in.readObject();
         }
         catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
         }
         finally {
             if(in != null) {
@@ -34,7 +35,7 @@ public class UserSaverLoader {
                     in.close();
                 }
                 catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
 
@@ -43,7 +44,7 @@ public class UserSaverLoader {
                     fileIn.close();
                 }
                 catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
         }
@@ -71,7 +72,7 @@ public class UserSaverLoader {
             out.writeObject(users);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
         }
         finally {
             if(out != null) {
@@ -79,7 +80,7 @@ public class UserSaverLoader {
                     out.close();
                 }
                 catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
 
@@ -88,7 +89,7 @@ public class UserSaverLoader {
                     fileOut.close();
                 }
                 catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
         }

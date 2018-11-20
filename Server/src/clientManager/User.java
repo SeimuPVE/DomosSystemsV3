@@ -1,6 +1,7 @@
 package clientManager;
 
 import msc.ConfigReader;
+import msc.Logger;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -51,7 +52,7 @@ public class User implements Serializable {
             hashed_password = hexString.toString();
         }
         catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            e.printStackTrace();
+            Logger.log(Logger.LevelSEVERE, User.class.getName(), e.getMessage());
         }
 
         return hashed_password;

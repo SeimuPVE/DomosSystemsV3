@@ -11,12 +11,9 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class Server {
-    private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
     private String filepath = ConfigReader.readValue(CONF_CODES.users_filepath);
     private Socket socket = null;
     private int port;
@@ -33,7 +30,7 @@ public class Server {
             System.out.println(InetAddress.getLocalHost());
 
             // Prepare logs.
-            LOGGER.log(Level.FINE, STRINGS.log_server_up);
+            Logger.setFilepath(ConfigReader.readValue(CONF_CODES.log_path));
 
             // Load users.
             users = UserLoader.loadUsers(filepath);
@@ -43,28 +40,25 @@ public class Server {
 
             // Loop to manage clients.
             while(true) {
-                System.out.println("Server OK !"); // TODO : delete it and add unit tests.
+                Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_server_up);
 
                 socket = serverSocket.accept();
                 new Thread(new Client(socket, moduleList)).start();
             }
         }
         catch (Exception e) {
-            e.printStackTrace(); // TODO : catch errors.
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), e.getMessage());
         }
         finally {
             try {
                 if(socket != null)
                     socket.close();
 
-                LOGGER.log(Level.FINE, STRINGS.log_server_closed);
+                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), STRINGS.log_server_closed);
             }
             catch (IOException e) {
-                e.printStackTrace(); // TODO : catch errors.
+                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
             }
         }
-    }
-
-    private void loadUsers(String filepath) {
     }
 }

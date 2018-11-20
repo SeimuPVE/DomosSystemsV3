@@ -1,6 +1,7 @@
 package msc;
 
 import modules.ModulePattern;
+import rsc.STRINGS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,19 +9,13 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import static rsc.STRINGS.*;
 
 
 public class Client implements Runnable {
-    private static final Logger LOGGER = Logger.getLogger(Client.class.getName());
-
     private static int nb_clients = 0;
     private Socket socket;
-    private PrintStream writer = null;
-    private BufferedReader reader = null;
+    private PrintStream writer;
+    private BufferedReader reader;
 
     private ArrayList<ModulePattern> modules;
 
@@ -37,8 +32,8 @@ public class Client implements Runnable {
 
         // Increase number of clients and log it.
         nb_clients++;
-        LOGGER.log(Level.FINE, log_new_client);
-        LOGGER.log(Level.FINE, log_total_client, nb_clients);
+        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_new_client);
+        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
     }
 
     @Override
@@ -50,12 +45,13 @@ public class Client implements Runnable {
             for(ModulePattern module : modules)
                 writer.print(module.exec(cmd));
 
-            LOGGER.log(Level.FINE, log_command, cmd);
+            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command);
 
             // Disconnect the client because we don't need to stay connected.
             disconnect();
-        } catch (Exception e) {
-            e.printStackTrace(); // TODO : catch errors.
+        }
+        catch (Exception e) {
+            msc.Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
         }
     }
 
@@ -64,8 +60,8 @@ public class Client implements Runnable {
             socket.close();
 
             nb_clients--;
-            LOGGER.log(Level.FINE, log_delete_client, nb_clients);
-            LOGGER.log(Level.FINE, log_total_client, nb_clients);
+            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_delete_client + nb_clients);
+            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
         }
     }
 

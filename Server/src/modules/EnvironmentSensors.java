@@ -1,6 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
+import msc.Logger;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -15,16 +16,12 @@ import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static rsc.CODES.*;
 import static rsc.STRINGS.*;
 
 
 public class EnvironmentSensors extends ModulePattern {
-    private static final Logger LOGGER = Logger.getLogger(EnvironmentSensors.class.getName());
-
     private Socket socket = null;
     private BufferedReader reader = null;
     private PrintStream writer = null;
@@ -64,12 +61,12 @@ public class EnvironmentSensors extends ModulePattern {
                 luminosity = 100 * Double.parseDouble(reader.readLine()) / 1024.0;
 
                 writer.print(SENSOR_EXIT);
-                LOGGER.log(Level.FINE, log_environment_updated);
+                Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_environment_updated);
             }
         }
         catch (SocketTimeoutException e) {
             // Log it and alert user.
-            LOGGER.log(Level.WARNING, STRINGS.log_environment_timeout);
+            Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_timeout);
             logError(STRINGS.log_environment_timeout);
 
             // Wait and try again.
@@ -78,19 +75,19 @@ public class EnvironmentSensors extends ModulePattern {
                 updateSensors();
             }
             catch (InterruptedException e1) {
-                LOGGER.log(Level.SEVERE, e1.getMessage());
-                logError(e1.getMessage());
+                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e1.getMessage());
+                logError(e1.getMessage()); // TODO : check it.
             }
         }
         catch (NoRouteToHostException e) {
             // Log it and alert user.
-            LOGGER.log(Level.WARNING, STRINGS.log_environment_no_route_to_host);
-            logError(STRINGS.log_environment_no_route_to_host);
+            Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_no_route_to_host);
+            logError(STRINGS.log_environment_no_route_to_host); // TODO : check it.
 
             // Wait and try again.
         }
         catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
             logError(e.getMessage());
         }
         finally {
@@ -105,7 +102,7 @@ public class EnvironmentSensors extends ModulePattern {
                     socket.close();
             }
             catch (IOException e) {
-                LOGGER.log(Level.SEVERE, e.getMessage());
+                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
                 logError(e.getMessage());
             }
         }
@@ -119,7 +116,7 @@ public class EnvironmentSensors extends ModulePattern {
         else if(command.equals(GET_TEMPERATURE))
             return getTemperature();
         else {
-            LOGGER.log(Level.WARNING, log_environment_error);
+            Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_error);
             return log_environment_error;
         }
     }

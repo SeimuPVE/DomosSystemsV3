@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class Lights extends ModulePattern {
-    private int numberofLights = Integer.parseInt(ConfigReader.readValue(CONF_CODES.number_of_lights));
+    private int numberOfLights = Integer.parseInt(ConfigReader.readValue(CONF_CODES.number_of_lights));
     private List<String> commandsOn = new ArrayList<>();
     private List<String> commandsOff = new ArrayList<>();
     private List<String> commandsReverse = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Lights extends ModulePattern {
     public Lights() {
         int i;
 
-        for(i = 0; i < numberofLights; i++) {
+        for(i = 0; i < numberOfLights; i++) {
             codesOn.add(ConfigReader.readValue(CONF_CODES.code_on + "_" + String.valueOf(i)));
             codesOff.add(ConfigReader.readValue(CONF_CODES.code_off + "_" +  String.valueOf(i)));
 
@@ -62,7 +62,7 @@ public class Lights extends ModulePattern {
             switchStates.set(index, true);
 
             // Log it to the client.
-            logSucces(STRINGS.log_light_turned_on);
+            logSuccess(STRINGS.log_light_turned_on);
         }
         catch (InterruptedException | IOException e) {
             logError(e.getMessage());
@@ -78,7 +78,7 @@ public class Lights extends ModulePattern {
             switchStates.set(index, false);
 
             // Log it to the client.
-            logSucces(STRINGS.log_light_turned_off);
+            logSuccess(STRINGS.log_light_turned_off);
         }
         catch (InterruptedException | IOException e) {
             logError(e.getMessage());

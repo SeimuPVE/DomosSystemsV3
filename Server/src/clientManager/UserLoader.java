@@ -4,6 +4,7 @@ import rsc.STRINGS;
 
 import java.io.File;
 
+
 public class UserLoader {
     public static UserList loadUsers(String filepath) {
         UserList users;
@@ -19,7 +20,6 @@ public class UserLoader {
         if (!users.adminExists()) {
             System.out.println(STRINGS.first_launch);
             ClientManager.run(null);
-
         }
 
         return users;

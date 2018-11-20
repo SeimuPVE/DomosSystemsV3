@@ -6,6 +6,7 @@ public class CONF_CODES {
     public static final String server_port = "server_port";
     public static final String users_filepath = "users_filepath";
     public static final String salt = "salt";
+    public static final String log_path = "log_path";
 
     // Lights.
     public static final String number_of_lights = "number_of_lights";
