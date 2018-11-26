@@ -1,5 +1,4 @@
-import clientManager.ClientManager;
-import msc.Server;
+import network.Server;
 
 
 public class Main {

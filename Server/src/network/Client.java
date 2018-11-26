@@ -1,6 +1,7 @@
-package msc;
+package network;
 
 import modules.ModulePattern;
+import msc.Logger;
 import rsc.STRINGS;
 
 import java.io.BufferedReader;
@@ -14,16 +15,16 @@ import java.util.ArrayList;
 public class Client implements Runnable {
     private static int nb_clients = 0;
     private Socket socket;
-    private PrintStream writer;
-    private BufferedReader reader;
+    private PrintStream socketWriter;
+    private BufferedReader socketReader;
 
     private ArrayList<ModulePattern> modules;
 
     public Client(Socket socket, ArrayList<ModulePattern> modules) throws IOException {
         // Create connection.
         this.socket = socket;
-        writer = new PrintStream(socket.getOutputStream());
-        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        socketWriter = new PrintStream(socket.getOutputStream());
+        socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         // Import modules.
         this.modules = modules;
@@ -40,10 +41,10 @@ public class Client implements Runnable {
     public void run() {
         try {
             // Get the command and execute it.
-            String cmd = reader.readLine();
+            String cmd = socketReader.readLine();
 
             for(ModulePattern module : modules)
-                writer.print(module.exec(cmd));
+                socketWriter.print(module.exec(cmd));
 
             msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command);
 
@@ -65,11 +66,11 @@ public class Client implements Runnable {
         }
     }
 
-    public PrintStream getWriter() {
-        return writer;
+    public PrintStream getSocketWriter() {
+        return socketWriter;
     }
 
-    public BufferedReader getReader() {
-        return reader;
+    public BufferedReader getSocketReader() {
+        return socketReader;
     }
 }

@@ -1,8 +1,10 @@
-package msc;
+package network;
 
 import clientManager.UserList;
 import clientManager.UserLoader;
 import modules.*;
+import msc.ConfigReader;
+import msc.Logger;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 

@@ -1,6 +1,6 @@
 package modules;
 
-import msc.Client;
+import network.Client;
 import rsc.STRINGS;
 
 
@@ -13,11 +13,11 @@ public class ModulePattern {
     }
 
     protected void clientLogSuccess(String log) {
-        client.getWriter().print(STRINGS.log_success + log);
+        client.getSocketWriter().print(STRINGS.log_success + log);
     }
 
     protected void clientLogError(String log) {
-        client.getWriter().print(STRINGS.log_error + log);
+        client.getSocketWriter().print(STRINGS.log_error + log);
     }
 
     public void setClient(Client client) {
