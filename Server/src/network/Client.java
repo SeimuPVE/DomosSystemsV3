@@ -68,17 +68,12 @@ public class Client implements Runnable {
         }
     }
 
-<<<<<<< HEAD:Server/src/network/Client.java
-    public PrintStream getSocketWriter() {
-        return socketWriter;
-=======
     public void sendLogs(String log) {
-        writer.println(log);
+        socketWriter.println(log);
     }
 
     public PrintStream getWriter() {
-        return writer;
->>>>>>> a034d5f88bf925c941b11d08ba8cebdb885d1b39:Server/src/msc/Client.java
+        return socketWriter;
     }
 
     public BufferedReader getSocketReader() {
