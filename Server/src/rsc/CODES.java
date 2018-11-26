@@ -24,7 +24,7 @@ public class CODES {
     public static final String LED_STRIP_MAGENTA = "LED_STRIP_MAGENTA";
 
     // Lights codes.
-    public static final String LIGHT_ON = "LIGHT_ON";
-    public static final String LIGHT_OFF = "LIGHT_OFF";
-    public static final String LIGHT_REVERSE = "LIGHT_REVERSE";
+    public static final String LIGHT_ON = "LIGHT_ON_";
+    public static final String LIGHT_OFF = "LIGHT_OFF_";
+    public static final String LIGHT_REVERSE = "LIGHT_REVERSE_";
 }

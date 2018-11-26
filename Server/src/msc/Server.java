@@ -51,6 +51,7 @@ public class Server {
         }
         finally {
             try {
+                // TODO : see that weird code, I don't remember it.
                 if(socket != null)
                     socket.close();
 
