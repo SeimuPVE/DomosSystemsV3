@@ -28,11 +28,12 @@ public class ModuleLoader {
     }
 
     public static void loadLights() {
-        moduleList.add(new Lights());
+        Lights lights = new Lights();
+        moduleList.add(lights);
 
         // TODO : move initialisations on a config file.
-        moduleList.get(0).exec(CODES.LIGHT_OFF + "_0");
-        moduleList.get(0).exec(CODES.LIGHT_OFF + "_1");
+        moduleList.get(moduleList.indexOf(lights)).exec(CODES.LIGHT_OFF + "0");
+        moduleList.get(moduleList.indexOf(lights)).exec(CODES.LIGHT_OFF + "1");
 
         Logger.log(Logger.LevelFINE, ModuleLoader.class.getName(), STRINGS.loader_lights);
     }

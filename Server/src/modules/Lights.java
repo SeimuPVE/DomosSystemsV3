@@ -26,9 +26,9 @@ public class Lights extends ModulePattern {
             codesOn.add(ConfigReader.readValue(CONF_CODES.code_on + "_" + String.valueOf(i)));
             codesOff.add(ConfigReader.readValue(CONF_CODES.code_off + "_" +  String.valueOf(i)));
 
-            commandsOn.add(CODES.LIGHT_ON + "_" + String.valueOf(i));
-            commandsOff.add(CODES.LIGHT_OFF + "_" + String.valueOf(i));
-            commandsReverse.add(CODES.LIGHT_REVERSE + "_" + String.valueOf(i));
+            commandsOn.add(CODES.LIGHT_ON + String.valueOf(i));
+            commandsOff.add(CODES.LIGHT_OFF  + String.valueOf(i));
+            commandsReverse.add(CODES.LIGHT_REVERSE + String.valueOf(i));
 
             switchStates.add(false);
         }
@@ -47,7 +47,7 @@ public class Lights extends ModulePattern {
             switchOn(commandsOn.indexOf(command));
         else if(commandsOff.contains(command))
             switchOff(commandsOff.indexOf(command));
-        else if(commandsReverse.contains(command))
+        if(commandsReverse.contains(command))
             switchOn(commandsReverse.indexOf(command));
 
         return "";

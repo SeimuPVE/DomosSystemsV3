@@ -33,8 +33,9 @@ public class Client implements Runnable {
 
         // Increase number of clients and log it.
         nb_clients++;
-        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_new_client);
-        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
+        // TODO : activate it (or not) in the config file.
+//        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_new_client);
+//        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class Client implements Runnable {
             for(ModulePattern module : modules)
                 socketWriter.print(module.exec(cmd));
 
-            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command);
+            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);
 
             // Disconnect the client because we don't need to stay connected.
             disconnect();
@@ -61,13 +62,23 @@ public class Client implements Runnable {
             socket.close();
 
             nb_clients--;
-            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_delete_client + nb_clients);
-            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
+            // TODO : activate it (or not) in the config file.
+//            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_delete_client);
+//            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
         }
     }
 
+<<<<<<< HEAD:Server/src/network/Client.java
     public PrintStream getSocketWriter() {
         return socketWriter;
+=======
+    public void sendLogs(String log) {
+        writer.println(log);
+    }
+
+    public PrintStream getWriter() {
+        return writer;
+>>>>>>> a034d5f88bf925c941b11d08ba8cebdb885d1b39:Server/src/msc/Client.java
     }
 
     public BufferedReader getSocketReader() {
