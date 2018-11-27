@@ -49,7 +49,7 @@ public class Client implements Runnable {
             String cmd = socketReader.readLine();
 
             for(ModulePattern module : modules)
-                socketWriter.print(module.exec(cmd));
+                socketWriter.println(module.exec(cmd));
 
             if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
                 msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);

@@ -51,7 +51,7 @@ public class Lights extends ModulePattern {
         }
 
         if(!recognized_command)
-            return STRINGS.log_error + STRINGS.unreconnized_command;
+            return STRINGS.log_error + STRINGS.unrecognized_command;
         else
             return "";
     }

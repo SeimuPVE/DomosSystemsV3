@@ -8,7 +8,7 @@ public class STRINGS {
     public static final String first_launch = "It is the first time that you launch the server.\nYou need to create a new user first, then just exit this program by choosing EXIT (choice 0) and the server will be launched.\n";
 
     // Client.
-    public static final String unreconnized_command = "Unreconnized command.";
+    public static final String unrecognized_command = "Unrecognized command.";
     public static final String log_new_client = "A new client is connected.";
     public static final String log_delete_client = "A client disconnected !";
     public static final String log_total_client = "Total : ";

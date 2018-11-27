@@ -125,7 +125,7 @@ public class EnvironmentSensors extends ModulePattern {
         else if(command.equals(CODES.GET_TEMPERATURE))
             return getTemperature();
 
-        return STRINGS.log_error + STRINGS.unreconnized_command;
+        return STRINGS.log_error + STRINGS.unrecognized_command;
     }
 
     public String getTemperature() {
