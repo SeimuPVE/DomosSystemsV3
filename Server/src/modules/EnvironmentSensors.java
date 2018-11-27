@@ -2,6 +2,7 @@ package modules;
 
 import msc.ConfigReader;
 import msc.Logger;
+import rsc.CODES;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -16,9 +17,6 @@ import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.concurrent.TimeUnit;
-
-import static rsc.CODES.*;
-import static rsc.STRINGS.*;
 
 
 public class EnvironmentSensors extends ModulePattern {
@@ -51,16 +49,16 @@ public class EnvironmentSensors extends ModulePattern {
                 writer = new PrintStream(socket.getOutputStream());
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                writer.print(SENSOR_TEMPERATURE);
+                writer.print(CODES.SENSOR_TEMPERATURE);
                 temperature = Double.parseDouble(reader.readLine());
 
-                writer.print(SENSOR_HUMIDITY);
+                writer.print(CODES.SENSOR_HUMIDITY);
                 humidity = Double.parseDouble(reader.readLine());
 
-                writer.print(SENSOR_LUMINOSITY);
+                writer.print(CODES.SENSOR_LUMINOSITY);
                 luminosity = 100 * Double.parseDouble(reader.readLine()) / 1024.0;
 
-                writer.print(SENSOR_EXIT);
+                writer.print(CODES.SENSOR_EXIT);
                 Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_environment_updated);
             }
         }
@@ -109,14 +107,14 @@ public class EnvironmentSensors extends ModulePattern {
     }
 
     public String exec(String command) {
-        if(command.equals(GET_HUMIDITY))
+        if(command.equals(CODES.GET_HUMIDITY))
             return getHumidity();
-        else if(command.equals(GET_LUMINOSITY))
+        else if(command.equals(CODES.GET_LUMINOSITY))
             return getLuminosity();
-        else if(command.equals(GET_TEMPERATURE))
+        else if(command.equals(CODES.GET_TEMPERATURE))
             return getTemperature();
 
-        return log_environment_error;
+        return STRINGS.log_error + STRINGS.unreconnized_command;
     }
 
     public String getTemperature() {

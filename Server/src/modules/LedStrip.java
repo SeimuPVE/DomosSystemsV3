@@ -42,7 +42,7 @@ public class LedStrip extends ModulePattern {
         else if(command.equals(CODES.LED_STRIP_MAGENTA))
             turnMagenta();
 
-        return "";
+        return STRINGS.log_error + STRINGS.unreconnized_command;
     }
 
     public void sendByteCode(byte[] code) {

@@ -42,7 +42,7 @@ public class Lights extends ModulePattern {
         else if(commandsReverse.contains(command))
             switchReverse(commandsReverse.indexOf(command));
 
-        return "";
+        return STRINGS.log_error + STRINGS.unreconnized_command;
     }
 
     private void switchOn(int index) {

@@ -19,7 +19,7 @@ public class ModulePattern {
 
     protected void clientLogError(String log) {
         if(client != null)
-        client.sendLogs(STRINGS.log_error + log);
+            client.sendLogs(STRINGS.log_error + log);
     }
 
     public void setClient(Client client) {

@@ -8,6 +8,7 @@ public class STRINGS {
     public static final String first_launch = "It is the first time that you launch the server.\nYou need to create a new user first, then just exit this program by choosing EXIT (choice 0) and the server will be launched.\n";
 
     // Client.
+    public static final String unreconnized_command = "Unreconnized command.";
     public static final String log_new_client = "A new client is connected.";
     public static final String log_delete_client = "A client disconnected !";
     public static final String log_total_client = "Total : ";
@@ -35,7 +36,6 @@ public class STRINGS {
     public static final String log_environment_updated = "Environment sensor updated.";
     public static final String log_environment_timeout = "Timeout exception with environment sensors !";
     public static final String log_environment_no_route_to_host = "The environment sensor is not connected.";
-    public static final String log_environment_error = "Error.";
 
     // ConfigReader.
     public static final String log_config_reader_not_key = "Key not found in config file, the concerned key is : ";
