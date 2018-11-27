@@ -59,13 +59,16 @@ public class EnvironmentSensors extends ModulePattern {
                 luminosity = 100 * Double.parseDouble(reader.readLine()) / 1024.0;
 
                 writer.print(CODES.SENSOR_EXIT);
-                Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_environment_updated);
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
+                    Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_environment_updated);
             }
         }
         catch (SocketTimeoutException e) {
             // Log it and alert user.
-            Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_timeout);
-            clientLogError(STRINGS.log_environment_timeout);
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 1) {
+                Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_timeout);
+                clientLogError(STRINGS.log_environment_timeout);
+            }
 
             // Wait and try again.
             try {
@@ -73,20 +76,26 @@ public class EnvironmentSensors extends ModulePattern {
                 updateSensors();
             }
             catch (InterruptedException e1) {
-                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e1.getMessage());
-                clientLogError(e1.getMessage());
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e1.getMessage());
+                    clientLogError(e1.getMessage());
+                }
             }
         }
         catch (NoRouteToHostException e) {
             // Log it and alert user.
-            Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_no_route_to_host);
-            clientLogError(STRINGS.log_environment_no_route_to_host);
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 1) {
+                Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_no_route_to_host);
+                clientLogError(STRINGS.log_environment_no_route_to_host);
+            }
 
             // Wait and try again.
         }
         catch (IOException e) {
-            Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
-            clientLogError(e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                clientLogError(e.getMessage());
+            }
         }
         finally {
             try {
@@ -100,8 +109,10 @@ public class EnvironmentSensors extends ModulePattern {
                     socket.close();
             }
             catch (IOException e) {
-                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
-                clientLogError(e.getMessage());
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                    clientLogError(e.getMessage());
+                }
             }
         }
     }

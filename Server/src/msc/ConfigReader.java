@@ -1,5 +1,6 @@
 package msc;
 
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.BufferedReader;
@@ -22,7 +23,9 @@ public class ConfigReader {
                 value = fileReader.readLine();
 
             if(value == null) {
-                Logger.log(Logger.LevelSEVERE, ConfigReader.class.getName(), STRINGS.log_config_reader_not_key);
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                    Logger.log(Logger.LevelSEVERE, ConfigReader.class.getName(), STRINGS.log_config_reader_not_key);
+
                 return STRINGS.log_config_reader_not_key;
             }
 
@@ -33,7 +36,8 @@ public class ConfigReader {
             return value;
         }
         catch (IOException e) {
-            Logger.log(Logger.LevelSEVERE, ConfigReader.class.getName(), e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                Logger.log(Logger.LevelSEVERE, ConfigReader.class.getName(), e.getMessage());
         }
 
         return "";

@@ -7,6 +7,7 @@ public class CONF_CODES {
     public static final String users_filepath = "users_filepath";
     public static final String salt = "salt";
     public static final String log_path = "log_path";
+    public static final String verbose_level = "verbose_level";
 
     // Lights.
     public static final String number_of_lights = "number_of_lights";

@@ -1,7 +1,9 @@
 package network;
 
 import modules.ModulePattern;
+import msc.ConfigReader;
 import msc.Logger;
+import rsc.CONF_CODES;
 import rsc.STRINGS;
 
 import java.io.BufferedReader;
@@ -34,9 +36,10 @@ public class Client implements Runnable {
         // Increase number of clients and log it.
         nb_clients++;
 
-        // TODO : activate it (or not) in the config file.
-//        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_new_client);
-//        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 3) {
+            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_new_client);
+            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
+        }
     }
 
     @Override
@@ -48,13 +51,15 @@ public class Client implements Runnable {
             for(ModulePattern module : modules)
                 socketWriter.print(module.exec(cmd));
 
-            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
+                msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);
 
             // Disconnect the client because we don't need to stay connected.
             disconnect();
         }
         catch (Exception e) {
-            msc.Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                msc.Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
         }
     }
 
@@ -64,9 +69,10 @@ public class Client implements Runnable {
 
             nb_clients--;
 
-            // TODO : activate it (or not) in the config file.
-//            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_delete_client);
-//            msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 3) {
+                msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_delete_client);
+                msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_total_client + nb_clients);
+            }
         }
     }
 
