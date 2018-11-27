@@ -26,7 +26,8 @@ public class SensorsAutomater implements Runnable {
                 sleep(Integer.parseInt((ConfigReader.readValue(CONF_CODES.sensors_automater_routine_time))));
             }
             catch (InterruptedException e) {
-                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
             }
         }
     }

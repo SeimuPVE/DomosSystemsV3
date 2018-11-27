@@ -56,12 +56,16 @@ public class LedStrip extends ModulePattern {
             }
         }
         catch (SocketTimeoutException e) {
-            Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_led_strip_timeout);
-            clientLogError(STRINGS.log_led_strip_timeout);
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 1) {
+                Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_led_strip_timeout);
+                clientLogError(STRINGS.log_led_strip_timeout);
+            }
         }
         catch (IOException e) {
-            Logger.log(Logger.LevelSEVERE, ModuleLoader.class.getName(), e.getMessage());
-            clientLogError(e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                Logger.log(Logger.LevelSEVERE, ModuleLoader.class.getName(), e.getMessage());
+                clientLogError(e.getMessage());
+            }
         }
         finally {
             try {
@@ -72,8 +76,10 @@ public class LedStrip extends ModulePattern {
                     socket.close();
             }
             catch (IOException e) {
-                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
-                clientLogError(e.getMessage());
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                    clientLogError(e.getMessage());
+                }
             }
         }
     }
@@ -92,42 +98,60 @@ public class LedStrip extends ModulePattern {
     public void turnOn() {
         byte[] code_on = new byte[] {(byte)0x71, (byte)0x23, (byte)0x0f, (byte)0xa3};
         sendByteCode(code_on);
-        Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_on);
-        clientLogSuccess(STRINGS.log_led_strip_on);
+
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2) {
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_on);
+            clientLogSuccess(STRINGS.log_led_strip_on);
+        }
     }
 
     public void turnOff() {
         byte[] code_off = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_off);
-        Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_off);
-        clientLogSuccess(STRINGS.log_led_strip_off);
+
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2) {
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_off);
+            clientLogSuccess(STRINGS.log_led_strip_off);
+        }
     }
 
     public void turnGreen() {
         byte[] code_green = new byte[] {(byte)0x31, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:ff:00:00:00:0f:3e
         sendByteCode(code_green);
-        Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_green);
-        clientLogSuccess(STRINGS.log_led_strip_green);
+
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2) {
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_green);
+            clientLogSuccess(STRINGS.log_led_strip_green);
+        }
     }
 
     public void turnCyan() {
         byte[] code_cyan = new byte[] {(byte)0x31, (byte)0x00, (byte)0xff, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:00:ff:ff:00:00:0f:3e
         sendByteCode(code_cyan);
-        Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_cyan);
-        clientLogSuccess(STRINGS.log_led_strip_cyan);
+
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2) {
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_cyan);
+            clientLogSuccess(STRINGS.log_led_strip_cyan);
+        }
     }
 
     public void turnMagenta() {
         byte[] code_magenta = new byte[] {(byte)0x31, (byte)0xff, (byte)0x00, (byte)0xff, (byte)0x00, (byte)0x00, (byte)0x0f, (byte)0x3e}; // 31:ff:00:ff:00:00:0f:3e
         sendByteCode(code_magenta);
-        Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_magenta);
-        clientLogSuccess(STRINGS.log_led_strip_magenta);
+
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2) {
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_magenta);
+            clientLogSuccess(STRINGS.log_led_strip_magenta);
+        }
     }
 
     public void turnWhite() {
         byte[] code_white = new byte[] {(byte)0x71, (byte)0x24, (byte)0x0f, (byte)0xa4};
         sendByteCode(code_white);
-        Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_white);
-        clientLogSuccess(STRINGS.log_led_strip_white);
+
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2) {
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_led_strip_white);
+            clientLogSuccess(STRINGS.log_led_strip_white);
+        }
     }
 }

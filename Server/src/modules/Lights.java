@@ -35,14 +35,25 @@ public class Lights extends ModulePattern {
     }
 
     public String exec(String command) {
-        if(commandsOn.contains(command))
-            switchOn(commandsOn.indexOf(command));
-        else if(commandsOff.contains(command))
-            switchOff(commandsOff.indexOf(command));
-        else if(commandsReverse.contains(command))
-            switchReverse(commandsReverse.indexOf(command));
+        boolean recognized_command = false;
 
-        return STRINGS.log_error + STRINGS.unreconnized_command;
+        if(commandsOn.contains(command)) {
+            switchOn(commandsOn.indexOf(command));
+            recognized_command = true;
+        }
+        else if(commandsOff.contains(command)) {
+            switchOff(commandsOff.indexOf(command));
+            recognized_command = true;
+        }
+        else if(commandsReverse.contains(command)) {
+            switchReverse(commandsReverse.indexOf(command));
+            recognized_command = true;
+        }
+
+        if(!recognized_command)
+            return STRINGS.log_error + STRINGS.unreconnized_command;
+        else
+            return "";
     }
 
     private void switchOn(int index) {

@@ -40,7 +40,8 @@ public class Server {
             // Load modules.
             moduleList = ModuleLoader.loadModules();
 
-            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_server_up);
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
+                Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_server_up);
 
             // Loop to manage clients.
             while(true) {
@@ -49,7 +50,8 @@ public class Server {
             }
         }
         catch (Exception e) {
-            Logger.log(Logger.LevelFINE, this.getClass().getName(), e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
         }
         finally {
             try {
@@ -57,10 +59,12 @@ public class Server {
                 if(socket != null)
                     socket.close();
 
-                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), STRINGS.log_server_closed);
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), STRINGS.log_server_closed);
             }
             catch (IOException e) {
-                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
             }
         }
     }

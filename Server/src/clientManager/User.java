@@ -52,7 +52,8 @@ public class User implements Serializable {
             hashed_password = hexString.toString();
         }
         catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            Logger.log(Logger.LevelSEVERE, User.class.getName(), e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                Logger.log(Logger.LevelSEVERE, User.class.getName(), e.getMessage());
         }
 
         return hashed_password;

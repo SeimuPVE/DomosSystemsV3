@@ -27,7 +27,8 @@ public class UserSaverLoader {
             users = (UserList) in.readObject();
         }
         catch (IOException | ClassNotFoundException e) {
-            Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
         }
         finally {
             if(in != null) {
@@ -35,7 +36,8 @@ public class UserSaverLoader {
                     in.close();
                 }
                 catch (IOException e) {
-                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
+                    if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                        Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
 
@@ -44,7 +46,8 @@ public class UserSaverLoader {
                     fileIn.close();
                 }
                 catch (IOException e) {
-                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
+                    if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                        Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
         }
@@ -72,7 +75,8 @@ public class UserSaverLoader {
             out.writeObject(users);
         }
         catch (IOException e) {
-            Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
         }
         finally {
             if(out != null) {
@@ -80,7 +84,8 @@ public class UserSaverLoader {
                     out.close();
                 }
                 catch (IOException e) {
-                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
+                    if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                        Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
 
@@ -89,7 +94,8 @@ public class UserSaverLoader {
                     fileOut.close();
                 }
                 catch (IOException e) {
-                    Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
+                    if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                        Logger.log(Logger.LevelSEVERE, UserSaverLoader.class.getName(), e.getMessage());
                 }
             }
         }
