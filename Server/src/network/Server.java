@@ -40,10 +40,10 @@ public class Server {
             // Load modules.
             moduleList = ModuleLoader.loadModules();
 
+            Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_server_up);
+
             // Loop to manage clients.
             while(true) {
-                Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_server_up);
-
                 socket = serverSocket.accept();
                 new Thread(new Client(socket, moduleList)).start();
             }

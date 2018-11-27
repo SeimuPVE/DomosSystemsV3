@@ -115,10 +115,8 @@ public class EnvironmentSensors extends ModulePattern {
             return getLuminosity();
         else if(command.equals(GET_TEMPERATURE))
             return getTemperature();
-        else {
-            Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_error);
-            return log_environment_error;
-        }
+
+        return log_environment_error;
     }
 
     public String getTemperature() {

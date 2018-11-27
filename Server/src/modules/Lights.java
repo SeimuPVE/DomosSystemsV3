@@ -35,20 +35,12 @@ public class Lights extends ModulePattern {
     }
 
     public String exec(String command) {
-        int i;
-
-        // Delete it, the client will send two reverse messages instead of one for two lights.
-//        if(command.equals(CODES.DESKTOP_REVERSE)) {
-//            switchReverse(0);
-//            switchReverse(1);
-//        }
-
         if(commandsOn.contains(command))
             switchOn(commandsOn.indexOf(command));
         else if(commandsOff.contains(command))
             switchOff(commandsOff.indexOf(command));
-        if(commandsReverse.contains(command))
-            switchOn(commandsReverse.indexOf(command));
+        else if(commandsReverse.contains(command))
+            switchReverse(commandsReverse.indexOf(command));
 
         return "";
     }
