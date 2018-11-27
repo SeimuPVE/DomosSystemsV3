@@ -13,14 +13,13 @@ public class ModulePattern {
     }
 
     protected void clientLogSuccess(String log) {
-        // TODO : add it later, can crash the server if there's not any client.
-        // client.sendLogs(STRINGS.log_success + log);
-        // client.getWriter().print(STRINGS.log_success + log);
+        if(client != null)
+            client.sendLogs(STRINGS.log_success + log);
     }
 
     protected void clientLogError(String log) {
-        // TODO : add it later, can crash the server if there's not any client.
-        // client.getWriter().print(STRINGS.log_error + log);
+        if(client != null)
+        client.sendLogs(STRINGS.log_error + log);
     }
 
     public void setClient(Client client) {
