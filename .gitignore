@@ -1,3 +1,6 @@
+.idea
+gradle
+
 Server/.idea/*
 Server/output/*
 
