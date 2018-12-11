@@ -1,4 +1,4 @@
-package com.ayoubidel.domosapp.models;
+package domosapp.models;
 
 public class Module {
     private String type;

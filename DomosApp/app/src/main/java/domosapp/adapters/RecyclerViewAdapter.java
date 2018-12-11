@@ -1,4 +1,4 @@
-package com.ayoubidel.domosapp.adapters;
+package domosapp.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.ayoubidel.domosapp.R;
-import com.ayoubidel.domosapp.models.Module;
-import com.ayoubidel.domosapp.models.ModuleType;
+import domosapp.models.Module;
+import domosapp.models.ModuleType;
 
 import java.util.List;
 

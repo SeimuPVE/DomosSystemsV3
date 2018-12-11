@@ -1,9 +1,9 @@
-package com.ayoubidel.domosapp.utils;
+package domosapp.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.ayoubidel.domosapp.adapters.ModuleDatabaseAdapter;
+import domosapp.adapters.ModuleDatabaseAdapter;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 

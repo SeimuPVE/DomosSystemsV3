@@ -1,4 +1,4 @@
-package com.ayoubidel.domosapp.utils;
+package domosapp.utils;
 
 import java.io.*;
 import java.util.ArrayList;

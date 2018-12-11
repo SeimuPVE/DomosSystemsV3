@@ -1,4 +1,4 @@
-package com.ayoubidel.domosapp.adapters;
+package domosapp.adapters;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
-import com.ayoubidel.domosapp.models.Module;
-import com.ayoubidel.domosapp.utils.DataBaseHelper;
+import domosapp.models.Module;
+import domosapp.utils.DataBaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;

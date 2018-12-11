@@ -1,4 +1,4 @@
-package com.ayoubidel.domosapp.fragments;
+package domosapp.fragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

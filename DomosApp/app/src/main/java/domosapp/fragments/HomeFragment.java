@@ -1,10 +1,8 @@
-package com.ayoubidel.domosapp.fragments;
+package domosapp.fragments;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,14 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import com.ayoubidel.domosapp.R;
-import com.ayoubidel.domosapp.activities.MainActivity;
-import com.ayoubidel.domosapp.adapters.ModuleDatabaseAdapter;
-import com.ayoubidel.domosapp.adapters.RecyclerViewAdapter;
-import com.ayoubidel.domosapp.models.Module;
-import com.ayoubidel.domosapp.models.ModuleType;
+
+import domosapp.adapters.ModuleDatabaseAdapter;
+import domosapp.adapters.RecyclerViewAdapter;
+import domosapp.models.Module;
+import domosapp.models.ModuleType;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
