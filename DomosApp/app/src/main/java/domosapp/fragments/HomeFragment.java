@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.internal.NavigationMenu;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import com.ayoubidel.domosapp.R;
+import com.domosapp.R;
 
 import domosapp.adapters.ModuleDatabaseAdapter;
 import domosapp.adapters.RecyclerViewAdapter;
@@ -22,6 +20,7 @@ import domosapp.models.ModuleType;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 
 import java.util.List;
+
 
 public class HomeFragment extends Fragment {
 

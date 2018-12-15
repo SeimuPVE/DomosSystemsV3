@@ -13,6 +13,7 @@ import domosapp.utils.DataBaseHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ModuleDatabaseAdapter {
 
     static final String DATABASE_NAME = "database.db";

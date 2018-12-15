@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import com.ayoubidel.domosapp.R;
+import com.domosapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 

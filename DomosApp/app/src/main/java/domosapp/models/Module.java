@@ -1,5 +1,6 @@
 package domosapp.models;
 
+
 public class Module {
     private String type;
     private String ip;

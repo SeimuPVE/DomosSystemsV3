@@ -8,7 +8,8 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import com.ayoubidel.domosapp.R;
+import com.domosapp.R;
+
 
 public class AddModuleDialog extends AppCompatDialogFragment {
 

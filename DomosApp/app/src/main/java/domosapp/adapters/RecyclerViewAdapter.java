@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.ayoubidel.domosapp.R;
+
+import com.domosapp.R;
 import domosapp.models.Module;
 import domosapp.models.ModuleType;
+import domosapp.utils.AsyncNetworking;
 
 import java.util.List;
+
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
@@ -33,20 +36,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.moduleLabel.setText(data.get(position).getLabel());
         holder.moduleDescription.setText(data.get(position).getDescription());
+
         if (data.get(position).getType().equals(ModuleType.LIGHT.toString())) {
             holder.moduleImage.setImageResource(R.drawable.ic_action_light);
-        } else if (data.get(position).getType().equals(ModuleType.LED_STRIP.toString())) {
+        }
+        else if (data.get(position).getType().equals(ModuleType.LED_STRIP.toString())) {
             holder.moduleImage.setImageResource(R.drawable.ic_action_strip);
-        } else if (data.get(position).getType().equals(ModuleType.ENV_SENSOR.toString())) {
+        }
+        else if (data.get(position).getType().equals(ModuleType.ENV_SENSOR.toString())) {
             holder.moduleImage.setImageResource(R.drawable.ic_action_sensor);
         }
+
         holder.moduleCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Call web service
+                new AsyncNetworking("192.168.0.42", 5433, data.get(position).getLabel()).execute();
             }
         });
     }
