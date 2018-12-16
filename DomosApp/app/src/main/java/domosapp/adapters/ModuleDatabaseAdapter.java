@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.widget.Toast;
 import domosapp.models.Module;
 import domosapp.utils.DataBaseHelper;
@@ -15,12 +14,9 @@ import java.util.List;
 
 
 public class ModuleDatabaseAdapter {
-
-    static final String DATABASE_NAME = "database.db";
+    static final String DATABASE_NAME = "domos.db";
     static final int DATABASE_VERSION = 1;
-    public static String getPassword = "";
-    public static final int NAME_COLUMN = 1;
-    public static final String DATABASE_CREATE = "create table MODULE( ID integer primary key autoincrement,TYPE text, IP  text,PORT  text,LABEL text,DESCRIPTION text); ";
+    public static final String DATABASE_CREATE = "create table MODULE(ID integer primary key autoincrement, TYPE text, NAME text, LABEL text, COMMAND text);";
     public static SQLiteDatabase db;
     private final Context context;
     private static DataBaseHelper dbHelper;
@@ -39,46 +35,48 @@ public class ModuleDatabaseAdapter {
         db.close();
     }
 
-    // method returns an Instance of the Database
+    // Method returns an Instance of the Database.
     public SQLiteDatabase getDatabaseInstance() {
         return db;
     }
 
-    // method to insert a record in Table
-    public String insertEntry(String type, String ip, String port, String label, String description) {
+    // Method to insert a record in Table.
+    public void insertEntry(String type, String name, String label, String command) {
         try {
             ContentValues newValues = new ContentValues();
+
             // Assign values for each column.
             newValues.put("TYPE", type);
-            newValues.put("IP", ip);
-            newValues.put("PORT", port);
+            newValues.put("NAME", name);
             newValues.put("LABEL", label);
-            newValues.put("DESCRIPTION", description);
-            // Insert the row into your table
+            newValues.put("COMMAND", command);
+
+            // Insert the row into your table.
             db = dbHelper.getWritableDatabase();
+
             long result = db.insert("MODULE", null, newValues);
-            System.out.print(result);
             Toast.makeText(context, "Module Info Saved", Toast.LENGTH_LONG).show();
-        } catch (Exception ex) {
-            System.out.println("Exceptions " + ex);
-            Log.e("Note", "One row entered");
         }
-        return "ok";
+        catch(Exception e) {
+            e.getStackTrace();
+        }
     }
 
-    // method to get the password  of userName
+    // Method to get the password  of userName.
     public List<Module> getAllModules() {
         List<Module> moduleList = new ArrayList<>();
         db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query("MODULE", null, null, null, null, null, null);
+
         while (cursor.moveToNext()) {
             String type = cursor.getString(cursor.getColumnIndex("TYPE"));
-            String ip = cursor.getString(cursor.getColumnIndex("IP"));
-            String port = cursor.getString(cursor.getColumnIndex("PORT"));
+            String name = cursor.getString(cursor.getColumnIndex("NAME"));
             String label = cursor.getString(cursor.getColumnIndex("LABEL"));
-            String description = cursor.getString(cursor.getColumnIndex("DESCRIPTION"));
-            moduleList.add(new Module(type, ip, port, label, description));
+            String command = cursor.getString(cursor.getColumnIndex("COMMAND"));
+
+            moduleList.add(new Module(type, name, label, command));
         }
+
         return moduleList;
     }
 }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.domosapp.R;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText et_username;
@@ -29,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
                 String username = et_username.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
 
-                //TODO : Generate the file && Go to mainActivity
+                // TODO : Generate the file and go to the mainActivity.
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

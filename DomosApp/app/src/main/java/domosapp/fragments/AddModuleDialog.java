@@ -12,24 +12,22 @@ import com.domosapp.R;
 
 
 public class AddModuleDialog extends AppCompatDialogFragment {
-
-    private EditText editTextIp;
-    private EditText editTextPort;
+    private EditText editTextName;
     private EditText editTextLabel;
-    private EditText editTextDescription;
+    private EditText editTextCommand;
 
     private AddModuleDialogListener listener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+
         View view = inflater.inflate(R.layout.layout_add_module_dialog, null);
-        editTextIp = view.findViewById(R.id.module_ip_id);
-        editTextPort = view.findViewById(R.id.module_port_id);
+        editTextName = view.findViewById(R.id.module_name_id);
         editTextLabel = view.findViewById(R.id.module_label_id);
-        editTextDescription = view.findViewById(R.id.module_description_id);
+        editTextCommand = view.findViewById(R.id.module_label_id);
+
         builder.setView(view)
                 .setTitle("Add Module")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -41,11 +39,10 @@ public class AddModuleDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String ip = editTextIp.getText().toString().trim();
-                        String port = editTextPort.getText().toString().trim();
+                        String name = editTextName.getText().toString().trim();
                         String label = editTextLabel.getText().toString().trim();
-                        String description = editTextDescription.getText().toString().trim();
-                        listener.addModule(ip, port, label, description);
+                        String command = editTextCommand.getText().toString().trim();
+                        listener.addModule(name, label, command);
                     }
                 });
         return builder.create();
@@ -56,6 +53,6 @@ public class AddModuleDialog extends AppCompatDialogFragment {
     }
 
     public interface AddModuleDialogListener {
-        void addModule(String ip, String port, String label, String description);
+        void addModule(String name, String label, String command);
     }
 }

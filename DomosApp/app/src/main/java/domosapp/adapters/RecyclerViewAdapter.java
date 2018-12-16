@@ -37,8 +37,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        holder.moduleName.setText(data.get(position).getName());
         holder.moduleLabel.setText(data.get(position).getLabel());
-        holder.moduleDescription.setText(data.get(position).getDescription());
 
         if (data.get(position).getType().equals(ModuleType.LIGHT.toString())) {
             holder.moduleImage.setImageResource(R.drawable.ic_action_light);
@@ -53,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.moduleCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AsyncNetworking("192.168.0.42", 5433, data.get(position).getLabel()).execute();
+                new AsyncNetworking("192.168.0.42", 5433, data.get(position).getCommand()).execute();
             }
         });
     }
@@ -69,18 +69,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView moduleLabel;
-        TextView moduleDescription;
-        ImageView moduleImage;
         CardView moduleCard;
+        ImageView moduleImage;
+        TextView moduleName;
+        TextView moduleLabel;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            moduleLabel = (TextView) itemView.findViewById(R.id.module_name_id);
-            moduleDescription = (TextView) itemView.findViewById(R.id.module_description_id);
-            moduleImage = (ImageView) itemView.findViewById(R.id.module_image_id);
+
             moduleCard = (CardView) itemView.findViewById(R.id.module_cardview_id);
+            moduleImage = (ImageView) itemView.findViewById(R.id.module_image_id);
+            moduleName = (TextView) itemView.findViewById(R.id.module_name_id);
+            moduleLabel = (TextView) itemView.findViewById(R.id.module_label_id);
         }
     }
 }

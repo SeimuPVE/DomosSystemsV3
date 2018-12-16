@@ -23,7 +23,6 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-
     private View myView;
     private Activity myActivity;
     private List<Module> modules;
@@ -36,6 +35,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.home_fragment, container, false);
         FabSpeedDial fabSpeedDial = myView.findViewById(R.id.fab_menu_id);
+
         fabSpeedDial.setMenuListener(new FabSpeedDial.MenuListener() {
             @Override
             public boolean onPrepareMenu(NavigationMenu navigationMenu) {
@@ -71,15 +71,17 @@ public class HomeFragment extends Fragment {
         adapter = new RecyclerViewAdapter(myView.getContext(), modules);
         recyclerView.setLayoutManager(new GridLayoutManager(myView.getContext(), 3));
         recyclerView.setAdapter(adapter);
+
         return myView;
     }
 
     private void openAddModuleDialog(final ModuleType type) {
         AddModuleDialog addModuleDialog = new AddModuleDialog();
+
         addModuleDialog.setListener(new AddModuleDialog.AddModuleDialogListener() {
             @Override
-            public void addModule(String ip, String port, String label, String description) {
-                moduleDatabaseAdapter.insertEntry(type.toString(), ip, port, label, description);
+            public void addModule(String name, String label, String command) {
+                moduleDatabaseAdapter.insertEntry(type.toString(), name, label, command);
                 modules = moduleDatabaseAdapter.getAllModules();
                 adapter.refreshList(modules);
             }

@@ -3,17 +3,15 @@ package domosapp.models;
 
 public class Module {
     private String type;
-    private String ip;
-    private String port;
+    private String name;
     private String label;
-    private String description;
+    private String command;
 
-    public Module(String type, String ip, String port, String label, String description) {
+    public Module(String type, String name, String label, String command) {
         this.type = type;
-        this.ip = ip;
-        this.port = port;
+        this.name = name;
         this.label = label;
-        this.description = description;
+        this.command = command;
     }
 
     public String getType() {
@@ -24,20 +22,12 @@ public class Module {
         this.type = type;
     }
 
-    public String getIp() {
-        return ip;
+    public String getName() {
+        return name;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLabel() {
@@ -48,11 +38,11 @@ public class Module {
         this.label = label;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCommand() {
+        return command;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCommand(String command) {
+        this.command = command;
     }
 }
