@@ -8,34 +8,50 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.domosapp.R;
 
+import domosapp.adapters.UserDatabaseAdapter;
+
 
 public class LoginActivity extends AppCompatActivity {
-
-    private EditText et_username;
-    private EditText et_password;
-    private Button btn_login;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
-        et_username = (EditText) findViewById(R.id.et_username);
-        et_password = (EditText) findViewById(R.id.et_password);
+        if(UserDatabaseAdapter.getUser() == null)
+            createLoginView();
+        else
+            launchMainActivity();
+    }
+
+    private void createLoginView() {
+        Button btn_login;
+
         btn_login = (Button) findViewById(R.id.btn_login);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText et_username;
+                EditText et_password;
+
+                et_username = (EditText) findViewById(R.id.et_username);
+                et_password = (EditText) findViewById(R.id.et_password);
+
                 String username = et_username.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
 
-                // TODO : Generate the file and go to the mainActivity.
+                UserDatabaseAdapter userDatabaseAdapter = new UserDatabaseAdapter(getBaseContext());
+                userDatabaseAdapter.insertUser(username, password);
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
+                launchMainActivity();
             }
         });
+    }
+
+    private void launchMainActivity() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

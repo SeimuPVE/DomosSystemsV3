@@ -14,20 +14,19 @@ import java.util.List;
 
 
 public class ModuleDatabaseAdapter {
-    static final String DATABASE_NAME = "domos.db";
-    static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_CREATE = "create table MODULE(ID integer primary key autoincrement, TYPE text, NAME text, LABEL text, COMMAND text);";
-    public static SQLiteDatabase db;
-    private final Context context;
+    private static SQLiteDatabase db;
     private static DataBaseHelper dbHelper;
+    private final Context context;
 
     public ModuleDatabaseAdapter(Context _context) {
         context = _context;
-        dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        dbHelper = new DataBaseHelper(context, "domos.db", null, 1); // TODO : change calls.
+//        dbHelper = new DataBaseHelper(context, dbHelper.getDatabaseName(), null, dbHelper.getDatabaseVersion());
     }
 
     public ModuleDatabaseAdapter open() throws SQLException {
         db = dbHelper.getWritableDatabase();
+
         return this;
     }
 
