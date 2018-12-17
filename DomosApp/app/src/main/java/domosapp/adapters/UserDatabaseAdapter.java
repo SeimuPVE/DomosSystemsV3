@@ -50,7 +50,7 @@ public class UserDatabaseAdapter {
             db = dbHelper.getWritableDatabase();
 
             long result = db.insert("MODULE", null, newValues);
-            Toast.makeText(context, "Module Info Saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "User Info Saved", Toast.LENGTH_LONG).show();
         }
         catch(Exception e) {
             e.getStackTrace();
@@ -62,25 +62,18 @@ public class UserDatabaseAdapter {
         try {
             User user;
             String pseudo, password;
-            Log.d("SEIMU_APP", "0");
             db = dbHelper.getReadableDatabase();
 
-            Log.d("SEIMU_APP", "1");
             Cursor cursor = db.query("USER", null, null, null, null, null, null);
 
-            Log.d("SEIMU_APP", "A");
             pseudo = cursor.getString(cursor.getColumnIndex("PSEUDO"));
-            Log.d("SEIMU_APP", "B");
             password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
-            Log.d("SEIMU_APP", "C");
 
             user = new User(pseudo, password);
-            Log.d("SEIMU_APP", "D");
 
             return user;
         }
         catch(Exception e) {
-            Log.d("SEIMU_APP", e.getMessage());
             return null;
         }
     }
