@@ -86,8 +86,7 @@ public class HomeFragment extends Fragment {
                 adapter.refreshList(modules);
             }
         });
-        addModuleDialog.show(getFragmentManager(), "add module dialog");
+
+        addModuleDialog.show(getFragmentManager(), "Add module dialog.");
     }
-
-
 }

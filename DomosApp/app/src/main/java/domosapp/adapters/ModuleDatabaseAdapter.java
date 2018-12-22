@@ -67,7 +67,7 @@ public class ModuleDatabaseAdapter {
         db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query("MODULE", null, null, null, null, null, null);
 
-        while (cursor.moveToNext()) {
+        while(cursor.moveToNext()) {
             String type = cursor.getString(cursor.getColumnIndex("TYPE"));
             String name = cursor.getString(cursor.getColumnIndex("NAME"));
             String label = cursor.getString(cursor.getColumnIndex("LABEL"));

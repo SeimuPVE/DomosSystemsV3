@@ -12,11 +12,15 @@ import domosapp.adapters.UserDatabaseAdapter;
 
 
 public class LoginActivity extends AppCompatActivity {
+    private UserDatabaseAdapter userDatabaseAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
+
+        userDatabaseAdapter = new UserDatabaseAdapter(getBaseContext());
 
         if(UserDatabaseAdapter.getUser() == null)
             createLoginView();
@@ -41,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
                 String username = et_username.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
 
-                UserDatabaseAdapter userDatabaseAdapter = new UserDatabaseAdapter(getBaseContext());
                 userDatabaseAdapter.insertUser(username, password);
 
                 launchMainActivity();

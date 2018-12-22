@@ -39,42 +39,37 @@ public class UserDatabaseAdapter {
 
     // Method to insert a record in Table.
     public void insertUser(String pseudo, String password) {
-        try {
-            ContentValues newValues = new ContentValues();
+        db = dbHelper.getWritableDatabase();
 
-            // Assign values for each column.
-            newValues.put("PSEUDO", pseudo);
-            newValues.put("PASSWORD", password);
+        ContentValues newValues = new ContentValues();
 
-            // Insert the row into your table.
-            db = dbHelper.getWritableDatabase();
+        // Assign values for each column.
+        newValues.put("PSEUDO", pseudo);
+        newValues.put("PASSWORD", password);
 
-            long result = db.insert("MODULE", null, newValues);
-            Toast.makeText(context, "User Info Saved", Toast.LENGTH_LONG).show();
-        }
-        catch(Exception e) {
-            e.getStackTrace();
-        }
+        // Insert the row into your table.
+        db.insert("USER", null, newValues);
+
+        Toast.makeText(context, "User Info Saved", Toast.LENGTH_LONG).show();
     }
 
     // Method to get the password user.
     public static User getUser() {
-        try {
-            User user;
-            String pseudo, password;
-            db = dbHelper.getReadableDatabase();
+        User user;
+        String pseudo, password;
+        db = dbHelper.getReadableDatabase();
 
-            Cursor cursor = db.query("USER", null, null, null, null, null, null);
+        Cursor cursor = db.query("USER", null, null, null, null, null, null);
 
-            pseudo = cursor.getString(cursor.getColumnIndex("PSEUDO"));
-            password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
-
-            user = new User(pseudo, password);
-
-            return user;
-        }
-        catch(Exception e) {
+        if(cursor.getCount() == 0)
             return null;
-        }
+
+        cursor.moveToNext();
+        pseudo = cursor.getString(cursor.getColumnIndex("PSEUDO"));
+        password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+
+        user = new User(pseudo, password);
+
+        return user;
     }
 }
