@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-            android:id="@+id/action_light"
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item   android:id="@+id/action_light"
             android:icon="@drawable/ic_action_light"
-            android:title="Light"/>
+            android:title="@string/light"/>
+
     <item
             android:id="@+id/action_strip_light"
             android:icon="@drawable/ic_action_strip"
-            android:title="Strip Light"/>
+            android:title="@string/strip_light"/>
+
     <item
             android:id="@+id/action_env_sensor"
             android:icon="@drawable/ic_action_sensor"
-            android:title="Env. Sensor"/>
+            android:title="@string/env_sensor"/>
+
 </menu>

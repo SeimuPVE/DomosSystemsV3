@@ -10,13 +10,7 @@ import com.domosapp.R;
 
 
 public class AccountFragment extends Fragment {
-
-    private View myView;
-
-    @Nullable
-    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.account_fragment, container, false);
-        return myView;
+        return inflater.inflate(R.layout.account_fragment, container, false);
     }
 }

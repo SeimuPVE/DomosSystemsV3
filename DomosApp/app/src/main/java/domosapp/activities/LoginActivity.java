@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private void createLoginView() {
         Button btn_login;
 
-        btn_login = (Button) findViewById(R.id.btn_login);
+        btn_login = findViewById(R.id.btn_login);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
                 EditText et_username;
                 EditText et_password;
 
-                et_username = (EditText) findViewById(R.id.et_username);
-                et_password = (EditText) findViewById(R.id.et_password);
+                et_username = findViewById(R.id.et_username);
+                et_password = findViewById(R.id.et_password);
 
                 String username = et_username.getText().toString().trim();
                 String password = et_password.getText().toString().trim();

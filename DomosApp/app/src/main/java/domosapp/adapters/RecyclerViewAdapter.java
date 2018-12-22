@@ -1,5 +1,6 @@
 package domosapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,24 +37,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
+    @SuppressLint("RecyclerView")
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.moduleName.setText(data.get(position).getName());
         holder.moduleLabel.setText(data.get(position).getLabel());
 
-        if (data.get(position).getType().equals(ModuleType.LIGHT.toString())) {
+        if (data.get(position).getType().equals(ModuleType.LIGHT.toString()))
             holder.moduleImage.setImageResource(R.drawable.ic_action_light);
-        }
-        else if (data.get(position).getType().equals(ModuleType.LED_STRIP.toString())) {
+        else if (data.get(position).getType().equals(ModuleType.LED_STRIP.toString()))
             holder.moduleImage.setImageResource(R.drawable.ic_action_strip);
-        }
-        else if (data.get(position).getType().equals(ModuleType.ENV_SENSOR.toString())) {
+        else if (data.get(position).getType().equals(ModuleType.ENV_SENSOR.toString()))
             holder.moduleImage.setImageResource(R.drawable.ic_action_sensor);
-        }
 
         holder.moduleCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AsyncNetworking("192.168.0.42", 5433, data.get(position).getCommand()).execute();
+                new AsyncNetworking("192.168.0.42", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
             }
         });
     }
@@ -68,19 +67,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
         CardView moduleCard;
         ImageView moduleImage;
         TextView moduleName;
         TextView moduleLabel;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
 
-            moduleCard = (CardView) itemView.findViewById(R.id.module_cardview_id);
-            moduleImage = (ImageView) itemView.findViewById(R.id.module_image_id);
-            moduleName = (TextView) itemView.findViewById(R.id.module_name_id);
-            moduleLabel = (TextView) itemView.findViewById(R.id.module_label_id);
+            moduleCard = itemView.findViewById(R.id.module_cardview_id);
+            moduleImage = itemView.findViewById(R.id.module_image_id);
+            moduleName = itemView.findViewById(R.id.module_name_id);
+            moduleLabel = itemView.findViewById(R.id.module_label_id);
         }
     }
 }

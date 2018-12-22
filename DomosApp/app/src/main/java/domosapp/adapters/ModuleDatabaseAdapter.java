@@ -3,7 +3,6 @@ package domosapp.adapters;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 import domosapp.models.Module;
@@ -24,21 +23,6 @@ public class ModuleDatabaseAdapter {
 //        dbHelper = new DataBaseHelper(context, dbHelper.getDatabaseName(), null, dbHelper.getDatabaseVersion());
     }
 
-    public ModuleDatabaseAdapter open() throws SQLException {
-        db = dbHelper.getWritableDatabase();
-
-        return this;
-    }
-
-    public void close() {
-        db.close();
-    }
-
-    // Method returns an Instance of the Database.
-    public SQLiteDatabase getDatabaseInstance() {
-        return db;
-    }
-
     // Method to insert a record in Table.
     public void insertEntry(String type, String name, String label, String command) {
         try {
@@ -53,7 +37,7 @@ public class ModuleDatabaseAdapter {
             // Insert the row into your table.
             db = dbHelper.getWritableDatabase();
 
-            long result = db.insert("MODULE", null, newValues);
+            db.insert("MODULE", null, newValues);
             Toast.makeText(context, "Module Info Saved", Toast.LENGTH_LONG).show();
         }
         catch(Exception e) {
@@ -75,6 +59,8 @@ public class ModuleDatabaseAdapter {
 
             moduleList.add(new Module(type, name, label, command));
         }
+
+        cursor.close();
 
         return moduleList;
     }
