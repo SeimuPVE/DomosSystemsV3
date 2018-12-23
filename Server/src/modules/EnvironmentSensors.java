@@ -2,7 +2,7 @@ package modules;
 
 import msc.ConfigReader;
 import msc.Logger;
-import rsc.CODES;
+import rsc.COMMANDS;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -49,16 +49,16 @@ public class EnvironmentSensors extends ModulePattern {
                 writer = new PrintStream(socket.getOutputStream());
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                writer.print(CODES.SENSOR_TEMPERATURE);
+                writer.print(COMMANDS.SENSOR_TEMPERATURE);
                 temperature = Double.parseDouble(reader.readLine());
 
-                writer.print(CODES.SENSOR_HUMIDITY);
+                writer.print(COMMANDS.SENSOR_HUMIDITY);
                 humidity = Double.parseDouble(reader.readLine());
 
-                writer.print(CODES.SENSOR_LUMINOSITY);
+                writer.print(COMMANDS.SENSOR_LUMINOSITY);
                 luminosity = 100 * Double.parseDouble(reader.readLine()) / 1024.0;
 
-                writer.print(CODES.SENSOR_EXIT);
+                writer.print(COMMANDS.SENSOR_EXIT);
                 if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
                     Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_environment_updated);
             }
@@ -118,11 +118,11 @@ public class EnvironmentSensors extends ModulePattern {
     }
 
     public String exec(String command) {
-        if(command.equals(CODES.GET_HUMIDITY))
+        if(command.equals(COMMANDS.GET_HUMIDITY))
             return getHumidity();
-        else if(command.equals(CODES.GET_LUMINOSITY))
+        else if(command.equals(COMMANDS.GET_LUMINOSITY))
             return getLuminosity();
-        else if(command.equals(CODES.GET_TEMPERATURE))
+        else if(command.equals(COMMANDS.GET_TEMPERATURE))
             return getTemperature();
 
         return STRINGS.log_error + STRINGS.unrecognized_command;

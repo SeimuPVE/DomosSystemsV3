@@ -1,7 +1,7 @@
 package modules;
 
 import msc.ConfigReader;
-import rsc.CODES;
+import rsc.COMMANDS;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -26,9 +26,9 @@ public class Lights extends ModulePattern {
             codesOn.add(ConfigReader.readValue(CONF_CODES.code_on + "_" + String.valueOf(i)));
             codesOff.add(ConfigReader.readValue(CONF_CODES.code_off + "_" +  String.valueOf(i)));
 
-            commandsOn.add(CODES.LIGHT_ON + String.valueOf(i));
-            commandsOff.add(CODES.LIGHT_OFF  + String.valueOf(i));
-            commandsReverse.add(CODES.LIGHT_REVERSE + String.valueOf(i));
+            commandsOn.add(COMMANDS.LIGHT_ON + String.valueOf(i));
+            commandsOff.add(COMMANDS.LIGHT_OFF  + String.valueOf(i));
+            commandsReverse.add(COMMANDS.LIGHT_REVERSE + String.valueOf(i));
 
             switchStates.add(false);
         }

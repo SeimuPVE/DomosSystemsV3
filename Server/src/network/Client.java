@@ -1,5 +1,6 @@
 package network;
 
+import clientManager.UserList;
 import modules.ModulePattern;
 import msc.ConfigReader;
 import msc.Logger;
@@ -46,13 +47,33 @@ public class Client implements Runnable {
     public void run() {
         try {
             // Get the command and execute it.
-            String cmd = socketReader.readLine();
+            UserList userList = Server.getUsers();
+            Code code = new Code(socketReader.readLine());
 
+            // If the option is activated, check if the user is valid.
+            if(ConfigReader.readValue(CONF_CODES.authentication).equals(STRINGS.yes)) {
+                if(userList.userAlreadyExists(code.getUsername())) {
+                    if(!userList.isAValidUser(code.getUsername(), code.getPassword())) {
+                        msc.Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.connection_error_wrong_password);
+                        disconnect();
+                        return;
+                    }
+                }
+                else {
+                    msc.Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.connection_error_wrong_username);
+                    disconnect();
+                    return;
+                }
+            }
+
+            // Execute the commands.
             for(ModulePattern module : modules)
-                socketWriter.println(module.exec(cmd));
+                for(String cmd : code.getCommandList()) {
+                    socketWriter.println(module.exec(cmd));
 
-            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
-                msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);
+                    if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
+                        msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);
+                }
 
             // Disconnect the client because we don't need to stay connected.
             disconnect();
@@ -60,6 +81,14 @@ public class Client implements Runnable {
         catch (Exception e) {
             if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
                 msc.Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+
+            try {
+                disconnect();
+            }
+            catch (IOException e1) {
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
+                    msc.Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+            }
         }
     }
 

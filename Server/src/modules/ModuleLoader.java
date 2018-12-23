@@ -3,7 +3,7 @@ package modules;
 import automaters.SensorsAutomater;
 import msc.ConfigReader;
 import msc.Logger;
-import rsc.CODES;
+import rsc.COMMANDS;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -33,8 +33,8 @@ public class ModuleLoader {
         moduleList.add(lights);
 
         // TODO : move initialisations on a config file.
-        moduleList.get(moduleList.indexOf(lights)).exec(CODES.LIGHT_OFF + "0");
-        moduleList.get(moduleList.indexOf(lights)).exec(CODES.LIGHT_OFF + "1");
+        moduleList.get(moduleList.indexOf(lights)).exec(COMMANDS.LIGHT_OFF + "0");
+        moduleList.get(moduleList.indexOf(lights)).exec(COMMANDS.LIGHT_OFF + "1");
 
         if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
             Logger.log(Logger.LevelFINE, ModuleLoader.class.getName(), STRINGS.loader_lights);

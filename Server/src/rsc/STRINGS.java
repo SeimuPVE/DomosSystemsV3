@@ -2,6 +2,11 @@ package rsc;
 
 
 public class STRINGS {
+    // General.
+    public static final String yes = "yes";
+    public static final String splitter_1 = ":";
+    public static final String splitter_2 = ";";
+
     // Server.
     public static final String log_server_up = "Server up !";
     public static final String log_server_closed = "Server closed !";
@@ -62,6 +67,11 @@ public class STRINGS {
     public static final String dont_delete_admin = "Your kidding me ? You really want to delete the administrator ? Ciao newbie...";
     public static final String debug_password = "DEBUG MODE : password not hidden in debug mode.";
     public static final String error_user_already_exists = "Error : the user already exists.";
+
+    // Client login.
+    public static final String connection_error_wrong_username = "Connection error : a user tried to authenticate but the username was wrong.";
+    public static final String connection_error_wrong_password = "Connection error : a user tried to authenticate but the password was wrong.";
+    public static final String code_not_valid = "Code not valid : ";
 
     // Module loader.
     public static final String loader_lights = "Lights loaded.";

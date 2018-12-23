@@ -21,7 +21,7 @@ public class Server {
     private int port;
 
     private ArrayList<ModulePattern> moduleList = new ArrayList<>();
-    private UserList users;
+    private static UserList users;
 
     public void run(String[] argv) {
         try {
@@ -67,5 +67,9 @@ public class Server {
                     Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
             }
         }
+    }
+
+    public static UserList getUsers() {
+        return users;
     }
 }

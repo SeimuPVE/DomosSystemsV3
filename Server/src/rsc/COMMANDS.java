@@ -1,6 +1,6 @@
 package rsc;
 
-public class CODES {
+public class COMMANDS {
     // General codes.
     public static final String ON = "ON";
     public static final String OFF = "OFF";

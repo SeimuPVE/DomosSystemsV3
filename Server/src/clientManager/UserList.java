@@ -28,8 +28,10 @@ public class UserList implements Serializable {
     public boolean userAlreadyExists(String login) {
         if(users != null)
             for(User user : users)
-                if(user.getLogin().equals(login))
+                if(user.getLogin().equals(login)) {
+                    System.out.println(user.getHashedPassword());
                     return true;
+                }
         return false;
     }
 
@@ -79,5 +81,9 @@ public class UserList implements Serializable {
                 System.out.println("- " + user.getLogin());
 
         System.out.println();
+    }
+
+    public boolean isAValidUser(String username, String password) {
+        return username != null && password != null && get(username) != null && get(username).getHashedPassword().equals(password);
     }
 }

@@ -2,7 +2,7 @@ package modules;
 
 import msc.ConfigReader;
 import msc.Logger;
-import rsc.CODES;
+import rsc.COMMANDS;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
@@ -29,17 +29,17 @@ public class LedStrip extends ModulePattern {
     }
 
     public String exec(String command) {
-        if(command.equals(CODES.LED_STRIP_REVERSE))
+        if(command.equals(COMMANDS.LED_STRIP_REVERSE))
             reverseLights();
-        else if(command.equals(CODES.LED_STRIP_ON))
+        else if(command.equals(COMMANDS.LED_STRIP_ON))
             turnOn();
-        else if(command.equals(CODES.LED_STRIP_OFF))
+        else if(command.equals(COMMANDS.LED_STRIP_OFF))
             turnOff();
-        else if(command.equals(CODES.LED_STRIP_GREEN))
+        else if(command.equals(COMMANDS.LED_STRIP_GREEN))
             turnGreen();
-        else if(command.equals(CODES.LED_STRIP_CYAN))
+        else if(command.equals(COMMANDS.LED_STRIP_CYAN))
             turnCyan();
-        else if(command.equals(CODES.LED_STRIP_MAGENTA))
+        else if(command.equals(COMMANDS.LED_STRIP_MAGENTA))
             turnMagenta();
 
         return STRINGS.log_error + STRINGS.unrecognized_command;
