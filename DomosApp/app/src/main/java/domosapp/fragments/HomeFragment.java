@@ -16,6 +16,7 @@ import domosapp.adapters.ModuleDatabaseAdapter;
 import domosapp.adapters.RecyclerViewAdapter;
 import domosapp.models.Module;
 import domosapp.models.ModuleType;
+import domosapp.utils.STRINGS;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 
 import java.util.List;
@@ -83,6 +84,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        addModuleDialog.show(getFragmentManager(), "Add module dialog.");
+        addModuleDialog.show(getFragmentManager(), STRINGS.ADD_MODULE_DIALOG);
     }
 }

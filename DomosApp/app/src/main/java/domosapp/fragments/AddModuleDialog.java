@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import com.domosapp.R;
 
+import domosapp.utils.STRINGS;
+
 
 public class AddModuleDialog extends AppCompatDialogFragment {
     private EditText editTextName;
@@ -33,10 +35,10 @@ public class AddModuleDialog extends AppCompatDialogFragment {
         editTextLabel = view.findViewById(R.id.module_label_id);
         editTextCommand = view.findViewById(R.id.module_label_id);
 
-        builder.setView(view).setTitle("Add Module").setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setView(view).setTitle(STRINGS.ADD_MODULE).setNegativeButton(STRINGS.CANCEL, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {}
-                }).setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                }).setPositiveButton(STRINGS.ADD, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String name = editTextName.getText().toString().trim();

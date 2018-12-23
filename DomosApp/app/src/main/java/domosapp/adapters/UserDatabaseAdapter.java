@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import domosapp.models.User;
 import domosapp.utils.DataBaseHelper;
+import domosapp.utils.STRINGS;
 
 
 public class UserDatabaseAdapter {
@@ -17,8 +18,7 @@ public class UserDatabaseAdapter {
 
     public UserDatabaseAdapter(Context _context) {
         context = _context;
-        dbHelper = new DataBaseHelper(context, "domos.db", null, 1); // TODO : change calls and do something more generic.
-//        dbHelper = new DataBaseHelper(context, dbHelper.getDatabaseName(), null, dbHelper.getDatabaseVersion());
+        dbHelper = new DataBaseHelper(context, STRINGS.DATABASE_NAME, null, STRINGS.DATABASE_VERSION);
     }
 
     // Method to insert a record in Table.
@@ -28,13 +28,13 @@ public class UserDatabaseAdapter {
         ContentValues newValues = new ContentValues();
 
         // Assign values for each column.
-        newValues.put("PSEUDO", pseudo);
-        newValues.put("PASSWORD", password);
+        newValues.put(STRINGS.USER_PSEUDO, pseudo);
+        newValues.put(STRINGS.USER_PASSWORD, password);
 
         // Insert the row into your table.
-        db.insert("USER", null, newValues);
+        db.insert(STRINGS.USER_TABLE_NAME, null, newValues);
 
-        Toast.makeText(context, "User Info Saved", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, STRINGS.USER_ADD_SUCCESS, Toast.LENGTH_LONG).show();
     }
 
     // Method to get the password user.
@@ -43,14 +43,14 @@ public class UserDatabaseAdapter {
         String pseudo, password;
         db = dbHelper.getReadableDatabase();
 
-        Cursor cursor = db.query("USER", null, null, null, null, null, null);
+        Cursor cursor = db.query(STRINGS.USER_TABLE_NAME, null, null, null, null, null, null);
 
         if(cursor.getCount() == 0)
             return null;
 
         cursor.moveToNext();
-        pseudo = cursor.getString(cursor.getColumnIndex("PSEUDO"));
-        password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        pseudo = cursor.getString(cursor.getColumnIndex(STRINGS.USER_PSEUDO));
+        password = cursor.getString(cursor.getColumnIndex(STRINGS.USER_PASSWORD));
 
         user = new User(pseudo, password);
 

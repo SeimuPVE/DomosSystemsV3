@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 import domosapp.models.Module;
 import domosapp.utils.DataBaseHelper;
+import domosapp.utils.STRINGS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +20,7 @@ public class ModuleDatabaseAdapter {
 
     public ModuleDatabaseAdapter(Context _context) {
         context = _context;
-        dbHelper = new DataBaseHelper(context, "domos.db", null, 1); // TODO : change calls.
-//        dbHelper = new DataBaseHelper(context, dbHelper.getDatabaseName(), null, dbHelper.getDatabaseVersion());
+        dbHelper = new DataBaseHelper(context, STRINGS.DATABASE_NAME, null, STRINGS.DATABASE_VERSION);
     }
 
     // Method to insert a record in Table.
@@ -29,16 +29,16 @@ public class ModuleDatabaseAdapter {
             ContentValues newValues = new ContentValues();
 
             // Assign values for each column.
-            newValues.put("TYPE", type);
-            newValues.put("NAME", name);
-            newValues.put("LABEL", label);
-            newValues.put("COMMAND", command);
+            newValues.put(STRINGS.MODULE_TYPE, type);
+            newValues.put(STRINGS.MODULE_NAME, name);
+            newValues.put(STRINGS.MODULE_LABEL, label);
+            newValues.put(STRINGS.MODULE_COMMAND, command);
 
             // Insert the row into your table.
             db = dbHelper.getWritableDatabase();
 
-            db.insert("MODULE", null, newValues);
-            Toast.makeText(context, "Module Info Saved", Toast.LENGTH_LONG).show();
+            db.insert(STRINGS.MODULE_TABLE_NAME, null, newValues);
+            Toast.makeText(context, STRINGS.MODULE_ADD_SUCCESS, Toast.LENGTH_LONG).show();
         }
         catch(Exception e) {
             e.getStackTrace();
@@ -49,13 +49,13 @@ public class ModuleDatabaseAdapter {
     public List<Module> getAllModules() {
         List<Module> moduleList = new ArrayList<>();
         db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query("MODULE", null, null, null, null, null, null);
+        Cursor cursor = db.query(STRINGS.MODULE_TABLE_NAME, null, null, null, null, null, null);
 
         while(cursor.moveToNext()) {
-            String type = cursor.getString(cursor.getColumnIndex("TYPE"));
-            String name = cursor.getString(cursor.getColumnIndex("NAME"));
-            String label = cursor.getString(cursor.getColumnIndex("LABEL"));
-            String command = cursor.getString(cursor.getColumnIndex("COMMAND"));
+            String type = cursor.getString(cursor.getColumnIndex(STRINGS.MODULE_TYPE));
+            String name = cursor.getString(cursor.getColumnIndex(STRINGS.MODULE_NAME));
+            String label = cursor.getString(cursor.getColumnIndex(STRINGS.MODULE_LABEL));
+            String command = cursor.getString(cursor.getColumnIndex(STRINGS.MODULE_COMMAND));
 
             moduleList.add(new Module(type, name, label, command));
         }
