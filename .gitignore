@@ -1,6 +1,13 @@
+*.bak
+
 .idea
 output
 out
 META-INF
+
 build
 .gradle
+
+userfile.txt
+logs.txt
+DomosApp

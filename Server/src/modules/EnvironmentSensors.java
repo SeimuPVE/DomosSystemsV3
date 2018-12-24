@@ -1,30 +1,42 @@
 package modules;
 
+import msc.ConfigReader;
+import msc.Logger;
+import rsc.COMMANDS;
+import rsc.CONF_CODES;
+import rsc.STRINGS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
+import java.net.NoRouteToHostException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.concurrent.TimeUnit;
+
 
 public class EnvironmentSensors extends ModulePattern {
-    private static Socket socket = null;
-    private static BufferedReader reader = null;
-    private static PrintStream writer = null;
+    private Socket socket = null;
+    private BufferedReader reader = null;
+    private PrintStream writer = null;
 
-    // TODO : put it in a configuration file.
-    private static final String ip = "192.168.0.119";
-    private static final int port = 8266;
-    private static final int timeout = 5000;
+    private String ip;
+    private int port;
+    private int timeout;
 
     private double temperature;
     private double humidity;
     private double luminosity;
 
     public EnvironmentSensors() {
+        ip = ConfigReader.readValue(CONF_CODES.environment_sensor_ip);
+        port = Integer.parseInt(ConfigReader.readValue(CONF_CODES.environment_sensor_port));
+        timeout = Integer.parseInt(ConfigReader.readValue(CONF_CODES.environment_sensor_timeout));
+
         updateSensors();
     }
 
@@ -37,24 +49,53 @@ public class EnvironmentSensors extends ModulePattern {
                 writer = new PrintStream(socket.getOutputStream());
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                writer.print('T');
+                writer.print(COMMANDS.SENSOR_TEMPERATURE);
                 temperature = Double.parseDouble(reader.readLine());
 
-                writer.print('H');
+                writer.print(COMMANDS.SENSOR_HUMIDITY);
                 humidity = Double.parseDouble(reader.readLine());
 
-                writer.print('L');
+                writer.print(COMMANDS.SENSOR_LUMINOSITY);
                 luminosity = 100 * Double.parseDouble(reader.readLine()) / 1024.0;
 
-                writer.print('E');
-                System.out.println("Environment sensor updated.");
+                writer.print(COMMANDS.SENSOR_EXIT);
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
+                    Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_environment_updated);
             }
         }
         catch (SocketTimeoutException e) {
-            System.out.println("Timeout exception with environment sensors !");
+            // Log it and alert user.
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 1) {
+                Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_timeout);
+                clientLogError(STRINGS.log_environment_timeout);
+            }
+
+            // Wait and try again.
+            try {
+                TimeUnit.SECONDS.sleep(30);
+                updateSensors();
+            }
+            catch (InterruptedException e1) {
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e1.getMessage());
+                    clientLogError(e1.getMessage());
+                }
+            }
+        }
+        catch (NoRouteToHostException e) {
+            // Log it and alert user.
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 1) {
+                Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.log_environment_no_route_to_host);
+                clientLogError(STRINGS.log_environment_no_route_to_host);
+            }
+
+            // Wait and try again.
         }
         catch (IOException e) {
-            e.printStackTrace();
+            if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                clientLogError(e.getMessage());
+            }
         }
         finally {
             try {
@@ -68,21 +109,23 @@ public class EnvironmentSensors extends ModulePattern {
                     socket.close();
             }
             catch (IOException e) {
-                e.printStackTrace();
+                if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0) {
+                    Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                    clientLogError(e.getMessage());
+                }
             }
         }
     }
 
     public String exec(String command) {
-        // TODO : put those String in an external file.
-        if(command.equals("GET_HUMIDITY"))
+        if(command.equals(COMMANDS.GET_HUMIDITY))
             return getHumidity();
-        else if(command.equals("GET_LUMINOSITY"))
+        else if(command.equals(COMMANDS.GET_LUMINOSITY))
             return getLuminosity();
-        else if(command.equals("GET_TEMPERATURE"))
+        else if(command.equals(COMMANDS.GET_TEMPERATURE))
             return getTemperature();
-        else
-            return "Error.";
+
+        return STRINGS.log_error + STRINGS.unrecognized_command;
     }
 
     public String getTemperature() {

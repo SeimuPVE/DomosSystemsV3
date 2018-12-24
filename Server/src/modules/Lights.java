@@ -1,74 +1,90 @@
 package modules;
 
+import msc.ConfigReader;
+import rsc.COMMANDS;
+import rsc.CONF_CODES;
+import rsc.STRINGS;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Lights extends ModulePattern {
-    private static List<String> commandList = new ArrayList<String>();
-    private static List<String> codesOn = new ArrayList<String>();
-    private static List<String> codesOff = new ArrayList<String>();
-    private static List<Boolean> switchStates = new ArrayList<Boolean>();
+    private int numberOfLights = Integer.parseInt(ConfigReader.readValue(CONF_CODES.number_of_lights));
+    private List<String> commandsOn = new ArrayList<>();
+    private List<String> commandsOff = new ArrayList<>();
+    private List<String> commandsReverse = new ArrayList<>();
+    private List<String> codesOn = new ArrayList<>();
+    private List<String> codesOff = new ArrayList<>();
+    private List<Boolean> switchStates = new ArrayList<>();
 
-    // TODO : code it in a better way (with a configuration file for example).
-    public Lights() throws Exception {
-        commandList.add("L_BACK");
-        commandList.add("L_FRONT");
-        commandList.add("L_BED");
-        commandList.add("TV");
+    public Lights() {
+        int i;
 
-        codesOn.add("20817");
-        codesOn.add("17745");
-        codesOn.add("21585");
-        codesOn.add("21777");
+        for(i = 0; i < numberOfLights; i++) {
+            codesOn.add(ConfigReader.readValue(CONF_CODES.code_on + "_" + String.valueOf(i)));
+            codesOff.add(ConfigReader.readValue(CONF_CODES.code_off + "_" +  String.valueOf(i)));
 
-        codesOff.add("20820");
-        codesOff.add("17748");
-        codesOff.add("21588");
-        codesOff.add("21780");
+            commandsOn.add(COMMANDS.LIGHT_ON + String.valueOf(i));
+            commandsOff.add(COMMANDS.LIGHT_OFF  + String.valueOf(i));
+            commandsReverse.add(COMMANDS.LIGHT_REVERSE + String.valueOf(i));
 
-        for(int i = 0; i < 4; i++)
             switchStates.add(false);
+        }
     }
 
     public String exec(String command) {
-        int i;
+        boolean recognized_command = false;
 
-        for(i = 0; i < commandList.size(); i++) {
-            if(command.equals(commandList.get(i) + "_ON"))
-                switchOn(i);
-            else if(command.equals(commandList.get(i) + "_OFF"))
-                switchOff(i);
-            else if(command.equals(commandList.get(i) + "_REVERSE"))
-                switchReverse(i);
+        if(commandsOn.contains(command)) {
+            switchOn(commandsOn.indexOf(command));
+            recognized_command = true;
+        }
+        else if(commandsOff.contains(command)) {
+            switchOff(commandsOff.indexOf(command));
+            recognized_command = true;
+        }
+        else if(commandsReverse.contains(command)) {
+            switchReverse(commandsReverse.indexOf(command));
+            recognized_command = true;
         }
 
-        // TODO : correct switchReverse with DESKTOP_REVERSE command.
-        if(command.equals("DESKTOP_REVERSE")) {
-            switchReverse(0); // exec("L_BACK_REVERSE");
-            switchReverse(1); // exec("L_FRONT_REVERSE");
-        }
-
-        return "";
+        if(!recognized_command)
+            return STRINGS.log_error + STRINGS.unrecognized_command;
+        else
+            return "";
     }
 
     private void switchOn(int index) {
         try {
-            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOn.get(index) + "\" > /dev/ttyUSB0"}).waitFor();
+            // Execute command.
+            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOn.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
+
+            // Switch state of the light.
             switchStates.set(index, true);
+
+            // Log it to the client.
+            clientLogSuccess(STRINGS.log_light_turned_on);
         }
         catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+            clientLogError(e.getMessage());
         }
     }
 
     private void switchOff(int index) {
         try {
-            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOff.get(index) + "\" > /dev/ttyUSB0"}).waitFor();
+            // Execute command.
+            Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOff.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
+
+            // Switch state of the light.
             switchStates.set(index, false);
+
+            // Log it to the client.
+            clientLogSuccess(STRINGS.log_light_turned_off);
         }
         catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+            clientLogError(e.getMessage());
         }
     }
 
