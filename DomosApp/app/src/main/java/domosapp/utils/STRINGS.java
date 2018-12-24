@@ -3,7 +3,7 @@ package domosapp.utils;
 
 public class STRINGS {
     // Hash salt.
-    public static final String SALT = "MySaltNigga"; // TODO : put it in a config file.
+    public static final String SALT = "MySaltNigga"; // TODO : put it in a config file and be careful with " char.
 
     // Database.
     public static final String DATABASE_NAME = "domos.db";

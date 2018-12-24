@@ -3,12 +3,14 @@ package domosapp.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.domosapp.R;
 
 import domosapp.adapters.UserDatabaseAdapter;
+import domosapp.models.User;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 et_password = findViewById(R.id.et_password);
 
                 String username = et_username.getText().toString().trim();
-                String password = et_password.getText().toString().trim();
+                String password = User.hashPassword(et_password.getText().toString().trim()); // We work with only hashed passwords.
 
                 userDatabaseAdapter.insertUser(username, password);
 

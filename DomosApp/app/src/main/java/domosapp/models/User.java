@@ -23,7 +23,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = hashPassword(password);
+        this.password = password; // We don't need to hash the password, we hash it as soon as we take it form the UI.
     }
 
     public String getPseudo() {
@@ -58,7 +58,7 @@ public class User {
             hashed_password = hexString.toString();
         }
         catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            Log.d("SEIMU_APP", e.getMessage());
+            Log.d("SEIMU_APP", e.getMessage()); // TODO : change messages.
         }
 
         return hashed_password;

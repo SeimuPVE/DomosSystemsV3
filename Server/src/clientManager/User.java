@@ -38,7 +38,6 @@ public class User implements Serializable {
 
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-//            hashed_password = String.valueOf(digest.digest((password + salt).getBytes(StandardCharsets.UTF_8)));
             hash = digest.digest((password + salt).getBytes("UTF-8"));
 
             for(i = 0; i < hash.length; i++) {

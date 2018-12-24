@@ -1,5 +1,6 @@
 package domosapp.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import domosapp.adapters.UserDatabaseAdapter;
 
 
 public class AsyncNetworking extends AsyncTask<Void, Void, Void> {
+    @SuppressLint("StaticFieldLeak")
     private Context context;
     private String ip;
     private int port;
