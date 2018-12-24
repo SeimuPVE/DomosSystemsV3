@@ -28,10 +28,8 @@ public class UserList implements Serializable {
     public boolean userAlreadyExists(String login) {
         if(users != null)
             for(User user : users)
-                if(user.getLogin().equals(login)) {
-                    System.out.println(user.getHashedPassword());
+                if(user.getLogin().equals(login))
                     return true;
-                }
         return false;
     }
 
