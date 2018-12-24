@@ -1,13 +1,21 @@
-*.bak
-
+# General
 .idea
 output
 out
 META-INF
 
-build
-.gradle
-
+# Server
 userfile.txt
 logs.txt
-DomosApp
+*.bak
+
+# Android
+.gradle
+gradle
+build
+captures
+*.iml
+local.properties
+.DS_Store
+.externalNativeBuild
+

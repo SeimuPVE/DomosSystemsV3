@@ -1,0 +1,33 @@
+<resources>
+    <string name="todo">TODO</string>
+
+    <string name="app_name">DomosApp</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="Add">Add</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="module_name">Module name</string>
+    <string name="module_label">Module label</string>
+    <string name="profile_picture_description">Profile picture.</string>
+    <string name="logout_fragment">Logout fragment.</string>
+    <string name="name">Name</string>
+    <string name="label">Label</string>
+    <string name="command">Command</string>
+    <string name="module_image_description">Module image.</string>
+    <string name="account">Account</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="light">Light</string>
+    <string name="strip_light">Strip Light</string>
+    <string name="env_sensor">Env. Sensor</string>
+</resources>
