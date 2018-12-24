@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.domosapp.R;
 import domosapp.models.Module;
@@ -52,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.moduleCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AsyncNetworking("192.168.1.21", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
+                new AsyncNetworking(context,"192.168.1.21", 5433, data.get(position).getCommand()).execute();  // TODO : unfix IP.
             }
         });
     }
