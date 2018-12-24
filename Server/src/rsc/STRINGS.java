@@ -72,6 +72,7 @@ public class STRINGS {
     public static final String connection_error_wrong_username = "Connection error : a user tried to authenticate but the username was wrong.";
     public static final String connection_error_wrong_password = "Connection error : a user tried to authenticate but the password was wrong.";
     public static final String code_not_valid = "Code not valid : ";
+    public static final String connection_error = "Connection error, a problem occurred with your code message.";
 
     // Module loader.
     public static final String loader_lights = "Lights loaded.";

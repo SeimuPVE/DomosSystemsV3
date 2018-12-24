@@ -2,6 +2,8 @@ package domosapp.utils;
 
 
 public class STRINGS {
+    public static final String api_tag = "SEIMU_APP";
+
     // Hash salt.
     public static final String SALT = "MySaltNigga"; // TODO : put it in a config file and be careful with " char.
 

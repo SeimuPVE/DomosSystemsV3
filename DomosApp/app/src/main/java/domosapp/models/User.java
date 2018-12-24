@@ -58,7 +58,7 @@ public class User {
             hashed_password = hexString.toString();
         }
         catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            Log.d("SEIMU_APP", e.getMessage()); // TODO : change messages.
+            Log.d(STRINGS.api_tag, e.getMessage());
         }
 
         return hashed_password;

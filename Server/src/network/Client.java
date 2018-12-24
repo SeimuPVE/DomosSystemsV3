@@ -80,7 +80,7 @@ public class Client implements Runnable {
         }
         catch (Exception e) {
             if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 0)
-                msc.Logger.log(Logger.LevelSEVERE, this.getClass().getName(), e.getMessage());
+                msc.Logger.log(Logger.LevelWARNING, this.getClass().getName(), STRINGS.connection_error);
 
             try {
                 disconnect();
