@@ -33,7 +33,7 @@ public class AddModuleDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.layout_add_module_dialog, null);
         editTextName = view.findViewById(R.id.module_name_id);
         editTextLabel = view.findViewById(R.id.module_label_id);
-        editTextCommand = view.findViewById(R.id.module_label_id);
+        editTextCommand = view.findViewById(R.id.module_command_id);
 
         builder.setView(view).setTitle(STRINGS.ADD_MODULE).setNegativeButton(STRINGS.CANCEL, new DialogInterface.OnClickListener() {
                     @Override

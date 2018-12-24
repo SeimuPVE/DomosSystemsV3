@@ -2,6 +2,9 @@ package domosapp.utils;
 
 
 public class STRINGS {
+    // Hash salt.
+    public static final String SALT = "mySalt"; // TODO : put it in a config file.
+
     // Database.
     public static final String DATABASE_NAME = "domos.db";
     public static final int DATABASE_VERSION = 1;
@@ -27,4 +30,8 @@ public class STRINGS {
     public static final String CANCEL = "Cancel";
     public static final String ADD = "Add";
     public static final String ADD_MODULE_DIALOG = "Add module dialog.";
+
+    // Networking.
+    public static final String null_user = "null:null:";
+    public static final String code_separator = ":";
 }

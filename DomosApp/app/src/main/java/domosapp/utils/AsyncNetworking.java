@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 
+import domosapp.adapters.UserDatabaseAdapter;
+
 
 public class AsyncNetworking extends AsyncTask<Void, Void, Void> {
     private String ip;
@@ -24,7 +26,10 @@ public class AsyncNetworking extends AsyncTask<Void, Void, Void> {
             Socket socket = new Socket(ip, port);
             PrintStream printStream = new PrintStream(socket.getOutputStream());
 
-            printStream.println(message);
+            if(UserDatabaseAdapter.getUser() != null)
+                printStream.println(UserDatabaseAdapter.getUser().getPseudo() + STRINGS.code_separator + UserDatabaseAdapter.getUser().getPassword() + STRINGS.code_separator + message);
+            else
+                printStream.println(STRINGS.null_user + message);
 
             // TODO : add the possibility to get a return.
 

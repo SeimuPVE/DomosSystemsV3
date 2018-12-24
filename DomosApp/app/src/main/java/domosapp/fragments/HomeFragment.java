@@ -6,6 +6,7 @@ import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment {
                         openAddModuleDialog(ModuleType.ENV_SENSOR);
                         break;
                 }
+
                 return true;
             }
 

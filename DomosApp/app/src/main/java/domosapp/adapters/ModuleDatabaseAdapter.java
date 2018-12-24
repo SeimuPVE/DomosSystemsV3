@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 import domosapp.models.Module;
 import domosapp.utils.DataBaseHelper;
@@ -48,7 +49,9 @@ public class ModuleDatabaseAdapter {
     // Method to get the password  of userName.
     public List<Module> getAllModules() {
         List<Module> moduleList = new ArrayList<>();
+
         db = dbHelper.getReadableDatabase();
+
         Cursor cursor = db.query(STRINGS.MODULE_TABLE_NAME, null, null, null, null, null, null);
 
         while(cursor.moveToNext()) {

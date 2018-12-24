@@ -52,7 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.moduleCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AsyncNetworking("192.168.0.42", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
+                new AsyncNetworking("192.168.1.21", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
             }
         });
     }
