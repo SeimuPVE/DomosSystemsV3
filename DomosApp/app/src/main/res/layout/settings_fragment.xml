@@ -5,12 +5,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <TextView
-            android:text="@string/todo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="222dp"
-            tools:layout_editor_absoluteX="163dp" android:id="@+id/textView2" android:layout_centerVertical="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
-            android:layout_marginRight="150dp" android:layout_marginEnd="150dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin = "10dp"
+            android:text="IP" />
+
+        <EditText
+            android:id="@+id/editTextIP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="example : 192.168.1.1"
+            android:inputType="textPersonName"
+            android:layout_margin = "10dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin = "10dp"
+            android:text="PORT" />
+
+        <EditText
+            android:id="@+id/editTextPORT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="example : 8080"
+            android:inputType="textPersonName"
+            android:layout_margin = "10dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="Update" />
+    </LinearLayout>
 
 </RelativeLayout>

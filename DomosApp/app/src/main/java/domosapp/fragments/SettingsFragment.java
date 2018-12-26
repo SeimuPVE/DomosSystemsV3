@@ -13,4 +13,6 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.settings_fragment, container, false);
     }
+
+    // TODO : update button
 }

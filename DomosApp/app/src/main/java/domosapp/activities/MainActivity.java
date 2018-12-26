@@ -11,11 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
 import com.domosapp.R;
+
+import domosapp.adapters.UserDatabaseAdapter;
 import domosapp.fragments.AccountFragment;
 import domosapp.fragments.HomeFragment;
 import domosapp.fragments.LogoutFragment;
 import domosapp.fragments.SettingsFragment;
+import domosapp.models.User;
 
 
 public class MainActivity extends AppCompatActivity
@@ -36,6 +41,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        UserDatabaseAdapter userDatabaseAdapter = new UserDatabaseAdapter(getBaseContext());
+        User user = UserDatabaseAdapter.getUser();
+        TextView header = navigationView.getHeaderView(0).findViewById(R.id.nav_header_pseudo);
+        if (user != null) {
+            header.setText(user.getPseudo());
+        }
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
     }
@@ -44,10 +56,9 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
-        if(drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -67,7 +78,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         // noinspection SimplifiableIfStatement.
-        if(id == R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true;
         }
 
@@ -84,14 +95,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_account) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new AccountFragment()).commit();
-        }
-        else if (id == R.id.nav_home) {
+        } else if (id == R.id.nav_home) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
-        }
-        else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
-        }
-        else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new LogoutFragment()).commit();
         }
 

@@ -38,9 +38,9 @@ public class AsyncNetworking extends AsyncTask<Void, Void, Void> {
 
             // Send the message.
             if(UserDatabaseAdapter.getUser() != null)
-                printStream.println(UserDatabaseAdapter.getUser().getPseudo() + STRINGS.code_separator + UserDatabaseAdapter.getUser().getPassword() + STRINGS.code_separator + message);
+                printStream.println(UserDatabaseAdapter.getUser().getPseudo() + Constants.code_separator + UserDatabaseAdapter.getUser().getPassword() + Constants.code_separator + message);
             else
-                printStream.println(STRINGS.null_user + message);
+                printStream.println(Constants.null_user + message);
 
             // Get the return value.
             return_message = reader.readLine();

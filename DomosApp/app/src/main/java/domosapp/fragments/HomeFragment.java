@@ -6,18 +6,18 @@ import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.domosapp.R;
 
 import domosapp.adapters.ModuleDatabaseAdapter;
 import domosapp.adapters.RecyclerViewAdapter;
 import domosapp.models.Module;
 import domosapp.models.ModuleType;
-import domosapp.utils.STRINGS;
+import domosapp.utils.Constants;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 
 import java.util.List;
@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
         moduleDatabaseAdapter = new ModuleDatabaseAdapter(getContext());
         modules = moduleDatabaseAdapter.getAllModules();
 
-        adapter = new RecyclerViewAdapter(myView.getContext(), modules);
+        adapter = new RecyclerViewAdapter(getActivity(), modules);
         recyclerView.setLayoutManager(new GridLayoutManager(myView.getContext(), 3));
         recyclerView.setAdapter(adapter);
 
@@ -75,17 +75,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void openAddModuleDialog(final ModuleType type) {
-        AddModuleDialog addModuleDialog = new AddModuleDialog();
+        SaveModuleDialog saveModuleDialog = new SaveModuleDialog();
 
-        addModuleDialog.setListener(new AddModuleDialog.AddModuleDialogListener() {
+        saveModuleDialog.setListener(new SaveModuleDialog.SaveModuleDialogListener() {
             @Override
             public void addModule(String name, String label, String command) {
                 moduleDatabaseAdapter.insertEntry(type.toString(), name, label, command);
                 modules = moduleDatabaseAdapter.getAllModules();
                 adapter.refreshList(modules);
             }
+
+            @Override
+            public void updateModule(int id, String name, String label, String command) {
+            }
         });
 
-        addModuleDialog.show(getFragmentManager(), STRINGS.ADD_MODULE_DIALOG);
+        saveModuleDialog.show(getFragmentManager(), Constants.ADD_MODULE_DIALOG);
     }
 }

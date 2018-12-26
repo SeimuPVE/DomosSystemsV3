@@ -1,7 +1,7 @@
 package domosapp.utils;
 
 
-public class STRINGS {
+public class Constants {
     public static final String api_tag = "SEIMU_APP";
 
     // Hash salt.
@@ -15,11 +15,11 @@ public class STRINGS {
 
     // Module table.
     public static final String MODULE_TABLE_NAME = "MODULE";
+    public static final String MODULE_ID = "ID";
     public static final String MODULE_TYPE = "TYPE";
     public static final String MODULE_NAME = "NAME";
     public static final String MODULE_LABEL = "LABEL";
     public static final String MODULE_COMMAND = "COMMAND";
-    public static final String MODULE_ADD_SUCCESS = "Module Info Saved";
 
     // User table.
     public static final String USER_TABLE_NAME = "USER";
@@ -31,7 +31,13 @@ public class STRINGS {
     public static final String ADD_MODULE = "Add Module";
     public static final String CANCEL = "Cancel";
     public static final String ADD = "Add";
+    public static final String UPDATE = "Update";
     public static final String ADD_MODULE_DIALOG = "Add module dialog.";
+    public static final String EDIT_MODULE_DIALOG = "Edit module dialog.";
+
+    // Action module dialog
+    public static final String ACTION_MODULE_TITLE="Module actions";
+    public static final String BUNDLE_MODULE_KEY = "moduleKey";
 
     // Networking.
     public static final String null_user = "null:null:";

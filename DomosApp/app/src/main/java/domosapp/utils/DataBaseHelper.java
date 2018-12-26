@@ -12,8 +12,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(STRINGS.MODULE_DATABASE_CREATE);
-        sqLiteDatabase.execSQL(STRINGS.USER_DATABASE_CREATE);
+        sqLiteDatabase.execSQL(Constants.MODULE_DATABASE_CREATE);
+        sqLiteDatabase.execSQL(Constants.USER_DATABASE_CREATE);
     }
 
     @Override
@@ -22,6 +22,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public String getDatabaseName() {
-        return STRINGS.DATABASE_NAME;
+        return Constants.DATABASE_NAME;
     }
 }
