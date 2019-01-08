@@ -28,4 +28,9 @@ public class CONF_CODES {
     // SensorsAutomater.
     public static final String sensors_automater_routine_time = "sensors_automater_routine_time";
     public static final String sensors_automater_timeout = "sensors_automater_timeout";
+
+    // Chair pressure.
+    public static final String chair_pressure_ip = "chair_pressure_ip";
+    public static final String chair_pressure_port = "chair_pressure_port";
+    public static final String chair_pressure_timeout = "chair_pressure_timeout";
 }

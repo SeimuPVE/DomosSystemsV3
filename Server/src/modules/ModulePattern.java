@@ -3,9 +3,11 @@ package modules;
 import network.Client;
 import rsc.STRINGS;
 
+import java.util.Observable;
+
 
 // Used to create lists of modules.
-public class ModulePattern {
+public class ModulePattern extends Observable {
     private Client client;
 
     public String exec(String cmd) {

@@ -42,6 +42,9 @@ public class STRINGS {
     public static final String log_environment_timeout = "Timeout exception with environment sensors !";
     public static final String log_environment_no_route_to_host = "The environment sensor is not connected.";
 
+    // ChairPressure.
+    public static final String log_char_pressure_error = "An error occurred with the chair pressure module.";
+
     // ConfigReader.
     public static final String log_config_reader_not_key = "Key not found in config file, the concerned key is : ";
     public static final String comment_char = "//";
@@ -78,4 +81,5 @@ public class STRINGS {
     public static final String loader_lights = "Lights loaded.";
     public static final String loader_environment_sensor = "Environment sensors loaded.";
     public static final String loader_led_strip = "Led strip loaded.";
+    public static final String loader_chair_pressure = "Chair pressure loaded.";
 }

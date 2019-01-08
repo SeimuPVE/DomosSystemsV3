@@ -27,4 +27,8 @@ public class COMMANDS {
     public static final String LIGHT_ON = "LIGHT_ON_";
     public static final String LIGHT_OFF = "LIGHT_OFF_";
     public static final String LIGHT_REVERSE = "LIGHT_REVERSE_";
+
+    // ChairPressure codes.
+    public static final String PRESSURE_PRESSED = "PRESSURE_PRESSED";
+    public static final String PRESSURE_RELEASED = "PRESSURE_RELEASED";
 }

@@ -14,12 +14,15 @@ public class ModuleLoader {
     private static ArrayList<ModulePattern> moduleList = new ArrayList<>();
 
     public static ArrayList<ModulePattern> loadModules() {
+        // TODO : extract strings.
         if(ConfigReader.readValue("lights").equals("on"))
             loadLights();
         if(ConfigReader.readValue("environment_sensors").equals("on"))
             loadEnvironmentSensors();
         if(ConfigReader.readValue("led_strip").equals("on"))
             loadLedStrip();
+        if(ConfigReader.readValue("chair_pressure").equals("on"))
+            loadChairPressure();
 
         return moduleList;
     }
@@ -55,6 +58,15 @@ public class ModuleLoader {
 
         if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
             Logger.log(Logger.LevelFINE, ModuleLoader.class.getName(), STRINGS.loader_led_strip);
+
+        return moduleList;
+    }
+
+    public static ArrayList<ModulePattern> loadChairPressure() {
+        moduleList.add(new ChairPressure());
+
+        if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
+            Logger.log(Logger.LevelFINE, ModuleLoader.class.getName(), STRINGS.loader_chair_pressure);
 
         return moduleList;
     }
