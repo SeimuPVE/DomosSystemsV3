@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="example : 192.168.1.1"
+            android:hint="Example : 192.168.1.1"
             android:inputType="textPersonName"
             android:layout_margin = "10dp"
             android:text="" />
@@ -40,13 +40,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="example : 8080"
+            android:hint="Example : 8080"
+            android:inputType="textPersonName"
+            android:layout_margin = "10dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin = "10dp"
+            android:text="SALT" />
+
+        <EditText
+            android:id="@+id/editTextSALT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Example : mySalt!"
             android:inputType="textPersonName"
             android:layout_margin = "10dp"
             android:text="" />
 
         <Button
-            android:id="@+id/btn_update"
+            android:id="@+id/btn_settings_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"

@@ -36,5 +36,6 @@
     <string name="module_added">Module Info Saved!</string>
     <string name="module_deleted">Module is deleted!</string>
     <string name="module_updated">Module is updated!</string>
+    <string name="settings_saved">Settings saved !</string>
 
 </resources>

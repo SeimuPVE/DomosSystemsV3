@@ -15,6 +15,7 @@ import com.domosapp.R;
 
 import domosapp.adapters.ModuleDatabaseAdapter;
 import domosapp.adapters.RecyclerViewAdapter;
+import domosapp.adapters.SettingsDatabaseAdapter;
 import domosapp.models.Module;
 import domosapp.models.ModuleType;
 import domosapp.utils.Constants;
@@ -27,6 +28,7 @@ public class HomeFragment extends Fragment {
     private List<Module> modules;
     private RecyclerViewAdapter adapter;
     private ModuleDatabaseAdapter moduleDatabaseAdapter;
+    private SettingsDatabaseAdapter settingsDatabaseAdapter;
 
     @Nullable
     @Override
@@ -66,6 +68,8 @@ public class HomeFragment extends Fragment {
 
         moduleDatabaseAdapter = new ModuleDatabaseAdapter(getContext());
         modules = moduleDatabaseAdapter.getAllModules();
+
+        settingsDatabaseAdapter = new SettingsDatabaseAdapter(getContext());
 
         adapter = new RecyclerViewAdapter(getActivity(), modules);
         recyclerView.setLayoutManager(new GridLayoutManager(myView.getContext(), 3));

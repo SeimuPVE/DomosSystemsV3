@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import domosapp.adapters.SettingsDatabaseAdapter;
 import domosapp.utils.Constants;
 
 
@@ -36,7 +37,7 @@ public class User {
 
     public static String hashPassword(String password) {
         String hashed_password = null;
-        String salt = Constants.SALT;
+        String salt = SettingsDatabaseAdapter.getSettings().getSalt();
 
         int i;
         byte[] hash;

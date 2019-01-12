@@ -18,6 +18,7 @@ import domosapp.fragments.ActionModuleDialog;
 import domosapp.fragments.SaveModuleDialog;
 import domosapp.models.Module;
 import domosapp.models.ModuleType;
+import domosapp.models.Settings;
 import domosapp.utils.AsyncNetworking;
 import domosapp.utils.Constants;
 
@@ -69,7 +70,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                     @Override
                     public void trigger(Module module) {
-                        new AsyncNetworking(context, "192.168.1.21", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
+                        Settings settings = SettingsDatabaseAdapter.getSettings();
+                        new AsyncNetworking(context, settings.getIp(), settings.getPort(), data.get(position).getCommand()).execute();
                         dialog.dismiss();
                     }
 
@@ -113,7 +115,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.moduleCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AsyncNetworking(context, "192.168.1.21", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
+                Settings settings = SettingsDatabaseAdapter.getSettings();
+                new AsyncNetworking(context, settings.getIp(), settings.getPort(), data.get(position).getCommand()).execute();
             }
         });
     }
