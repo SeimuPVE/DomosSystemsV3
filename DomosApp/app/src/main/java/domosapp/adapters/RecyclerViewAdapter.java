@@ -55,14 +55,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         else if (data.get(position).getType().equals(ModuleType.ENV_SENSOR.toString()))
             holder.moduleImage.setImageResource(R.drawable.ic_action_sensor);
 
-        holder.moduleCard.setOnClickListener(new View.OnClickListener() {
+        // Setup the long click to open the dialog box to edit the button.
+        holder.moduleCard.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View view) {
                 final ActionModuleDialog dialog = new ActionModuleDialog();
                 final Bundle args = new Bundle();
+
                 args.putSerializable(Constants.BUNDLE_MODULE_KEY, data.get(position));
+
                 dialog.setArguments(args);
                 dialog.setListener(new ActionModuleDialog.ActionModuleDialogListener() {
+
                     @Override
                     public void trigger(Module module) {
                         new AsyncNetworking(context, "192.168.1.21", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
@@ -74,6 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         SaveModuleDialog saveModuleDialog = new SaveModuleDialog();
                         saveModuleDialog.setArguments(args);
                         saveModuleDialog.setListener(new SaveModuleDialog.SaveModuleDialogListener() {
+
                             @Override
                             public void addModule(String name, String label, String command) {
                             }
@@ -100,6 +105,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 });
 
                 dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), Constants.ACTION_MODULE_TITLE);
+                return true;
+            }
+        });
+
+        // Setup the short click to send the command.
+        holder.moduleCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncNetworking(context, "192.168.1.21", 5433, data.get(position).getCommand()).execute(); // TODO : unfix IP.
             }
         });
     }
