@@ -5,16 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.domosapp.R;
 
+import domosapp.activities.MainActivity;
 import domosapp.adapters.SettingsDatabaseAdapter;
 
 
@@ -26,8 +25,18 @@ public class SettingsFragment extends Fragment {
         view = inflater.inflate(R.layout.settings_fragment, container, false);
         Button button = view.findViewById(R.id.btn_settings_update);
 
-        // TODO : manage empty settings.
+        // Set hints.
+        EditText text_ip = view.findViewById(R.id.editTextIP);
+        EditText text_port = view.findViewById(R.id.editTextPORT);
+        EditText text_salt = view.findViewById(R.id.editTextSALT);
 
+        if(SettingsDatabaseAdapter.getSettings() != null) {
+            text_ip.setHint(SettingsDatabaseAdapter.getSettings().getIp());
+            text_port.setHint(String.valueOf(SettingsDatabaseAdapter.getSettings().getPort()));
+            text_salt.setHint(SettingsDatabaseAdapter.getSettings().getSalt());
+        }
+
+        // Set onClick.
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,8 +44,8 @@ public class SettingsFragment extends Fragment {
                 EditText text_port = view.findViewById(R.id.editTextPORT);
                 EditText text_salt = view.findViewById(R.id.editTextSALT);
 
-                String ip = "192.168.1.1", salt = ""; // TODO : change default values.
-                int port = 8080;
+                String ip = text_ip.getHint().toString(), salt = "";
+                int port = Integer.valueOf(text_port.getHint().toString());
 
                 if(!TextUtils.isEmpty(text_ip.getText().toString()))
                     ip = text_ip.getText().toString();
@@ -47,8 +56,7 @@ public class SettingsFragment extends Fragment {
 
                 settingsDatabaseAdapter.insertSettings(ip, port, salt);
 
-                Toast.makeText(getContext(), "Settings added !", Toast.LENGTH_SHORT).show(); // TODO : export text.
-                // TODO : redirect on Home.
+                MainActivity.launchHomeActivity();
             }
         });
 

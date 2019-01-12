@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.domosapp.R;
@@ -40,7 +39,6 @@ public class SettingsDatabaseAdapter {
 
         // Insert the row into your table.
         db.insert(Constants.SETTINGS_TABLE_NAME, null, newValues);
-        db.close();
 
         Toast.makeText(context, context.getString(R.string.settings_saved), Toast.LENGTH_LONG).show();
     }
@@ -48,7 +46,6 @@ public class SettingsDatabaseAdapter {
     public void deleteSettings() {
         db = dbHelper.getWritableDatabase();
         db.delete(Constants.SETTINGS_TABLE_NAME, null, null);
-        db.close();
     }
 
     public static Settings getSettings() {

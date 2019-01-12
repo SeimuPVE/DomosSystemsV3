@@ -23,8 +23,8 @@ import domosapp.fragments.SettingsFragment;
 import domosapp.models.User;
 
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         if (id == R.id.nav_account)
             fragmentManager.beginTransaction().replace(R.id.content_frame, new AccountFragment()).commit();
@@ -101,5 +101,9 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    public static void launchHomeActivity() {
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
     }
 }
