@@ -42,29 +42,39 @@ public class ModuleDatabaseAdapter {
 
             db.insert(Constants.MODULE_TABLE_NAME, null, newValues);
             db.close();
+
             Toast.makeText(context, context.getString(R.string.module_added), Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.getStackTrace();
         }
     }
 
     public void deleteEntry(int id) {
         db = dbHelper.getWritableDatabase();
+
         String[] whereArgs = new String[]{String.valueOf(id)};
+
         db.delete(Constants.MODULE_TABLE_NAME, Constants.MODULE_ID + "=?", whereArgs);
         db.close();
+
         Toast.makeText(context, context.getString(R.string.module_deleted), Toast.LENGTH_LONG).show();
     }
 
     public void updateEntry(int id, String name, String label, String command) {
         db = dbHelper.getWritableDatabase();
+
         ContentValues cv = new ContentValues();
+
         cv.put(Constants.MODULE_NAME, name);
         cv.put(Constants.MODULE_LABEL, label);
         cv.put(Constants.MODULE_COMMAND, command);
+
         String[] whereArgs = new String[]{String.valueOf(id)};
+
         db.update(Constants.MODULE_TABLE_NAME, cv, Constants.MODULE_ID + "=?", whereArgs);
         db.close();
+
         Toast.makeText(context, context.getString(R.string.module_updated), Toast.LENGTH_LONG).show();
     }
 
@@ -78,12 +88,15 @@ public class ModuleDatabaseAdapter {
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex(Constants.MODULE_ID));
+
             String type = cursor.getString(cursor.getColumnIndex(Constants.MODULE_TYPE));
             String name = cursor.getString(cursor.getColumnIndex(Constants.MODULE_NAME));
             String label = cursor.getString(cursor.getColumnIndex(Constants.MODULE_LABEL));
             String command = cursor.getString(cursor.getColumnIndex(Constants.MODULE_COMMAND));
+
             Module module = new Module(type, name, label, command);
             module.setId(id);
+
             moduleList.add(module);
         }
 

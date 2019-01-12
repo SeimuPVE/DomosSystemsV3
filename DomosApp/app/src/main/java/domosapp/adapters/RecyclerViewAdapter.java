@@ -25,7 +25,6 @@ import java.util.List;
 
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-
     private Context context;
     private List<Module> data;
     private ModuleDatabaseAdapter moduleDatabaseAdapter;

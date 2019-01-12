@@ -30,19 +30,22 @@ public class SaveModuleDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String buttonLabel = Constants.ADD;
         final Module module;
-        if (this.getArguments() != null) {
+
+        if (this.getArguments() != null)
             module = (Module) this.getArguments().get(Constants.BUNDLE_MODULE_KEY);
-        } else {
+        else
             module = null;
-        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.layout_add_module_dialog, null);
+
         editTextName = view.findViewById(R.id.module_name_id);
         editTextLabel = view.findViewById(R.id.module_label_id);
         editTextCommand = view.findViewById(R.id.module_command_id);
+
         if (module != null) {
             editTextName.setText(module.getName());
             editTextLabel.setText(module.getLabel());
@@ -60,11 +63,11 @@ public class SaveModuleDialog extends AppCompatDialogFragment {
                 String name = editTextName.getText().toString().trim();
                 String label = editTextLabel.getText().toString().trim();
                 String command = editTextCommand.getText().toString().trim();
-                if (module == null) {
+
+                if (module == null)
                     listener.addModule(name, label, command);
-                } else {
+                else
                     listener.updateModule(module.getId(), name, label, command);
-                }
             }
         });
 

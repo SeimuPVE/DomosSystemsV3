@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.domosapp.R;
@@ -17,13 +15,9 @@ import com.domosapp.R;
 import domosapp.models.Module;
 import domosapp.utils.Constants;
 
+
 public class ActionModuleDialog extends AppCompatDialogFragment {
-
     private Module module;
-
-    private Button triggerButton;
-    private Button updateButton;
-    private Button deleteButton;
 
     private ActionModuleDialogListener listener;
 
@@ -32,17 +26,18 @@ public class ActionModuleDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         module = (Module) this.getArguments().get(Constants.BUNDLE_MODULE_KEY);
-        if (module != null) {
-            System.out.println("MACHI NULLLLL");
-        }
+
+        if (module != null)
+            System.out.println("MACHI NULLLLL"); // TODO : correct the message.
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.layout_action_module_dialog, null);
-        triggerButton = view.findViewById(R.id.module_trigger_id);
-        updateButton = view.findViewById(R.id.module_update_id);
-        deleteButton = view.findViewById(R.id.module_delete_id);
+        Button triggerButton = view.findViewById(R.id.module_trigger_id);
+        Button updateButton = view.findViewById(R.id.module_update_id);
+        Button deleteButton = view.findViewById(R.id.module_delete_id);
 
         triggerButton.setOnClickListener(new View.OnClickListener() {
             @Override

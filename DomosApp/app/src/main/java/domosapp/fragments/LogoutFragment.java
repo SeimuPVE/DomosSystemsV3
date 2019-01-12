@@ -19,6 +19,7 @@ public class LogoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.logout_fragment, container, false);
         Button logoutBtn = view.findViewById(R.id.btn_logout);
+
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,12 +27,14 @@ public class LogoutFragment extends Fragment {
                 UserDatabaseAdapter userDatabaseAdapter = new UserDatabaseAdapter(getContext());
                 userDatabaseAdapter.deleteUser();
                 getActivity().finish();
+
                 if (UserDatabaseAdapter.getUser() == null) {
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
             }
         });
+
         return view;
     }
 }

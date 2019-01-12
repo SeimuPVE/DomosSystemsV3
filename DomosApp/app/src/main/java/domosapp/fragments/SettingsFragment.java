@@ -14,5 +14,5 @@ public class SettingsFragment extends Fragment {
         return inflater.inflate(R.layout.settings_fragment, container, false);
     }
 
-    // TODO : update button
+    // TODO : update button.
 }

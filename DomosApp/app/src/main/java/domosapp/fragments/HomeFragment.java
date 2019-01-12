@@ -87,6 +87,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void updateModule(int id, String name, String label, String command) {
+                // TODO : is it useless ?
             }
         });
 
