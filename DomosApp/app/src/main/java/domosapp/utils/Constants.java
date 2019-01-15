@@ -29,6 +29,9 @@ public class Constants {
     public static final String SETTINGS_IP = "IP";
     public static final String SETTINGS_PORT = "PORT";
     public static final String SETTINGS_SALT = "SALT";
+    public static final String DEFAULT_SETTINGS_IP = "192.168.1.1";
+    public static final int DEFAULT_SETTINGS_PORT = 8080;
+    public static final String DEFAULT_SETTINGS_SALT = "";
 
     // Add module dialog.
     public static final String ADD_MODULE = "Add Module";

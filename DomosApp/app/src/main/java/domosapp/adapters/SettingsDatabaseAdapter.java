@@ -53,12 +53,14 @@ public class SettingsDatabaseAdapter {
         String ip, salt;
         int port;
 
+        if(dbHelper == null)
+            return new Settings(Constants.DEFAULT_SETTINGS_IP, Constants.DEFAULT_SETTINGS_PORT, Constants.DEFAULT_SETTINGS_SALT);
         db = dbHelper.getReadableDatabase();
 
         Cursor cursor = db.query(Constants.SETTINGS_TABLE_NAME, null, null, null, null, null, null);
 
         if(cursor.getCount() == 0)
-            return null;
+            return new Settings(Constants.DEFAULT_SETTINGS_IP, Constants.DEFAULT_SETTINGS_PORT, Constants.DEFAULT_SETTINGS_SALT);
 
         cursor.moveToNext();
         ip = cursor.getString(cursor.getColumnIndex(Constants.SETTINGS_IP));
