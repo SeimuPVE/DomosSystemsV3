@@ -119,11 +119,11 @@ public class EnvironmentSensors extends ModulePattern {
 
     public String exec(String command) {
         if(command.equals(COMMANDS.GET_HUMIDITY))
-            return getHumidity();
+            clientReturnMessage(getHumidity());
         else if(command.equals(COMMANDS.GET_LUMINOSITY))
-            return getLuminosity();
+            clientReturnMessage(getLuminosity());
         else if(command.equals(COMMANDS.GET_TEMPERATURE))
-            return getTemperature();
+            clientReturnMessage(getTemperature());
 
         return STRINGS.log_error + STRINGS.unrecognized_command;
     }

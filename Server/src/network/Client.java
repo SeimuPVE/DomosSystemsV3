@@ -67,13 +67,22 @@ public class Client implements Runnable {
             }
 
             // Execute the commands.
+            String return_message;
+            boolean command_recognized = false;
+
             for(ModulePattern module : modules)
                 for(String cmd : code.getCommandList()) {
-                    socketWriter.println(module.exec(cmd));
+                        return_message = module.exec(cmd);
+
+                        if(!return_message.equals(STRINGS.log_error + STRINGS.unrecognized_command))
+                            command_recognized = true;
 
                     if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
                         msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);
                 }
+
+            if(!command_recognized)
+                socketWriter.println(STRINGS.log_error + STRINGS.unrecognized_command);
 
             // Disconnect the client because we don't need to stay connected.
             disconnect();

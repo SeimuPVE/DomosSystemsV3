@@ -24,6 +24,11 @@ public class ModulePattern extends Observable {
             client.sendLogs(STRINGS.log_error + log);
     }
 
+    protected void clientReturnMessage(String message) {
+        if(client != null)
+            client.sendLogs(message);
+    }
+
     public void setClient(Client client) {
         this.client = client;
     }
