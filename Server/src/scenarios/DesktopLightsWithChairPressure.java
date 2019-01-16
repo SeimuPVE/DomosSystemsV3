@@ -1,4 +1,4 @@
-package routines;
+package scenarios;
 
 import java.util.Observable;
 import java.util.Observer;

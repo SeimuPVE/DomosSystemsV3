@@ -1,4 +1,4 @@
-package automaters;
+package routines;
 
 import modules.EnvironmentSensors;
 import msc.ConfigReader;
@@ -8,11 +8,11 @@ import rsc.CONF_CODES;
 import static java.lang.Thread.sleep;
 
 
-public class SensorsAutomater implements Runnable {
+public class SensorsUpdater implements Runnable {
     private EnvironmentSensors environmentSensors;
     private int timeout;
 
-    public SensorsAutomater(EnvironmentSensors environmentSensors) {
+    public SensorsUpdater(EnvironmentSensors environmentSensors) {
         timeout = Integer.parseInt(ConfigReader.readValue(CONF_CODES.sensors_automater_timeout));
 
         this.environmentSensors = environmentSensors;

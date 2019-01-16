@@ -1,6 +1,6 @@
 package modules;
 
-import automaters.SensorsAutomater;
+import routines.SensorsUpdater;
 import msc.ConfigReader;
 import msc.Logger;
 import rsc.COMMANDS;
@@ -45,7 +45,7 @@ public class ModuleLoader {
 
     public static ArrayList<ModulePattern> loadEnvironmentSensors() {
         moduleList.add(new EnvironmentSensors());
-        new Thread(new SensorsAutomater((EnvironmentSensors) moduleList.get(1))).start();
+        new Thread(new SensorsUpdater((EnvironmentSensors) moduleList.get(1))).start();
 
         if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
             Logger.log(Logger.LevelFINE, ModuleLoader.class.getName(), STRINGS.loader_environment_sensor);

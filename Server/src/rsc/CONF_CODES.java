@@ -25,7 +25,7 @@ public class CONF_CODES {
     public static final String environment_sensor_port = "environment_sensor_port";
     public static final String environment_sensor_timeout = "environment_sensor_timeout";
 
-    // SensorsAutomater.
+    // SensorsUpdater.
     public static final String sensors_automater_routine_time = "sensors_automater_routine_time";
     public static final String sensors_automater_timeout = "sensors_automater_timeout";
 
