@@ -56,7 +56,7 @@ public class Lights extends ModulePattern {
             return "";
     }
 
-    private void switchOn(int index) {
+    public void switchOn(int index) {
         try {
             // Execute command.
             Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOn.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
@@ -72,7 +72,7 @@ public class Lights extends ModulePattern {
         }
     }
 
-    private void switchOff(int index) {
+    public void switchOff(int index) {
         try {
             // Execute command.
             Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"" + codesOff.get(index) + "\" > " + ConfigReader.readValue("usb_port")}).waitFor();
@@ -88,7 +88,7 @@ public class Lights extends ModulePattern {
         }
     }
 
-    private void switchReverse(int index) {
+    public void switchReverse(int index) {
         if(switchStates.get(index))
             switchOff(index);
         else

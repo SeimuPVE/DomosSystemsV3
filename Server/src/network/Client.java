@@ -6,6 +6,7 @@ import msc.ConfigReader;
 import msc.Logger;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
+import scenarios.ScenarioLoader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class Client implements Runnable {
     private BufferedReader socketReader;
 
     private ArrayList<ModulePattern> modules;
+    private ScenarioLoader scenarioLoader = new ScenarioLoader();
 
     public Client(Socket socket, ArrayList<ModulePattern> modules) throws IOException {
         // Create connection.
@@ -70,12 +72,14 @@ public class Client implements Runnable {
             String return_message;
             boolean command_recognized = false;
 
+
             for(ModulePattern module : modules)
                 for(String cmd : code.getCommandList()) {
-                        return_message = module.exec(cmd);
+                    scenarioLoader.exec(cmd);
+                    return_message = module.exec(cmd);
 
-                        if(!return_message.equals(STRINGS.log_error + STRINGS.unrecognized_command))
-                            command_recognized = true;
+                    if(!return_message.equals(STRINGS.log_error + STRINGS.unrecognized_command))
+                        command_recognized = true;
 
                     if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
                         msc.Logger.log(Logger.LevelFINE, this.getClass().getName(), STRINGS.log_command + cmd);

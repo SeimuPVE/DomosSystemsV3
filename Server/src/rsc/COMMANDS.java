@@ -31,4 +31,8 @@ public class COMMANDS {
     // ChairPressure codes.
     public static final String PRESSURE_PRESSED = "PRESSURE_PRESSED";
     public static final String PRESSURE_RELEASED = "PRESSURE_RELEASED";
+
+    // Scenario sun light codes.
+    public static final String SCENARIO_SUN_LIGHT_OFF = "SCENARIO_SUN_LIGHT_OFF";
+    public static final String SCENARIO_SUN_LIGHT = "SCENARIO_SUN_LIGHT";
 }
