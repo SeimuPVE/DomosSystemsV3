@@ -20,6 +20,11 @@ public class CONF_CODES {
     public static final String led_strip_port = "led_strip_port";
     public static final String led_strip_timeout = "led_strip_timeout";
 
+    // Wifi led strip.
+    public static final String wifi_led_strip_ip = "wifi_led_strip_ip";
+    public static final String wifi_led_strip_port = "wifi_led_strip_port";
+    public static final String wifi_led_strip_timeout = "wifi_led_strip_timeout";
+
     // EnvironmentSensor.
     public static final String environment_sensor_ip = "environment_sensor_ip";
     public static final String environment_sensor_port = "environment_sensor_port";
