@@ -6,8 +6,7 @@ import rsc.COMMANDS;
 import rsc.CONF_CODES;
 import rsc.STRINGS;
 
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -42,12 +41,13 @@ public class WIFILedStrip extends ModulePattern {
 
     public void sendCommand(char command) {
         try {
-            Socket socket = new Socket();
+            socket = new Socket();
             socket.connect(new InetSocketAddress(ip, port), timeout);
 
             if(socket.isConnected()) {
                 writer = new PrintStream(socket.getOutputStream());
-                writer.write(command);
+                writer.print(command);
+                writer.print(COMMANDS.SENSOR_EXIT);
             }
         }
         catch (SocketTimeoutException e) {
