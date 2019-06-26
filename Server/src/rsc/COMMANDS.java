@@ -16,6 +16,10 @@ public class COMMANDS {
     public static final String GET_TEMPERATURE = "GET_TEMPERATURE";
 
     // LedStrip codes.
+    public static final String WIFI_LED_STRIP_REVERSE = "WIFI_LED_STRIP_REVERSE";
+    public static final String WIFI_LED_STRIP_ON = "WIFI_LED_STRIP_ON";
+    public static final String WIFI_LED_STRIP_OFF = "WIFI_LED_STRIP_OFF";
+
     public static final String LED_STRIP_REVERSE = "LED_STRIP_REVERSE";
     public static final String LED_STRIP_ON = "LED_STRIP_ON";
     public static final String LED_STRIP_OFF = "LED_STRIP_OFF";

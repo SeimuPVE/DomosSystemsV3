@@ -21,8 +21,8 @@ public class ModuleLoader {
             loadEnvironmentSensors();
         if(ConfigReader.readValue("led_strip").equals("on"))
             loadLedStrip();
-        if(ConfigReader.readValue("chair_pressure").equals("on"))
-            loadChairPressure();
+        if(ConfigReader.readValue("wifi_led_strip").equals("on"))
+            loadWifiLedStrip();
 
         return moduleList;
     }
@@ -62,11 +62,14 @@ public class ModuleLoader {
         return moduleList;
     }
 
-    public static ArrayList<ModulePattern> loadChairPressure() {
-        moduleList.add(new ChairPressure());
+    public static ArrayList<ModulePattern> loadWifiLedStrip() {
+        WIFILedStrip wifiLedStrip = new WIFILedStrip();
+        moduleList.add(wifiLedStrip);
+
+        wifiLedStrip.turnOff();
 
         if(Integer.parseInt(ConfigReader.readValue(CONF_CODES.verbose_level)) >= 2)
-            Logger.log(Logger.LevelFINE, ModuleLoader.class.getName(), STRINGS.loader_chair_pressure);
+            Logger.log(Logger.LevelFINE, ModuleLoader.class.getName(), STRINGS.loader_led_strip);
 
         return moduleList;
     }

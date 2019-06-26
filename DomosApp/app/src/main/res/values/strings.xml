@@ -30,4 +30,12 @@
     <string name="light">Light</string>
     <string name="strip_light">Strip Light</string>
     <string name="env_sensor">Env. Sensor</string>
+    <string name="trigger_button_on">Trigger command</string>
+    <string name="update_button">Update</string>
+    <string name="delete_button">Delete</string>
+    <string name="module_added">Module Info Saved!</string>
+    <string name="module_deleted">Module is deleted!</string>
+    <string name="module_updated">Module is updated!</string>
+    <string name="settings_saved">Settings saved !</string>
+
 </resources>

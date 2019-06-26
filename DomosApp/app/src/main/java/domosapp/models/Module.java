@@ -1,7 +1,10 @@
 package domosapp.models;
 
 
-public class Module {
+import java.io.Serializable;
+
+public class Module implements Serializable {
+    private int id;
     private String type;
     private String name;
     private String label;
@@ -12,6 +15,14 @@ public class Module {
         this.name = name;
         this.label = label;
         this.command = command;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getType() {

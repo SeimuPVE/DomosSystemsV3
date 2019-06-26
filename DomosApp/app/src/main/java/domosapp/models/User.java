@@ -6,7 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import domosapp.utils.STRINGS;
+import domosapp.adapters.SettingsDatabaseAdapter;
+import domosapp.utils.Constants;
 
 
 public class User {
@@ -36,7 +37,7 @@ public class User {
 
     public static String hashPassword(String password) {
         String hashed_password = null;
-        String salt = STRINGS.SALT;
+        String salt = SettingsDatabaseAdapter.getSettings().getSalt();
 
         int i;
         byte[] hash;
@@ -58,7 +59,7 @@ public class User {
             hashed_password = hexString.toString();
         }
         catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            Log.d(STRINGS.api_tag, e.getMessage());
+            Log.d(Constants.api_tag, e.getMessage());
         }
 
         return hashed_password;

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 public class Logger {
-    private static String filepath;
+    private static String filepath = "logs.txt";
 
     public static String LevelSEVERE = "SEVERE";
     public static String LevelWARNING = "WARNING";
